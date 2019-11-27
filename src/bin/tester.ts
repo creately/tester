@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const colors = require('colors');
+import colors = require('colors');
 const test = require('../lib/test');
 const yargs = require('yargs');
 
@@ -27,8 +27,8 @@ if (argv.path) {
 (async () => {  
     const files = await test.findFiles(path);
     if (files && files.length > 0) {
-        console.log('Found files: '.green + files);
-        files.forEach(file => {
+        console.log(colors.green('Found files: ') + files);
+        files.forEach((file: string) => {
             console.log('Loading file: '.green + file);
             if (file) require(path + file);
         });
@@ -37,3 +37,5 @@ if (argv.path) {
     }
 })()
 .catch(err => console.error('Error: '.red, err));
+
+export {};
