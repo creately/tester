@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import colors = require('colors');
+import 'colors';
 const test = require('./main');
 const yargs = require('yargs');
 
@@ -21,21 +21,22 @@ if (argv.path) {
   path = argv.path;
 }
 
-if (!path.endsWith('/')) path += '/';
+if (!path.endsWith('/')) {
+  path += '/';
+}
 
 (async () => {
-  console.log(colors.yellow('Searching for files in: ') + path);
-  const files = await test.findFiles(path);
+  console.log('Searching for files in: '.yellow + path);
+  const files: string[] = await test.findFiles(path);
 
   if (files && files.length > 0) {
-    console.log(colors.green('Found files: ') + files);
+    console.log('Found files: '.green + files);
+
     files.forEach((file: string) => {
       console.log('Loading file: '.green + file);
-      if (file) require(path + file);
+      require(path + file);
     });
   } else {
     console.warn('No files found'.yellow);
   }
 })().catch(err => console.error('Error: '.red, err));
-
-export {};
