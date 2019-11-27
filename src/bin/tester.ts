@@ -4,7 +4,7 @@ import colors = require('colors');
 const test = require('../lib/test');
 const yargs = require('yargs');
 
-let path = '';
+let path: string = process.cwd();
 
 const argv = yargs
   .command('path', 'The path to look for test files in', {
@@ -18,10 +18,10 @@ const argv = yargs
   .alias('help', 'h').argv;
 
 if (argv.path) {
-  console.log('path is: ', argv.path);
   path = argv.path;
-  if (!path.endsWith('/')) path += '/';
 }
+
+if (!path.endsWith('/')) path += '/';
 
 (async () => {
   const files = await test.findFiles(path);
