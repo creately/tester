@@ -2,8 +2,8 @@
   "name": "ts-starter",
   "version": "0.0.0",
   "description": "A bare minimum starter repository for writing and testing browser modules using typescript.",
-  "main": "dist/lib/test.js",
-  "typings": "dist/lib/test.d.ts",
+  "main": "dist/main.js",
+  "typings": "dist/main.d.ts",
   "scripts": {
     "build": "tsc",
     "lint": "prettier --print-width 120 --single-quote --trailing-comma es5 --write \"src/**/*.ts\"",
@@ -12,7 +12,7 @@
     "prepublish": "npm run lint && npm run build"
   },
   "bin": {
-    "tester": "./dist/bin/tester.js"
+    "tester": "./dist/tester.js"
   },
   "preferGlobal": true,
   "author": "Anonymous",

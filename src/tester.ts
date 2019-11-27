@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import colors = require('colors');
-const test = require('../lib/test');
+const test = require('./main');
 const yargs = require('yargs');
 
 let path: string = process.cwd();
