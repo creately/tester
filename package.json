@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "colors": "^1.4.0",
-    "globby": "^10.0.1"
+    "globby": "^10.0.1",
+    "yargs": "^15.0.2"
   }
 }
