@@ -20,5 +20,8 @@
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2"
+  },
+  "dependencies": {
+    "colors": "^1.4.0"
   }
 }
