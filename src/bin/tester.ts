@@ -24,7 +24,9 @@ if (argv.path) {
 if (!path.endsWith('/')) path += '/';
 
 (async () => {
+  console.log(colors.yellow('Searching for files in: ') + path);
   const files = await test.findFiles(path);
+
   if (files && files.length > 0) {
     console.log(colors.green('Found files: ') + files);
     files.forEach((file: string) => {

@@ -1,10 +1,8 @@
 import globby = require('globby');
-import colors = require('colors');
 
-async function findFiles(directory: string) {
-  console.log(colors.yellow('Searching for files in: ') + directory);
+async function findFiles(path: string) {
   const paths = await globby(['**/*.test.js'], {
-    cwd: directory,
+    cwd: path,
   });
 
   return paths;
