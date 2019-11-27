@@ -1,3 +1,3 @@
-declare var require: any;
-const context = require.context('./', true, /\.spec\.ts$/);
+declare var noderequire: any;
+const context = noderequire.context('./', true, /\.spec\.ts$/);
 context.keys().map(context);
