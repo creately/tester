@@ -11,6 +11,10 @@
     "test:watch": "jest --watch --coverage",
     "prepublish": "npm run lint && npm run build"
   },
+  "bin": {
+    "tester": "./bin/tester.js"
+  },
+  "preferGlobal": true,
   "author": "Anonymous",
   "license": "MIT",
   "devDependencies": {
@@ -22,6 +26,7 @@
     "webpack": "^4.41.2"
   },
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "globby": "^10.0.1"
   }
 }
