@@ -35,16 +35,16 @@ export function load(key: string, value: {}): void {
 /**
  * Gets the value stored under the context key.
  */
-export function getContext(): any {
+function getContext(): any {
   return STORE['context'];
 }
 
 /**
  * Gets the value stored under the reporter key.
  */
-// function getReporter(): any {
-//   return STORE['reporter'];
-// }
+function getReporter(): any {
+  return STORE['reporter'];
+}
 
 export function registerAction(action: any): void {
   if (!ACTIONS.includes(action)) {
