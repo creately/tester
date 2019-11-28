@@ -10,7 +10,7 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch --coverage",
     "prepare": "npm run lint && npm run build",
-    "prepublishOnly" : "npm test && npm run lint"
+    "prepublishOnly": "npm test && npm run lint"
   },
   "bin": {
     "tester": "./dist/tester.js"
@@ -29,7 +29,10 @@
   "dependencies": {
     "colors": "^1.4.0",
     "globby": "^10.0.1",
+    "puppeteer": "2.0.0",
     "yargs": "^15.0.2"
   },
-  "files": ["dist/**/*"]
+  "files": [
+    "dist/**/*"
+  ]
 }
