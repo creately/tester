@@ -1,7 +1,15 @@
 import * as globby from 'globby';
 
-async function findFiles(path: string): Promise<string[]> {
-  const paths = await globby(['**/*.test.js'], {
+/**
+ * Finds all files in the given path that match the given extension.
+ * Looks through directories and sub directories. Default extension is '.test.js'.
+ * @param path the path to search in
+ * @param extensions a string array of extensions to look for
+ */
+
+async function findFiles(path: string, extensions: string[] = ['.test.js']): Promise<string[]> {
+  const fileTypes = extensions.map( ext => '**/*' + ext);
+  const paths = await globby(fileTypes, {
     cwd: path,
   });
 
