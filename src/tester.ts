@@ -38,13 +38,13 @@ if (!path.endsWith('/')) {
       require(path + file);
     });
 
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch({ headless: false });
 
     console.log('Loading browser into context'.yellow);
     load('context', () => {
-      return { browser: browser }
+      return { browser: browser };
     });
-    
+
     await browser.close();
   } else {
     console.warn('No files found'.yellow);

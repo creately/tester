@@ -24,7 +24,7 @@ export async function findFiles(path: string, extensions: string[] = ['.test.js'
  * @param key the key to identify the store item with
  * @param value the function to store
  */
-export function load(key: string, value: ()=> any): void {
+export function load(key: string, value: () => any): void {
   STORE[key] = value;
 }
 
