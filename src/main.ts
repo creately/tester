@@ -5,6 +5,7 @@ import * as globby from 'globby';
  * Looks through directories and sub directories. Default extension is '.test.js'.
  * @param path the path to search in
  * @param extensions a string array of extensions to look for
+ * @returns a promise with an array of paths to found files
  */
 
 export async function findFiles(path: string, extensions: string[] = ['.test.js']): Promise<string[]> {
