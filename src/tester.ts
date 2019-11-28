@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import 'colors';
-const test = require('./main');
-const yargs = require('yargs');
+import { findFiles } from './main';
+import yargs = require('yargs');
 
 let path: string = process.cwd();
 
@@ -18,7 +18,7 @@ const argv = yargs
   .alias('help', 'h').argv;
 
 if (argv.path) {
-  path = argv.path;
+  path = String(argv.path);
 }
 
 if (!path.endsWith('/')) {
@@ -27,7 +27,7 @@ if (!path.endsWith('/')) {
 
 (async () => {
   console.log('Searching for files in: '.yellow + path);
-  const files: string[] = await test.findFiles(path);
+  const files: string[] = await findFiles(path);
 
   if (files && files.length > 0) {
     console.log('Found files: '.green + files);
