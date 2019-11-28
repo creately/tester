@@ -9,7 +9,8 @@
     "lint": "prettier --print-width 120 --single-quote --trailing-comma es5 --write \"src/**/*.ts\"",
     "test": "jest --coverage",
     "test:watch": "jest --watch --coverage",
-    "prepublish": "npm run lint && npm run build"
+    "prepare": "npm run lint && npm run build",
+    "prepublishOnly" : "npm test && npm run lint"
   },
   "bin": {
     "tester": "./dist/tester.js"
