@@ -41,9 +41,7 @@ if (!path.endsWith('/')) {
     const browser = await puppeteer.launch({ headless: false });
 
     console.log('Loading browser into context'.yellow);
-    load('context', () => {
-      return { browser: browser };
-    });
+    load('context', { browser: browser });
 
     await browser.close();
   } else {

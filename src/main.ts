@@ -22,22 +22,43 @@ export async function findFiles(path: string, extensions: string[] = ['.test.js'
 /**
  * Stores the given value under the given key
  * @param key the key to identify the store item with
- * @param value the function to store
+ * @param value the object to store
  */
-export function load(key: string, value: () => any): void {
-  STORE[key] = value;
+export function load(key: string, value: {}): void {
+  if (STORE[key]) {
+    STORE[key] = {...STORE[key], ...value};
+  } else {
+    STORE[key] = value;
+  }
 }
 
 /**
  * Gets the value stored under the context key.
  */
-function getContext(): any {
-  return STORE['context'].call();
+export function getContext(): any {
+  return STORE['context'];
 }
 
 /**
  * Gets the value stored under the reporter key.
  */
-function getReporter(): any {
-  return STORE['reporter'].call();
+// function getReporter(): any {
+//   return STORE['reporter'];
+// }
+
+export function registerAction(action: any): void {
+  if (!ACTIONS.includes(action)) {
+    ACTIONS.push(action);
+  }
+}
+
+export async function execute(cases: testCase[]) {
+  cases.forEach((val) => {
+    if (ACTIONS.includes(val.action)) {
+      let context = getContext();
+      let action = new val.action;
+      let out = action.execute(val.args, context);
+      return out;
+    }
+  })
 }
