@@ -19,14 +19,25 @@ export async function findFiles(path: string, extensions: string[] = ['.test.js'
   return paths;
 }
 
-export function load(key: string, value: any): void {
+/**
+ * Stores the given value under the given key
+ * @param key the key to identify the store item with
+ * @param value the function to store
+ */
+export function load(key: string, value: ()=> any): void {
   STORE[key] = value;
 }
 
+/**
+ * Gets the value stored under the context key.
+ */
 function getContext(): any {
   return STORE['context'].call();
 }
 
+/**
+ * Gets the value stored under the reporter key.
+ */
 function getReporter(): any {
   return STORE['reporter'].call();
 }
