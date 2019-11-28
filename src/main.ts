@@ -1,5 +1,7 @@
 import * as globby from 'globby';
 
+let STORE: any = {};
+
 /**
  * Finds all files in the given path that match the given extension.
  * Looks through directories and sub directories. Default extension is '.test.js'.
@@ -15,4 +17,16 @@ export async function findFiles(path: string, extensions: string[] = ['.test.js'
   });
 
   return paths;
+}
+
+export function load(key: string, value: any): void {
+  STORE[key] = value;
+}
+
+function getContext(): any {
+  return STORE['context'].call();
+}
+
+function getReporter(): any {
+  return STORE['reporter'].call();
 }
