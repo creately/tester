@@ -9,7 +9,7 @@ import * as globby from 'globby';
  */
 
 export async function findFiles(path: string, extensions: string[] = ['.test.js']): Promise<string[]> {
-  const fileTypes = extensions.map( ext => '**/*' + ext);
+  const fileTypes = extensions.map(ext => '**/*' + ext);
   const paths = await globby(fileTypes, {
     cwd: path,
   });

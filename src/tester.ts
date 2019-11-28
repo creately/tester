@@ -2,7 +2,7 @@
 
 import 'colors';
 import { findFiles } from './main';
-import yargs = require('yargs');
+import * as yargs from 'yargs';
 
 let path: string = process.cwd();
 
