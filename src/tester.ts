@@ -2,8 +2,9 @@
 
 import 'colors';
 import * as yargs from 'yargs';
-import { findFiles, load } from './main';
+import { findFiles, load, registerAction, execute } from './main';
 import { getBrowser } from './puppeteer-helper';
+import GoTo from './go-to.action';
 
 let path: string = process.cwd();
 
@@ -45,7 +46,31 @@ if (!path.endsWith('/')) {
       return { browser: browser };
     });
 
-    await browser.close();
+    console.log('Registering actions'.yellow);
+    registerAction(GoTo);
+
+    console.log('Executing test cases'.yellow);
+    await execute([
+      {
+        action: GoTo,
+        args: ['http://www.google.com'],
+        outs: [
+          'https://www.google.com/?gws_rd=ssl',
+        ],
+      },
+    ]).catch(err => console.log('Error: '.red + err));
+
+    await execute([
+      {
+        action: GoTo,
+        args: ['http://www.google.com'],
+        outs: [
+          'https://www.google.com',
+        ],
+      },
+    ]).catch(err => console.log('Error: '.red + err));
+
+    // browser.close();
   } else {
     console.warn('No files found'.yellow);
   }

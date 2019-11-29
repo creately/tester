@@ -2,12 +2,14 @@ import * as globby from 'globby';
 import store from './store.type';
 import spec from './spec.type';
 import test from './test.type';
+import { stripColors } from 'colors';
 
 const STORE: store = {
   context: {},
   reporters: [],
 };
 
+const ACTIONS: any = [];
 const TESTS: test[] = [];
 
 /**
@@ -67,6 +69,41 @@ function getContext(): any {
  */
 function getReporter(): any {
   return STORE.reporters;
+}
+
+export function registerAction(action: any): void {
+  if (!ACTIONS.includes(action)) {
+    ACTIONS.push(action);
+  }
+}
+
+export async function execute(specs: spec[]) {
+  specs.forEach((val: spec) => {
+    if (ACTIONS.includes(val.action)) {
+      let context = getContext();
+      let action = new val.action();
+      let expected = val.outs;
+      (async () => {
+        let result = await action.execute(val.args, context);
+        if (arraysEqual(expected, result)) {
+          console.log('.'.green);
+          return true;
+        } else {
+          console.log(stripColors.red('FAILURE. Expected: ' + expected + ', got: ' + result));
+          return false;
+        }
+      })().catch(err => console.log('Error: ', err));
+    }
+  });
+}
+
+function arraysEqual(a: any[], b: any[]): boolean {
+  if (a == null || b == null) return false;
+  if (a.length != b.length) return false;
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
 }
 
 /**
