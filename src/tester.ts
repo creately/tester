@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import 'colors';
-import { findFiles, load } from './main';
 import * as yargs from 'yargs';
 import * as puppeteer from 'puppeteer';
+import { findFiles, load } from './main';
 
 let path: string = process.cwd();
 
