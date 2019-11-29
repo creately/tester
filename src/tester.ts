@@ -52,21 +52,19 @@ if (!path.endsWith('/')) {
     console.log('Executing test cases'.yellow);
     await execute([
       {
+        title: 'goes to google.com 1',
         action: GoTo,
         args: ['http://www.google.com'],
-        outs: [
-          'https://www.google.com/?gws_rd=ssl',
-        ],
+        outs: ['https://www.google.com/?gws_rd=ssl'],
       },
     ]).catch(err => console.log('Error: '.red + err));
 
     await execute([
       {
+        title: 'goes to google.com 2',
         action: GoTo,
         args: ['http://www.google.com'],
-        outs: [
-          'https://www.google.com',
-        ],
+        outs: ['https://www.google.com'],
       },
     ]).catch(err => console.log('Error: '.red + err));
 

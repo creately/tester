@@ -1,8 +1,8 @@
+import 'colors';
 import * as globby from 'globby';
 import store from './store.type';
 import spec from './spec.type';
 import test from './test.type';
-import { stripColors } from 'colors';
 
 const STORE: store = {
   context: {},
@@ -97,7 +97,7 @@ export async function execute(specs: spec[]) {
           console.log('.'.green);
           return true;
         } else {
-          console.log(stripColors.red('FAILURE. Expected: ' + expected + ', got: ' + result));
+          console.log(('FAILURE: ' + val.title).red, ' - expected: ' + expected + ', got: ' + result);
           return false;
         }
       })().catch(err => console.log('Error: ', err));

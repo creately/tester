@@ -11,9 +11,7 @@ export default class GoTo implements Action {
     await page.goto(args[0]);
 
     const dimensions = await page.evaluate(() => {
-      return [
-        document.URL,
-      ];
+      return [document.URL];
     });
 
     return dimensions;
