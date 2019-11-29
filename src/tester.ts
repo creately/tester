@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 import 'colors';
-import { findFiles } from './main';
+import { findFiles, load } from './main';
 import * as yargs from 'yargs';
+import * as puppeteer from 'puppeteer';
 
 let path: string = process.cwd();
 
@@ -36,6 +37,15 @@ if (!path.endsWith('/')) {
       console.log('Loading file: '.green + file);
       require(path + file);
     });
+
+    const browser = await puppeteer.launch({ headless: false });
+
+    console.log('Loading browser into context'.yellow);
+    load('context', () => {
+      return { browser: browser };
+    });
+
+    await browser.close();
   } else {
     console.warn('No files found'.yellow);
   }
