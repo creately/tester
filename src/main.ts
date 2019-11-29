@@ -1,6 +1,8 @@
 import * as globby from 'globby';
 import store from './store.type';
-import testCase from './test-case.type';
+import spec from './spec.type';
+import test from './test.type';
+import { stripColors } from 'colors';
 
 const STORE: store = {
   context: {},
@@ -8,6 +10,7 @@ const STORE: store = {
 };
 
 const ACTIONS: any = [];
+const TESTS: test[] = [];
 
 /**
  * Finds all files in the given path that match the given extension.
@@ -27,7 +30,7 @@ export async function findFiles(path: string, extensions: string[] = ['.test.js'
 }
 
 /**
- * Stores the given value under the given key
+ * Stores the given value under the given key.
  * @param key the key to identify the store item with
  * @param value the object to store
  */
@@ -46,6 +49,15 @@ export function load(key: string, func: Function): void {
 }
 
 /**
+ * Stores the given test.
+ * @param title the name of the test
+ * @param specs an array of test specs
+ */
+export function test(title: string, specs: spec[]): void {
+  TESTS.push({ title: title, specs: specs });
+}
+
+/**
  * Gets the value stored under the context key.
  */
 function getContext(): any {
@@ -55,9 +67,9 @@ function getContext(): any {
 /**
  * Gets the value stored under the reporter key.
  */
-// function getReporter(): any {
-//   return STORE['reporter'];
-// }
+function getReporter(): any {
+  return STORE.reporters;
+}
 
 export function registerAction(action: any): void {
   if (!ACTIONS.includes(action)) {
@@ -65,8 +77,8 @@ export function registerAction(action: any): void {
   }
 }
 
-export async function execute(cases: testCase[]) {
-  cases.forEach((val: testCase) => {
+export async function execute(specs: spec[]) {
+  specs.forEach((val: spec) => {
     if (ACTIONS.includes(val.action)) {
       let context = getContext();
       let action = new val.action();
@@ -74,11 +86,10 @@ export async function execute(cases: testCase[]) {
       (async () => {
         let result = await action.execute(val.args, context);
         if (arraysEqual(expected, result)) {
-          console.log('SUCCESS: '.green, val.name.green);
+          console.log('.'.green);
           return true;
         } else {
-          console.log('FAILURE: '.red, val.name.red);
-          console.log('Expected: ', expected, ', got: ', result);
+          console.log(stripColors.red('FAILURE. Expected: ' + expected + ', got: ' + result));
           return false;
         }
       })().catch(err => console.log('Error: ', err));
@@ -93,4 +104,11 @@ function arraysEqual(a: any[], b: any[]): boolean {
     if (a[i] !== b[i]) return false;
   }
   return true;
+}
+
+/**
+ * Gets stored tests.
+ */
+function getTests(): test[] {
+  return TESTS;
 }

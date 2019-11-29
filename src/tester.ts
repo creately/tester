@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
 import 'colors';
-import { findFiles, load, registerAction, execute } from './main';
 import * as yargs from 'yargs';
-import * as puppeteer from 'puppeteer';
+import { findFiles, load, registerAction, execute } from './main';
 import GoTo from './go-to.action';
 
 let path: string = process.cwd();
@@ -52,7 +51,6 @@ if (!path.endsWith('/')) {
     console.log('Executing test cases'.yellow);
     await execute([
       {
-        name: 'My first test case',
         action: GoTo,
         args: ['http://www.google.com'],
         outs: [
@@ -63,7 +61,6 @@ if (!path.endsWith('/')) {
 
     await execute([
       {
-        name: 'My second test case',
         action: GoTo,
         args: ['http://www.google.com'],
         outs: [
