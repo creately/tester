@@ -71,12 +71,20 @@ function getReporter(): any {
   return STORE.reporters;
 }
 
+/**
+ * Registers and stores actions.
+ * @param action an action to register
+ */
 export function registerAction(action: any): void {
   if (!ACTIONS.includes(action)) {
     ACTIONS.push(action);
   }
 }
 
+/**
+ * Executes an array of specs using the current context.
+ * @param specs an array of specs.
+ */
 export async function execute(specs: spec[]) {
   specs.forEach((val: spec) => {
     if (ACTIONS.includes(val.action)) {
@@ -97,6 +105,11 @@ export async function execute(specs: spec[]) {
   });
 }
 
+/**
+ * Compares arrays for equality.
+ * @param a the first array to compare
+ * @param b the second array to compare
+ */
 function arraysEqual(a: any[], b: any[]): boolean {
   if (a == null || b == null) return false;
   if (a.length != b.length) return false;
