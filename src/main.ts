@@ -3,10 +3,12 @@ import * as globby from 'globby';
 import store from './store.type';
 import spec from './spec.type';
 import test from './test.type';
+import * as util from 'util';
 
 const STORE: store = {
   context: {},
   reporters: [],
+  variables: {},
 };
 
 const ACTIONS: any = [];
@@ -53,7 +55,7 @@ export function load(key: string, func: Function): void {
  * @param title the name of the test
  * @param specs an array of test specs
  */
-export function test(title: string, specs: spec[]): void {
+export function addTest(title: string, specs: spec[]): void {
   TESTS.push({ title: title, specs: specs });
 }
 
@@ -86,37 +88,27 @@ export function registerAction(action: any): void {
  * @param specs an array of specs.
  */
 export async function execute(specs: spec[]) {
-  specs.forEach((val: spec) => {
-    if (ACTIONS.includes(val.action)) {
+  for (var spec of specs) {
+    if (ACTIONS.includes(spec.action)) {
       let context = getContext();
-      let action = new val.action();
-      let expected = val.outs;
-      (async () => {
-        let result = await action.execute(val.args, context);
-        if (arraysEqual(expected, result)) {
-          console.log('.'.green);
-          return true;
+      let action = new spec.action();
+      let args = spec.args.map((arg: string) => {
+        if (arg.startsWith('$') && STORE.variables[arg]) {
+          return STORE.variables[arg];
         } else {
-          console.log(('FAILURE: ' + val.title).red, ' - expected: ' + expected + ', got: ' + result);
-          return false;
+          return arg;
         }
-      })().catch(err => console.log('Error: ', err));
-    }
-  });
-}
+      });
 
-/**
- * Compares arrays for equality.
- * @param a the first array to compare
- * @param b the second array to compare
- */
-function arraysEqual(a: any[], b: any[]): boolean {
-  if (a == null || b == null) return false;
-  if (a.length != b.length) return false;
-  for (var i = 0; i < a.length; ++i) {
-    if (a[i] !== b[i]) return false;
+      let outs = spec.outs;
+      let result = await action.execute(args, context);
+      
+      outs.forEach((out: string, index: number) => {
+        STORE.variables[out] = result[index];
+      })
+    }
   }
-  return true;
+  console.log(util.inspect(STORE.variables, false, null, true));
 }
 
 /**
@@ -124,4 +116,33 @@ function arraysEqual(a: any[], b: any[]): boolean {
  */
 function getTests(): test[] {
   return TESTS;
+}
+
+export function runTests(): void {
+  TESTS.forEach(test => {
+    (async () => {
+      console.log(test.title);
+      await execute(test.specs);
+    })().catch(err => console.log('Error: ', err));
+  });
+}
+
+import { Action } from './action.i';
+import { Browser } from 'puppeteer';
+
+export class GoTo implements Action {
+  constructor() {}
+
+  async execute(args: string[], context: any): Promise<any> {
+    var browser: Browser = context.browser;
+
+    let page = await browser.newPage();
+    await page.goto(args[0]);
+
+    const data = await page.evaluate(() => {
+      return [document.URL];
+    });
+
+    return data;
+  }
 }

@@ -2,9 +2,8 @@
 
 import 'colors';
 import * as yargs from 'yargs';
-import { findFiles, load, registerAction, execute } from './main';
+import { findFiles, load, runTests } from './main';
 import { getBrowser } from './puppeteer-helper';
-import GoTo from './go-to.action';
 
 let path: string = process.cwd();
 
@@ -31,45 +30,27 @@ if (!path.endsWith('/')) {
   console.log('Searching for files in: '.yellow + path);
   const files: string[] = await findFiles(path);
 
-  if (files && files.length > 0) {
-    console.log('Found files: '.green + files);
-
-    files.forEach((file: string) => {
-      console.log('Loading file: '.green + file);
-      require(path + file);
-    });
-
-    const browser = await getBrowser({ headless: false });
-
-    console.log('Loading browser into context'.yellow);
-    load('context', () => {
-      return { browser: browser };
-    });
-
-    console.log('Registering actions'.yellow);
-    registerAction(GoTo);
-
-    console.log('Executing test cases'.yellow);
-    await execute([
-      {
-        title: 'goes to google.com 1',
-        action: GoTo,
-        args: ['http://www.google.com'],
-        outs: ['https://www.google.com/?gws_rd=ssl'],
-      },
-    ]).catch(err => console.log('Error: '.red + err));
-
-    await execute([
-      {
-        title: 'goes to google.com 2',
-        action: GoTo,
-        args: ['http://www.google.com'],
-        outs: ['https://www.google.com'],
-      },
-    ]).catch(err => console.log('Error: '.red + err));
-
-    // browser.close();
-  } else {
+  if (!files || files.length == 0) {
     console.warn('No files found'.yellow);
   }
+
+  console.log('Found files: '.green + files);
+
+  files.forEach((file: string) => {
+    console.log('Loading file: '.green + file);
+    require(path + file);
+  });
+
+  const browser = await getBrowser({ headless: false });
+
+  console.log('Loading browser into context'.yellow);
+  load('context', () => {
+    return { browser: browser };
+  });
+
+  console.log('Executing test cases'.yellow);
+  await runTests();
+
+  // browser.close();
 })().catch(err => console.error('Error: '.red, err));
+
