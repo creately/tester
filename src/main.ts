@@ -1,10 +1,14 @@
 import * as globby from 'globby';
 import store from './store.type';
+import spec from './spec.type';
+import test from './test.type';
 
 const STORE: store = {
   context: {},
   reporters: [],
 };
+
+const TESTS: test[] = [];
 
 /**
  * Finds all files in the given path that match the given extension.
@@ -24,7 +28,7 @@ export async function findFiles(path: string, extensions: string[] = ['.test.js'
 }
 
 /**
- * Stores the given value under the given key
+ * Stores the given value under the given key.
  * @param key the key to identify the store item with
  * @param value the object to store
  */
@@ -43,6 +47,15 @@ export function load(key: string, func: Function): void {
 }
 
 /**
+ * Stores the given test.
+ * @param title the name of the test
+ * @param specs an array of test specs
+ */
+export function test(title: string, specs: spec[]): void {
+  TESTS.push({ title: title, specs: specs });
+}
+
+/**
  * Gets the value stored under the context key.
  */
 function getContext(): any {
@@ -54,4 +67,11 @@ function getContext(): any {
  */
 function getReporter(): any {
   return STORE.reporters;
+}
+
+/**
+ * Gets stored tests.
+ */
+function getTests(): test[] {
+  return TESTS;
 }
