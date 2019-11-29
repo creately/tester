@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 import 'colors';
-import { findFiles, load } from './main';
+import { findFiles, load, registerAction, execute } from './main';
 import * as yargs from 'yargs';
 import * as puppeteer from 'puppeteer';
+import GoTo from './go-to.action';
 
 let path: string = process.cwd();
 
@@ -43,7 +44,24 @@ if (!path.endsWith('/')) {
     console.log('Loading browser into context'.yellow);
     load('context', { browser: browser });
 
-    await browser.close();
+    console.log('Registering actions'.yellow);
+    registerAction(GoTo);
+
+    console.log('Executing test cases'.yellow);
+    await execute([
+      {
+        action: GoTo,
+        args: ['http://www.google.com'],
+        outs: {
+          width: 800,
+          url: 'http://www.google.com'
+        },
+      },
+    ])
+    .catch(err => console.log('Error: '.red + err);
+  
+    browser.close();
+
   } else {
     console.warn('No files found'.yellow);
   }

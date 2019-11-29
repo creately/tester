@@ -1,6 +1,8 @@
 import * as globby from 'globby';
+import testCase from './test-case.type';
 
 let STORE: any = {};
+let ACTIONS: any[] = [];
 
 /**
  * Finds all files in the given path that match the given extension.
@@ -26,7 +28,7 @@ export async function findFiles(path: string, extensions: string[] = ['.test.js'
  */
 export function load(key: string, value: {}): void {
   if (STORE[key]) {
-    STORE[key] = {...STORE[key], ...value};
+    STORE[key] = { ...STORE[key], ...value };
   } else {
     STORE[key] = value;
   }
@@ -42,6 +44,31 @@ function getContext(): any {
 /**
  * Gets the value stored under the reporter key.
  */
-function getReporter(): any {
-  return STORE['reporter'];
+// function getReporter(): any {
+//   return STORE['reporter'];
+// }
+
+export function registerAction(action: any): void {
+  if (!ACTIONS.includes(action)) {
+    ACTIONS.push(action);
+  }
+}
+
+export async function execute(cases: testCase[]) {
+  cases.forEach((val: testCase) => {
+    if (ACTIONS.includes(val.action)) {
+      let context = getContext();
+      let action = new val.action();
+      (async () => {
+        let output = await action.execute(val.args, context);
+        if (val.outs = output) {
+          console.log('test ok');
+          return true;
+        } else {
+          console.log('test pail');
+          return false;
+        }
+      })().catch(err => console.log('Error: ', err));
+    }
+  });
 }
