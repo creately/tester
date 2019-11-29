@@ -2,8 +2,8 @@
 
 import 'colors';
 import * as yargs from 'yargs';
-import * as puppeteer from 'puppeteer';
 import { findFiles, load } from './main';
+import { getBrowser } from './puppeteer-helper';
 
 let path: string = process.cwd();
 
@@ -38,7 +38,7 @@ if (!path.endsWith('/')) {
       require(path + file);
     });
 
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await getBrowser({ headless: false });
 
     console.log('Loading browser into context'.yellow);
     load('context', () => {
