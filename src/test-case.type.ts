@@ -1,7 +1,8 @@
 declare type testCase = {
+  name: string;
   action: any;
-  args: string[];
-  outs: object;
+  args: any[];
+  outs: any[];
 };
 
 export default testCase;

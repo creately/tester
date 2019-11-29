@@ -42,7 +42,9 @@ if (!path.endsWith('/')) {
     const browser = await puppeteer.launch({ headless: false });
 
     console.log('Loading browser into context'.yellow);
-    load('context', { browser: browser });
+    load('context', () => {
+      return { browser: browser };
+    });
 
     console.log('Registering actions'.yellow);
     registerAction(GoTo);
@@ -50,18 +52,27 @@ if (!path.endsWith('/')) {
     console.log('Executing test cases'.yellow);
     await execute([
       {
+        name: 'My first test case',
         action: GoTo,
         args: ['http://www.google.com'],
-        outs: {
-          width: 800,
-          url: 'http://www.google.com'
-        },
+        outs: [
+          'https://www.google.com/?gws_rd=ssl',
+        ],
       },
-    ])
-    .catch(err => console.log('Error: '.red + err);
-  
-    browser.close();
+    ]).catch(err => console.log('Error: '.red + err));
 
+    await execute([
+      {
+        name: 'My second test case',
+        action: GoTo,
+        args: ['http://www.google.com'],
+        outs: [
+          'https://www.google.com',
+        ],
+      },
+    ]).catch(err => console.log('Error: '.red + err));
+
+    // browser.close();
   } else {
     console.warn('No files found'.yellow);
   }

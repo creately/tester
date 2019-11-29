@@ -1,8 +1,13 @@
 import * as globby from 'globby';
+import store from './store.type';
 import testCase from './test-case.type';
 
-let STORE: any = {};
-let ACTIONS: any[] = [];
+const STORE: store = {
+  context: {},
+  reporters: [],
+};
+
+const ACTIONS: any = [];
 
 /**
  * Finds all files in the given path that match the given extension.
@@ -26,11 +31,17 @@ export async function findFiles(path: string, extensions: string[] = ['.test.js'
  * @param key the key to identify the store item with
  * @param value the object to store
  */
-export function load(key: string, value: {}): void {
-  if (STORE[key]) {
-    STORE[key] = { ...STORE[key], ...value };
-  } else {
-    STORE[key] = value;
+export function load(key: string, func: Function): void {
+  let val = func.call(null);
+  switch (key) {
+    case 'context':
+      STORE.context = { ...STORE.context, ...val };
+      return;
+    case 'reporter':
+      STORE.reporters.push(val);
+      return;
+    default:
+      return;
   }
 }
 
@@ -38,7 +49,7 @@ export function load(key: string, value: {}): void {
  * Gets the value stored under the context key.
  */
 function getContext(): any {
-  return STORE['context'];
+  return STORE.context;
 }
 
 /**
@@ -59,16 +70,27 @@ export async function execute(cases: testCase[]) {
     if (ACTIONS.includes(val.action)) {
       let context = getContext();
       let action = new val.action();
+      let expected = val.outs;
       (async () => {
-        let output = await action.execute(val.args, context);
-        if (val.outs = output) {
-          console.log('test ok');
+        let result = await action.execute(val.args, context);
+        if (arraysEqual(expected, result)) {
+          console.log('SUCCESS: '.green, val.name.green);
           return true;
         } else {
-          console.log('test pail');
+          console.log('FAILURE: '.red, val.name.red);
+          console.log('Expected: ', expected, ', got: ', result);
           return false;
         }
       })().catch(err => console.log('Error: ', err));
     }
   });
+}
+
+function arraysEqual(a: any[], b: any[]): boolean {
+  if (a == null || b == null) return false;
+  if (a.length != b.length) return false;
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
 }
