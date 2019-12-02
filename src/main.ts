@@ -144,10 +144,10 @@ function storeVariables(keys: string[], results: any[]): boolean {
 }
 
 export async function runTests(): Promise<void> {
-  TESTS.forEach(async test => {
+  for (const test of TESTS) {
     console.log(`Running test ${test.title}`);
     await execute(test.specs).catch(err => console.log('Error: ', err));
-  });
+  }
 }
 
 // TODO: The GoTo action has been added here temporarily so that it
