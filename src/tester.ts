@@ -18,12 +18,12 @@ const argv = yargs
   .option('close', {
     alias: 'c',
     type: 'boolean',
-    description: 'Close browser when tests are complete'
+    description: 'Close browser when tests are complete',
   })
   .option('show', {
     alias: 's',
     type: 'boolean',
-    description: 'Show browser instead of running in headless mode'
+    description: 'Show browser instead of running in headless mode',
   })
   .help()
   .alias('help', 'h').argv;
@@ -55,8 +55,8 @@ if (!path.endsWith('/')) {
 
   if (argv.show) {
     config = {
-      headless: false
-    }
+      headless: false,
+    };
   }
   const browser = await getBrowser(config);
 
@@ -67,7 +67,7 @@ if (!path.endsWith('/')) {
 
   console.log('Executing test cases'.yellow);
   await runTests();
-  
+
   if (argv.close) {
     await browser.close();
   }

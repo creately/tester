@@ -3,7 +3,15 @@ import * as globby from 'globby';
 import store from './store.type';
 import spec from './spec.type';
 import test from './test.type';
-import * as _ from 'lodash';
+
+// TODO: These actions have been added here temporarily so that it
+// can be accessed by this module when installed globally.
+// It should be moved to another repository.
+import GoTo from './actions/go-to';
+import ResizeViewport from './actions/resize-viewport';
+import IsEqual from './actions/is-equal';
+
+export { GoTo, ResizeViewport, IsEqual };
 
 const STORE: store = {
   context: {},
@@ -102,7 +110,7 @@ export async function runSpecs(specs: spec[]) {
     let outs = spec.outs;
     let results = await action.execute(title, args, outs, context);
     if (results) {
-      storeVariables(outs, results)
+      storeVariables(outs, results);
     }
   }
 }
@@ -124,7 +132,7 @@ function getTests(): test[] {
  */
 function getVariables(keys: string[]): any[] {
   return keys.map((key: string) => {
-    if (typeof key === "string" && key.startsWith('$') && STORE.variables[key] !== undefined) {
+    if (typeof key === 'string' && key.startsWith('$') && STORE.variables[key] !== undefined) {
       return STORE.variables[key];
     } else {
       return key;
@@ -155,79 +163,5 @@ export async function runTests(): Promise<void> {
   for (const test of TESTS) {
     console.log(`Running test ${test.title}`);
     await runSpecs(test.specs).catch(err => console.log('Error: ', err));
-  }
-}
-
-/**
- * Opens a new window for a given browser and navigates to a specified url.
- */
-// TODO: This action has been added here temporarily so that it
-// can be accessed by this module. It should be moved to another repository.
-import Action from './action.i';
-import { Browser } from 'puppeteer';
-
-export class GoTo implements Action {
-  constructor() {}
-
-  // @ts-ignore
-  async execute(title: string, args: string[], outs: any[], context: any): Promise<any> {
-    var browser: Browser = context.browser;
-    let page = await browser.newPage();
-    await page.goto(args[0]).catch(err => console.log(title.red, err));
-    if (page) {
-      process.stdout.write('.'.green);
-    }
-    return [ page ];
-  }
-}
-
-/**
- * Checks two given sets of values for equality.
- */
-// TODO: This action has been added here temporarily so that it
-// can be accessed by this module. It should be moved to another repository.
-export class IsEqual implements Action {
-  constructor() {}
-
-  // @ts-ignore
-  async execute(title: string, args: string[], outs: any[], context: any): Promise<any> {
-    let result = _.isEqual(args, outs);
-    if (result) {
-      process.stdout.write('.'.green);
-    } else {
-      console.log(title.red);
-    }
-    return null;
-  }
-}
-
-import { Page } from 'puppeteer';
-
-/** 
- * Resizes a given page's viewport to the given height and width.
- */
-// TODO: This action has been added here temporarily so that it
-// can be accessed by this module. It should be moved to another repository.
-export class ResizeViewport implements Action {
-  constructor() {}
-
-  // @ts-ignore
-  async execute(title: string, args: any[], outs: any[], context: any): Promise<any> {
-    let page: Page = args[0];
-    let width = args[1];
-    let height = args[2];
-
-    await page.setViewport({width, height});
-
-    const data = await page.evaluate(() => {
-      return [document.documentElement.clientWidth, document.documentElement.offsetHeight];
-    })
-    .catch(err => console.log(title.red, err));
-
-    if (data) {
-      process.stdout.write('.'.green);
-    }
-   
-    return data;
   }
 }
