@@ -138,6 +138,9 @@ function getVariables(keys: string[]): any[] {
  * @param results the values to be stored
  */
 function storeVariables(keys: string[], results: any[]): void {
+  if (keys.length !== results.length) {
+    console.log('Error: Mismtach in mumber of outs and keys'.red);
+  }
   keys.forEach((key: string, index: number) => {
     if (key.startsWith('$')) {
       STORE.variables[key] = results[index];
