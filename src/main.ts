@@ -186,7 +186,7 @@ export class IsEqual implements Action {
 
 import { Page } from 'puppeteer';
 
-// TODO: The IsEqual action has been added here temporarily so that it
+// TODO: The ResizeWindow action has been added here temporarily so that it
 // can be accessed by this module. It should be moved to another repository.
 export class ResizeWindow implements Action {
   constructor() {}

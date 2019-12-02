@@ -20,6 +20,11 @@ const argv = yargs
     type: 'boolean',
     description: 'Close browser when tests are complete'
   })
+  .option('show', {
+    alias: 's',
+    type: 'boolean',
+    description: 'Show browser instead of running in headless mode'
+  })
   .help()
   .alias('help', 'h').argv;
 
@@ -46,7 +51,14 @@ if (!path.endsWith('/')) {
     require(path + file);
   });
 
-  const browser = await getBrowser({ headless: false });
+  let config = {};
+
+  if (argv.show) {
+    config = {
+      headless: false
+    }
+  }
+  const browser = await getBrowser(config);
 
   console.log('Loading browser into context'.yellow);
   load('context', () => {
