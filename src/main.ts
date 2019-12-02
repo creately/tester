@@ -140,13 +140,14 @@ function storeVariables(keys: string[], results: any[]): boolean {
 }
 
 export function runTests(): void {
-  TESTS.forEach(test => {
-    (async () => {
-      await execute(test.specs);
-    })().catch(err => console.log('Error: ', err));
+  TESTS.forEach(async test => {
+    console.log(`Running test ${test.title}`);
+    await execute(test.specs).catch(err => console.log('Error: ', err));
   });
 }
 
+// TODO: The GoTo action has been added here temporarily so that it
+// can be accessed by this module.
 import { Action } from './action.i';
 import { Browser } from 'puppeteer';
 
@@ -155,14 +156,11 @@ export class GoTo implements Action {
 
   async execute(args: string[], context: any): Promise<any> {
     var browser: Browser = context.browser;
-
     let page = await browser.newPage();
     await page.goto(args[0]);
-
     const data = await page.evaluate(() => {
       return [document.URL];
     });
-
     return data;
   }
 }
