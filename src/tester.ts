@@ -53,4 +53,3 @@ if (!path.endsWith('/')) {
 
   // browser.close();
 })().catch(err => console.error('Error: '.red, err));
-

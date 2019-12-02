@@ -3,7 +3,6 @@ import * as globby from 'globby';
 import store from './store.type';
 import spec from './spec.type';
 import test from './test.type';
-import * as util from 'util';
 
 const STORE: store = {
   context: {},
@@ -69,6 +68,9 @@ function getContext(): any {
 /**
  * Gets the value stored under the reporter key.
  */
+// TODO: The following ts-ignore comment has been added to temporarily suppress compilation errors
+// as the function is not currently used. Remove this when this function has been used somewhere.
+// @ts-ignore
 function getReporter(): any {
   return STORE.reporters;
 }
@@ -92,36 +94,54 @@ export async function execute(specs: spec[]) {
     if (ACTIONS.includes(spec.action)) {
       let context = getContext();
       let action = new spec.action();
-      let args = spec.args.map((arg: string) => {
-        if (arg.startsWith('$') && STORE.variables[arg]) {
-          return STORE.variables[arg];
-        } else {
-          return arg;
-        }
-      });
-
+      let args = getVariables(spec.args);
       let outs = spec.outs;
-      let result = await action.execute(args, context);
-      
-      outs.forEach((out: string, index: number) => {
-        STORE.variables[out] = result[index];
-      })
+      let results = await action.execute(args, context);
+      if (!storeVariables(outs, results)) {
+        console.log(`Spec ${spec.title} failed, arg/resut count mismatch`);
+      }
     }
   }
-  console.log(util.inspect(STORE.variables, false, null, true));
 }
 
 /**
  * Gets stored tests.
  */
+// TODO: The following ts-ignore comment has been added to temporarily suppress compilation errors
+// as the function is not currently used. Remove this when this function has been used somewhere.
+// @ts-ignore
 function getTests(): test[] {
   return TESTS;
+}
+
+/**
+ * Gets stored variables if they exist, else returns the key value,
+ * for a set of given keys.
+ * @param keys the keys to retrieve variable values for.
+ */
+function getVariables(keys: string[]): any[] {
+  return keys.map((key: string) => {
+    if (key.startsWith('$') && STORE.variables[key] !== undefined) {
+      return STORE.variables[key];
+    } else {
+      return key;
+    }
+  });
+}
+
+function storeVariables(keys: string[], results: any[]): boolean {
+  if (keys.length !== results.length) {
+    return false;
+  }
+  keys.forEach((out: string, index: number) => {
+    STORE.variables[out] = results[index];
+  });
+  return true;
 }
 
 export function runTests(): void {
   TESTS.forEach(test => {
     (async () => {
-      console.log(test.title);
       await execute(test.specs);
     })().catch(err => console.log('Error: ', err));
   });
