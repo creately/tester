@@ -132,6 +132,11 @@ function getVariables(keys: string[]): any[] {
   });
 }
 
+/**
+ * Stores a set of results under the given keys.
+ * @param keys the keys to be used to retrieve stored values.
+ * @param results the values to be stored
+ */
 function storeVariables(keys: string[], results: any[]): void {
   keys.forEach((key: string, index: number) => {
     if (key.startsWith('$')) {
@@ -140,6 +145,9 @@ function storeVariables(keys: string[], results: any[]): void {
   });
 }
 
+/**
+ * Runs the currently loaded set of tests.
+ */
 export async function runTests(): Promise<void> {
   for (const test of TESTS) {
     console.log(`Running test ${test.title}`);
@@ -147,7 +155,10 @@ export async function runTests(): Promise<void> {
   }
 }
 
-// TODO: The GoTo action has been added here temporarily so that it
+/**
+ * Opens a new window for a given browser and navigates to a specified url.
+ */
+// TODO: This action has been added here temporarily so that it
 // can be accessed by this module. It should be moved to another repository.
 import Action from './action.i';
 import { Browser } from 'puppeteer';
@@ -167,7 +178,10 @@ export class GoTo implements Action {
   }
 }
 
-// TODO: The IsEqual action has been added here temporarily so that it
+/**
+ * Checks two given sets of values for equality.
+ */
+// TODO: This action has been added here temporarily so that it
 // can be accessed by this module. It should be moved to another repository.
 export class IsEqual implements Action {
   constructor() {}
@@ -186,7 +200,10 @@ export class IsEqual implements Action {
 
 import { Page } from 'puppeteer';
 
-// TODO: The ResizeViewport action has been added here temporarily so that it
+/** 
+ * Resizes a given page's viewport to the given height and width.
+ */
+// TODO: This action has been added here temporarily so that it
 // can be accessed by this module. It should be moved to another repository.
 export class ResizeViewport implements Action {
   constructor() {}
