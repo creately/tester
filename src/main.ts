@@ -90,18 +90,19 @@ export function registerAction(action: any): void {
  * Executes an array of specs using the current context.
  * @param specs an array of specs.
  */
-export async function execute(specs: spec[]) {
+export async function runSpecs(specs: spec[]) {
   for (var spec of specs) {
-    if (ACTIONS.includes(spec.action)) {
-      let context = getContext();
-      let action = new spec.action();
-      let args = getVariables(spec.args);
-      let title = spec.title;
-      let outs = spec.outs;
-      let results = await action.execute(title, args, outs, context);
-      if (results && !storeVariables(outs, results)) {
-        console.log(`Spec ${spec.title} failed, arg/resut count mismatch`);
-      }
+    if (!ACTIONS.includes(spec.action)) {
+      continue;
+    }
+    let context = getContext();
+    let action = new spec.action();
+    let args = getVariables(spec.args);
+    let title = spec.title;
+    let outs = spec.outs;
+    let results = await action.execute(title, args, outs, context);
+    if (results) {
+      storeVariables(outs, results)
     }
   }
 }
@@ -123,7 +124,7 @@ function getTests(): test[] {
  */
 function getVariables(keys: string[]): any[] {
   return keys.map((key: string) => {
-    if (key.startsWith('$') && STORE.variables[key] !== undefined) {
+    if (typeof key === "string" && key.startsWith('$') && STORE.variables[key] !== undefined) {
       return STORE.variables[key];
     } else {
       return key;
@@ -131,22 +132,18 @@ function getVariables(keys: string[]): any[] {
   });
 }
 
-function storeVariables(keys: string[], results: any[]): boolean {
-  if (keys.length !== results.length) {
-    return false;
-  }
+function storeVariables(keys: string[], results: any[]): void {
   keys.forEach((key: string, index: number) => {
     if (key.startsWith('$')) {
       STORE.variables[key] = results[index];
     }
   });
-  return true;
 }
 
 export async function runTests(): Promise<void> {
   for (const test of TESTS) {
     console.log(`Running test ${test.title}`);
-    await execute(test.specs).catch(err => console.log('Error: ', err));
+    await runSpecs(test.specs).catch(err => console.log('Error: ', err));
   }
 }
 
@@ -162,15 +159,11 @@ export class GoTo implements Action {
   async execute(title: string, args: string[], outs: any[], context: any): Promise<any> {
     var browser: Browser = context.browser;
     let page = await browser.newPage();
-    await page.goto(args[0]);
-    const data = await page.evaluate(() => {
-      return [document.URL];
-    })
-    .catch(err => console.log(title.red, err));
-    if (data) {
+    await page.goto(args[0]).catch(err => console.log(title.red, err));
+    if (page) {
       process.stdout.write('.'.green);
     }
-    return data;
+    return [ page ];
   }
 }
 
@@ -188,5 +181,33 @@ export class IsEqual implements Action {
       console.log(title.red);
     }
     return null;
+  }
+}
+
+import { Page } from 'puppeteer';
+
+// TODO: The IsEqual action has been added here temporarily so that it
+// can be accessed by this module. It should be moved to another repository.
+export class ResizeWindow implements Action {
+  constructor() {}
+
+  // @ts-ignore
+  async execute(title: string, args: any[], outs: any[], context: any): Promise<any> {
+    let page: Page = args[0];
+    let width = args[1];
+    let height = args[2];
+
+    await page.setViewport({width, height});
+
+    const data = await page.evaluate(() => {
+      return [document.documentElement.clientWidth, document.documentElement.offsetHeight];
+    })
+    .catch(err => console.log(title.red, err));
+
+    if (data) {
+      process.stdout.write('.'.green);
+    }
+   
+    return data;
   }
 }
