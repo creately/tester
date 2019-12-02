@@ -10,10 +10,15 @@ let path: string = process.cwd();
 const argv = yargs
   .command('path', 'The path to look for test files in', {
     path: {
-      description: 'the path',
+      description: 'the path to test files',
       alias: 'p',
       type: 'string',
     },
+  })
+  .option('close', {
+    alias: 'c',
+    type: 'boolean',
+    description: 'Close browser when tests are complete'
   })
   .help()
   .alias('help', 'h').argv;
@@ -50,6 +55,10 @@ if (!path.endsWith('/')) {
 
   console.log('Executing test cases'.yellow);
   await runTests();
-  await browser.close();
-  console.log('Completed');
+  
+  if (argv.close) {
+    await browser.close();
+  }
+
+  console.log('\nCompleted');
 })().catch(err => console.error('Error: '.red, err));
