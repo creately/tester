@@ -73,4 +73,5 @@ if (!path.endsWith('/')) {
   }
 
   console.log('\nCompleted');
+  process.exit();
 })().catch(err => console.error('Error: '.red, err));
