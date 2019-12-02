@@ -1,3 +1,3 @@
-export interface Action {
-  execute(args: string[], context: object): Promise<any>;
+export default interface Action {
+  execute(title: string, args: string[], outs: any[], context: any): Promise<string[]>;
 }

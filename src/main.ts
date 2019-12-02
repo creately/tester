@@ -3,6 +3,7 @@ import * as globby from 'globby';
 import store from './store.type';
 import spec from './spec.type';
 import test from './test.type';
+import * as _ from 'lodash';
 
 const STORE: store = {
   context: {},
@@ -95,9 +96,10 @@ export async function execute(specs: spec[]) {
       let context = getContext();
       let action = new spec.action();
       let args = getVariables(spec.args);
+      let title = spec.title;
       let outs = spec.outs;
-      let results = await action.execute(args, context);
-      if (!storeVariables(outs, results)) {
+      let results = await action.execute(title, args, outs, context);
+      if (results && !storeVariables(outs, results)) {
         console.log(`Spec ${spec.title} failed, arg/resut count mismatch`);
       }
     }
@@ -133,13 +135,15 @@ function storeVariables(keys: string[], results: any[]): boolean {
   if (keys.length !== results.length) {
     return false;
   }
-  keys.forEach((out: string, index: number) => {
-    STORE.variables[out] = results[index];
+  keys.forEach((key: string, index: number) => {
+    if (key.startsWith('$')) {
+      STORE.variables[key] = results[index];
+    }
   });
   return true;
 }
 
-export function runTests(): void {
+export async function runTests(): Promise<void> {
   TESTS.forEach(async test => {
     console.log(`Running test ${test.title}`);
     await execute(test.specs).catch(err => console.log('Error: ', err));
@@ -147,20 +151,42 @@ export function runTests(): void {
 }
 
 // TODO: The GoTo action has been added here temporarily so that it
-// can be accessed by this module.
-import { Action } from './action.i';
+// can be accessed by this module. It should be moved to another repository.
+import Action from './action.i';
 import { Browser } from 'puppeteer';
 
 export class GoTo implements Action {
   constructor() {}
 
-  async execute(args: string[], context: any): Promise<any> {
+  // @ts-ignore
+  async execute(title: string, args: string[], outs: any[], context: any): Promise<any> {
     var browser: Browser = context.browser;
     let page = await browser.newPage();
     await page.goto(args[0]);
     const data = await page.evaluate(() => {
       return [document.URL];
-    });
+    })
+    .catch(err => console.log(title.red, err));
+    if (data) {
+      process.stdout.write('.'.green);
+    }
     return data;
+  }
+}
+
+// TODO: The IsEqual action has been added here temporarily so that it
+// can be accessed by this module. It should be moved to another repository.
+export class IsEqual implements Action {
+  constructor() {}
+
+  // @ts-ignore
+  async execute(title: string, args: string[], outs: any[], context: any): Promise<any> {
+    let result = _.isEqual(args, outs);
+    if (result) {
+      process.stdout.write('.'.green);
+    } else {
+      console.log(title.red);
+    }
+    return null;
   }
 }

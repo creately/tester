@@ -50,6 +50,4 @@ if (!path.endsWith('/')) {
 
   console.log('Executing test cases'.yellow);
   await runTests();
-
-  // browser.close();
 })().catch(err => console.error('Error: '.red, err));
