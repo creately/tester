@@ -2,10 +2,12 @@ var tester = require('ts-starter');
 var GoTo = tester.GoTo;
 var ResizeViewport = tester.ResizeViewport;
 var GetPageHeight = tester.GetPageHeight;
+var GetPageTitle = tester.GetPageTitle;
 var Equals = tester.Equals;
 tester.registerAction(GoTo);
 tester.registerAction(ResizeViewport);
 tester.registerAction(GetPageHeight);
+tester.registerAction(GetPageTitle);
 tester.registerAssertion(Equals);
 
 tester.addTest('simple test', [
@@ -29,5 +31,11 @@ tester.addTest('simple test', [
         title: 'checks if height is as expected',
         assert: Equals,
         args: ['$height', '300']
-    }
+    },
+    {
+        title: 'gets page title',
+        action: GetPageTitle,
+        outs: ['$title']
+    },
+    
 ])

@@ -1,7 +1,7 @@
 import Assert from '../assert.i';
 
 /**
- * Checks the equality of two given values.
+ * Asserts the equality of two given values.
  */
 
 export default class Equals implements Assert {

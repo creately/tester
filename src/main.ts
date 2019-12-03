@@ -10,9 +10,10 @@ import test from './test.type';
 import GoTo from './actions/go-to';
 import ResizeViewport from './actions/resize-viewport';
 import GetPageHeight from './actions/get-page-height';
+import GetPageTitle from './actions/get-page-title';
 import Equals from './assertions/equals';
 
-export { GoTo, ResizeViewport, GetPageHeight, Equals };
+export { GoTo, ResizeViewport, GetPageHeight, GetPageTitle, Equals };
 
 const STORE: store = {
   context: {},
