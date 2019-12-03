@@ -149,14 +149,14 @@ export async function runSpecs(specs: spec[]) {
       const action = new spec.action();
       const args = getVariables(spec.args);
       const outs = spec.outs;
-      // try {
-      let results = await action.execute(args, context);
-      if (outs && results) {
-        storeVariables(outs, results);
+      try {
+        let results = await action.execute(args, context);
+        if (outs && results) {
+          storeVariables(outs, results);
+        }
+      } catch (error) {
+        console.error(`Error in ${spec.title}:`.red, error.red);
       }
-      // } catch (error) {
-      //   console.error(`Error in ${spec.title}:`.red, error.red);
-      // }
     } else if (spec.assert && ASSERTS.includes(spec.assert)) {
       const assert = new spec.assert();
       const args = getVariables(spec.args);
