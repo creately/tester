@@ -59,10 +59,11 @@ if (!path.endsWith('/')) {
     };
   }
   const browser = await getBrowser(config);
+  const page = await browser.newPage();
 
   console.log('Loading browser into context'.yellow);
   load('context', () => {
-    return { browser: browser };
+    return { page: page };
   });
 
   console.log('Executing test cases'.yellow);

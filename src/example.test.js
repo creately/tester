@@ -11,18 +11,16 @@ tester.addTest('simple test', [
         title: 'goes to google.com',
         action: goTo,
         args: ['http://www.google.com'], // the url to go to
-        outs: ['$a'] // a page instance
+        outs: ['$a'] // the page url that was loaded
     },
     {
         title: 'resizes the page',
         action: resizeViewport,
-        args: ['$a', 200, 300], // a page instance, width, height
-        outs: ['$height', '$width']
+        args: [200, 300], // width, height
     },
     {
         title: 'height and width match expected',
         action: isEqual,
-        args: ['$height', '$width'], // height, width
-        outs: [200, 300] // expected height, width
+        args: ['$height', 300], // value reference, expected value
     }
 ])

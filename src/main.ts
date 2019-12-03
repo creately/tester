@@ -105,12 +105,15 @@ export async function runSpecs(specs: spec[]) {
     }
     let context = getContext();
     let action = new spec.action();
-    let args = getVariables(spec.args);
-    let title = spec.title;
+    let args = getVariables(spec.args);    
     let outs = spec.outs;
-    let results = await action.execute(title, args, outs, context);
-    if (results) {
-      storeVariables(outs, results);
+    try {
+      let results = await action.execute(args, context);
+      if (outs && results) {
+        storeVariables(outs, results);
+      }
+    } catch (error) {
+      process.stderr.write(`Error in ${spec.title} :`, error);
     }
   }
 }
@@ -146,7 +149,7 @@ function getVariables(keys: string[]): any[] {
  * @param results the values to be stored
  */
 function storeVariables(keys: string[], results: any[]): void {
-  if (keys.length !== results.length) {
+  if (keys.length > results.length) {
     console.log('Error: Mismtach in mumber of outs and keys'.red);
   }
   keys.forEach((key: string, index: number) => {
