@@ -8,6 +8,6 @@ import Action from '../action.i';
 export default class GetViewportDimensions implements Action {
   async execute(_args: string[], context: any): Promise<string[]> {
     var page: Page = context.page;
-    return [ page.viewport().width.toString(undefined), page.viewport().height.toString(undefined) ];
+    return [page.viewport().width.toString(undefined), page.viewport().height.toString(undefined)];
   }
 }

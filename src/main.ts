@@ -11,10 +11,12 @@ import GoTo from './actions/go-to';
 import ResizeViewport from './actions/resize-viewport';
 import GetPageDimensions from './actions/get-page-dimensions';
 import GetViewportDimensions from './actions/get-viewport-dimensions';
+import GetElementDimensions from './actions/get-element-dimensions';
 import GetPageTitle from './actions/get-page-title';
+import GetUrl from './actions/get-url';
 import Equals from './assertions/equals';
 
-export { GoTo, ResizeViewport, GetPageDimensions, GetViewportDimensions, GetPageTitle, Equals };
+export { GoTo, ResizeViewport, GetPageDimensions, GetViewportDimensions, GetElementDimensions, GetPageTitle, GetUrl, Equals };
 
 const STORE: store = {
   context: {},
@@ -118,14 +120,14 @@ export async function runSpecs(specs: spec[]) {
       const action = new spec.action();
       const args = getVariables(spec.args);
       const outs = spec.outs;
-      try {
+      // try {
         let results = await action.execute(args, context);
         if (outs && results) {
           storeVariables(outs, results);
         }
-      } catch (error) {
-        console.error(`Error in ${spec.title}:`.red, error.red);
-      }
+      // } catch (error) {
+      //   console.error(`Error in ${spec.title}:`.red, error.red);
+      // }
     } else if (spec.assert && ASSERTIONS.includes(spec.assert)) {
       const assert = new spec.assert();
       const args = getVariables(spec.args);

@@ -3,26 +3,50 @@ var GoTo = tester.GoTo;
 var ResizeViewport = tester.ResizeViewport;
 var GetPageDimensions = tester.GetPageDimensions;
 var GetViewportDimensions = tester.GetViewportDimensions;
+var GetElementDimensions = tester.GetElementDimensions;
 var GetPageTitle = tester.GetPageTitle;
+var GetUrl = tester.GetUrl;
 var Equals = tester.Equals;
 tester.registerAction(GoTo);
 tester.registerAction(ResizeViewport);
 tester.registerAction(GetPageDimensions);
 tester.registerAction(GetViewportDimensions);
+tester.registerAction(GetElementDimensions);
 tester.registerAction(GetPageTitle);
+tester.registerAction(GetUrl);
 tester.registerAssertion(Equals);
 
 tester.addTest('simple test', [
     {
         title: 'goes to google.com',
         action: GoTo,
-        args: ['http://www.google.com'], // the url to go to
-        outs: ['$a'] // the page url that was loaded
+        args: ['http://www.google.com']
+    },
+    {
+        title: 'gets the page url',
+        action: GetUrl,
+        outs: ['$url']
+    },
+    {
+        title: 'checks the page url',
+        assert: Equals,
+        args: ['$url', 'https://www.google.com/?gws_rd=ssl']
+    },
+    {
+        title: 'gets google logo dimensions',
+        action: GetElementDimensions,
+        args: ['hplogo'],
+        outs: ['$gWidth', '$gHeight']
+    },
+    {
+        title: 'checks if google logo width is as expected',
+        assert: Equals,
+        args: ['$gWidth', '272']
     },
     {
         title: 'resizes the page viewport',
         action: ResizeViewport,
-        args: [200, 300], // width, height
+        args: [200, 300]
     },
     {
         title: 'get the page dimensions',
