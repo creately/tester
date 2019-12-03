@@ -10,8 +10,9 @@ import test from './test.type';
 import GoTo from './actions/go-to';
 import ResizeViewport from './actions/resize-viewport';
 import GetPageHeight from './actions/get-page-height';
+import Equals from './assertions/equals';
 
-export { GoTo, ResizeViewport, GetPageHeight };
+export { GoTo, ResizeViewport, GetPageHeight, Equals };
 
 const STORE: store = {
   context: {},
@@ -20,6 +21,7 @@ const STORE: store = {
 };
 
 const ACTIONS: any = [];
+const ASSERTIONS: any = [];
 const TESTS: test[] = [];
 
 /**
@@ -94,25 +96,47 @@ export function registerAction(action: any): void {
 }
 
 /**
+ * Registers and stores assertions.
+ * @param assertion an assertion to register
+ */
+export function registerAssertion(assertion: any): void {
+  if (!ASSERTIONS.includes(assertion)) {
+    ASSERTIONS.push(assertion);
+  }
+}
+
+/**
  * Executes an array of specs using the current context.
  * @param specs an array of specs.
  */
 export async function runSpecs(specs: spec[]) {
   for (var spec of specs) {
-    if (!ACTIONS.includes(spec.action)) {
-      continue;
-    }
-    let context = getContext();
-    let action = new spec.action();
-    let args = getVariables(spec.args);
-    let outs = spec.outs;
-    try {
-      let results = await action.execute(args, context);
-      if (outs && results) {
-        storeVariables(outs, results);
+    if (spec.action && ACTIONS.includes(spec.action)) {
+      const context = getContext();
+      const action = new spec.action();
+      const args = getVariables(spec.args);
+      const outs = spec.outs;
+      try {
+        let results = await action.execute(args, context);
+        if (outs && results) {
+          storeVariables(outs, results);
+        }
+      } catch (error) {
+        console.error(`Error in ${spec.title}:`.red, error.red);
       }
-    } catch (error) {
-      console.error(`Error in ${spec.title}:`.red, error.red);
+    } else if (spec.assert && ASSERTIONS.includes(spec.assert)) {
+      const assert = new spec.assert();
+      const args = getVariables(spec.args);
+      try {
+        const result: boolean = await assert.execute(args);
+        if (!result) {
+          console.error(`FAILED: ${spec.title}, values: ${args}`.red);
+        }
+      } catch (error) {
+        console.error(`Error in ${spec.title}:`.red, error.red);
+      }
+    } else {
+      continue;
     }
   }
 }
