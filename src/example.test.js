@@ -7,14 +7,9 @@ var GetElementDimensions = tester.GetElementDimensions;
 var GetPageTitle = tester.GetPageTitle;
 var GetUrl = tester.GetUrl;
 var Equals = tester.Equals;
-tester.registerAction(GoTo);
-tester.registerAction(ResizeViewport);
-tester.registerAction(GetPageDimensions);
-tester.registerAction(GetViewportDimensions);
-tester.registerAction(GetElementDimensions);
-tester.registerAction(GetPageTitle);
-tester.registerAction(GetUrl);
-tester.registerAssertion(Equals);
+
+tester.registerActions(GoTo, ResizeViewport, GetPageDimensions, GetViewportDimensions, GetElementDimensions, GetPageTitle, GetUrl);
+tester.registerAsserts(Equals);
 
 tester.addTest('simple test', [
     {

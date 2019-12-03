@@ -14,9 +14,18 @@ import GetViewportDimensions from './actions/get-viewport-dimensions';
 import GetElementDimensions from './actions/get-element-dimensions';
 import GetPageTitle from './actions/get-page-title';
 import GetUrl from './actions/get-url';
-import Equals from './assertions/equals';
+import Equals from './asserts/equals';
 
-export { GoTo, ResizeViewport, GetPageDimensions, GetViewportDimensions, GetElementDimensions, GetPageTitle, GetUrl, Equals };
+export {
+  GoTo,
+  ResizeViewport,
+  GetPageDimensions,
+  GetViewportDimensions,
+  GetElementDimensions,
+  GetPageTitle,
+  GetUrl,
+  Equals,
+};
 
 const STORE: store = {
   context: {},
@@ -25,7 +34,7 @@ const STORE: store = {
 };
 
 const ACTIONS: any = [];
-const ASSERTIONS: any = [];
+const ASSERTS: any = [];
 const TESTS: test[] = [];
 
 /**
@@ -100,13 +109,33 @@ export function registerAction(action: any): void {
 }
 
 /**
- * Registers and stores assertions.
- * @param assertion an assertion to register
+ * Registers and stores an array of actions.
+ * @param action an action to register
  */
-export function registerAssertion(assertion: any): void {
-  if (!ASSERTIONS.includes(assertion)) {
-    ASSERTIONS.push(assertion);
+export function registerActions(...actions: any[]): void {
+  actions.forEach(action => {
+    registerAction(action);
+  });
+}
+
+/**
+ * Registers and stores asserts.
+ * @param assert an assert to register
+ */
+export function registerAssert(assert: any): void {
+  if (!ASSERTS.includes(assert)) {
+    ASSERTS.push(assert);
   }
+}
+
+/**
+ * Registers and stores an array of asserts.
+ * @param assert an assert to register
+ */
+export function registerAsserts(...asserts: any[]): void {
+  asserts.forEach(assert => {
+    registerAssert(assert);
+  });
 }
 
 /**
@@ -121,14 +150,14 @@ export async function runSpecs(specs: spec[]) {
       const args = getVariables(spec.args);
       const outs = spec.outs;
       // try {
-        let results = await action.execute(args, context);
-        if (outs && results) {
-          storeVariables(outs, results);
-        }
+      let results = await action.execute(args, context);
+      if (outs && results) {
+        storeVariables(outs, results);
+      }
       // } catch (error) {
       //   console.error(`Error in ${spec.title}:`.red, error.red);
       // }
-    } else if (spec.assert && ASSERTIONS.includes(spec.assert)) {
+    } else if (spec.assert && ASSERTS.includes(spec.assert)) {
       const assert = new spec.assert();
       const args = getVariables(spec.args);
       try {
