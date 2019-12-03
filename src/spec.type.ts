@@ -1,4 +1,5 @@
 declare type spec = {
+  title: string;
   action: any;
   args: any[];
   outs: any[];

@@ -2,7 +2,7 @@
 
 import 'colors';
 import * as yargs from 'yargs';
-import { findFiles, load } from './main';
+import { findFiles, load, runTests } from './main';
 import { getBrowser } from './puppeteer-helper';
 
 let path: string = process.cwd();
@@ -10,10 +10,20 @@ let path: string = process.cwd();
 const argv = yargs
   .command('path', 'The path to look for test files in', {
     path: {
-      description: 'the path',
+      description: 'the path to test files',
       alias: 'p',
       type: 'string',
     },
+  })
+  .option('keep-open', {
+    alias: 'o',
+    type: 'boolean',
+    description: 'Keep browser open after tests are complete',
+  })
+  .option('show', {
+    alias: 's',
+    type: 'boolean',
+    description: 'Show browser instead of running in headless mode',
   })
   .help()
   .alias('help', 'h').argv;
@@ -30,23 +40,39 @@ if (!path.endsWith('/')) {
   console.log('Searching for files in: '.yellow + path);
   const files: string[] = await findFiles(path);
 
-  if (files && files.length > 0) {
-    console.log('Found files: '.green + files);
-
-    files.forEach((file: string) => {
-      console.log('Loading file: '.green + file);
-      require(path + file);
-    });
-
-    const browser = await getBrowser({ headless: false });
-
-    console.log('Loading browser into context'.yellow);
-    load('context', () => {
-      return { browser: browser };
-    });
-
-    await browser.close();
-  } else {
+  if (!files || files.length == 0) {
     console.warn('No files found'.yellow);
   }
+
+  console.log('Found files: '.green + files);
+
+  files.forEach((file: string) => {
+    console.log('Loading file: '.green + file);
+    require(path + file);
+  });
+
+  let config = {};
+
+  if (argv.show) {
+    config = {
+      headless: false,
+    };
+  }
+  const browser = await getBrowser(config);
+  const page = await browser.newPage();
+
+  console.log('Loading browser into context'.yellow);
+  load('context', () => {
+    return { page: page };
+  });
+
+  console.log('Executing test cases'.yellow);
+  await runTests();
+
+  if (!argv['keep-open']) {
+    await browser.close();
+    process.exit();
+  }
+
+  console.log('\nCompleted');
 })().catch(err => console.error('Error: '.red, err));
