@@ -30,7 +30,6 @@ const TESTS: test[] = [];
  * @param extensions a string array of extensions to look for
  * @returns a promise with an array of paths to found files
  */
-
 export async function findFiles(path: string, extensions: string[] = ['.test.js']): Promise<string[]> {
   const fileTypes = extensions.map(ext => '**/*' + ext);
   const paths = await globby(fileTypes, {
@@ -114,7 +113,7 @@ export async function runSpecs(specs: spec[]) {
         storeVariables(outs, results);
       }
     } catch (error) {
-      process.stderr.write(`Error in ${spec.title}:`, error);
+      console.error(`Error in ${spec.title}:`.red, error.red);
     }
   }
 }
