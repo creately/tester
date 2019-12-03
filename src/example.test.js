@@ -1,10 +1,8 @@
 var tester = require('ts-starter');
 var GoTo = tester.GoTo;
-var IsEqual = tester.IsEqual;
 var ResizeViewport = tester.ResizeViewport;
 var GetPageHeight = tester.GetPageHeight;
 tester.registerAction(GoTo);
-tester.registerAction(IsEqual);
 tester.registerAction(ResizeViewport);
 tester.registerAction(GetPageHeight);
 
@@ -16,7 +14,7 @@ tester.addTest('simple test', [
         outs: ['$a'] // the page url that was loaded
     },
     {
-        title: 'resizes the page',
+        title: 'resizes the page viewport',
         action: ResizeViewport,
         args: [200, 300], // width, height
     },
@@ -25,10 +23,4 @@ tester.addTest('simple test', [
         action: GetPageHeight,
         outs: ['$height']
     },
-    {
-        title: 'height matches expected height',
-        action: IsEqual,
-        args: ['$height', 300], // value reference, expected value
-        outs: ['$matches']
-    }
 ])
