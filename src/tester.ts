@@ -15,10 +15,10 @@ const argv = yargs
       type: 'string',
     },
   })
-  .option('close', {
-    alias: 'c',
+  .option('keep-open', {
+    alias: 'o',
     type: 'boolean',
-    description: 'Close browser when tests are complete',
+    description: 'Keep browser open after tests are complete',
   })
   .option('show', {
     alias: 's',
@@ -69,10 +69,10 @@ if (!path.endsWith('/')) {
   console.log('Executing test cases'.yellow);
   await runTests();
 
-  if (argv.close) {
+  if (!argv['keep-open']) {
     await browser.close();
+    process.exit();
   }
 
   console.log('\nCompleted');
-  process.exit();
 })().catch(err => console.error('Error: '.red, err));

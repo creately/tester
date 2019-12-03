@@ -10,8 +10,9 @@ import test from './test.type';
 import GoTo from './actions/go-to';
 import ResizeViewport from './actions/resize-viewport';
 import IsEqual from './actions/is-equal';
+import GetPageHeight from './actions/get-page-height';
 
-export { GoTo, ResizeViewport, IsEqual };
+export { GoTo, ResizeViewport, IsEqual, GetPageHeight };
 
 const STORE: store = {
   context: {},
@@ -105,7 +106,7 @@ export async function runSpecs(specs: spec[]) {
     }
     let context = getContext();
     let action = new spec.action();
-    let args = getVariables(spec.args);    
+    let args = getVariables(spec.args);
     let outs = spec.outs;
     try {
       let results = await action.execute(args, context);
@@ -113,7 +114,7 @@ export async function runSpecs(specs: spec[]) {
         storeVariables(outs, results);
       }
     } catch (error) {
-      process.stderr.write(`Error in ${spec.title} :`, error);
+      process.stderr.write(`Error in ${spec.title}:`, error);
     }
   }
 }
@@ -133,7 +134,10 @@ function getTests(): test[] {
  * for a set of given keys.
  * @param keys the keys to retrieve variable values for.
  */
-function getVariables(keys: string[]): any[] {
+function getVariables(keys: string[]): string[] {
+  if (!keys || !keys.length) {
+    return [];
+  }
   return keys.map((key: string) => {
     if (typeof key === 'string' && key.startsWith('$') && STORE.variables[key] !== undefined) {
       return STORE.variables[key];
@@ -149,8 +153,8 @@ function getVariables(keys: string[]): any[] {
  * @param results the values to be stored
  */
 function storeVariables(keys: string[], results: any[]): void {
-  if (keys.length > results.length) {
-    console.log('Error: Mismtach in mumber of outs and keys'.red);
+  if (!keys || !results || keys.length > results.length) {
+    console.log('Error: Mismtach in number of outs and keys'.red);
   }
   keys.forEach((key: string, index: number) => {
     if (key.startsWith('$')) {
