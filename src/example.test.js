@@ -4,12 +4,16 @@ var ResizeViewport = tester.ResizeViewport;
 var GetPageDimensions = tester.GetPageDimensions;
 var GetViewportDimensions = tester.GetViewportDimensions;
 var GetElementDimensions = tester.GetElementDimensions;
+var GetElementClasses = tester.GetElementClasses;
 var GetPageTitle = tester.GetPageTitle;
 var GetUrl = tester.GetUrl;
 var Equals = tester.Equals;
+var GreaterThan = tester.GreaterThan;
+var LessThan = tester.LessThan;
+var Includes = tester.Includes;
 
-tester.registerActions(GoTo, ResizeViewport, GetPageDimensions, GetViewportDimensions, GetElementDimensions, GetPageTitle, GetUrl);
-tester.registerAsserts(Equals);
+tester.registerActions(GoTo, ResizeViewport, GetPageDimensions, GetViewportDimensions, GetElementDimensions, GetElementClasses, GetPageTitle, GetUrl);
+tester.registerAsserts(Equals, GreaterThan, LessThan, Includes);
 
 tester.addTest('simple test', [
     {
@@ -72,5 +76,21 @@ tester.addTest('simple test', [
         title: 'checks page title is as expected',
         assert: Equals,
         args: ['$title', 'Google']
+    },
+    {
+        title: 'goes to google.com',
+        action: GoTo,
+        args: ['http://www.jira.com']
+    },
+    {
+        title: 'gets body element classes',
+        action: GetElementClasses,
+        args: ['jira'],
+        outs: ['$jBodyClasses']
+    },
+    {
+        title: 'checks if jira body element includes specified class',
+        assert: Includes,
+        args: ['$jBodyClasses', 'software']
     }
 ]);

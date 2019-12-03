@@ -12,9 +12,13 @@ import ResizeViewport from './actions/resize-viewport';
 import GetPageDimensions from './actions/get-page-dimensions';
 import GetViewportDimensions from './actions/get-viewport-dimensions';
 import GetElementDimensions from './actions/get-element-dimensions';
+import GetElementClasses from './actions/get-element-classes';
 import GetPageTitle from './actions/get-page-title';
 import GetUrl from './actions/get-url';
 import Equals from './asserts/equals';
+import GreaterThan from './asserts/greater-than';
+import LessThan from './asserts/less-than';
+import Includes from './asserts/includes';
 
 export {
   GoTo,
@@ -22,9 +26,13 @@ export {
   GetPageDimensions,
   GetViewportDimensions,
   GetElementDimensions,
+  GetElementClasses,
   GetPageTitle,
   GetUrl,
   Equals,
+  GreaterThan,
+  LessThan,
+  Includes,
 };
 
 const STORE: store = {
