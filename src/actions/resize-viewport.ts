@@ -1,4 +1,3 @@
-import 'colors';
 import { Page } from 'puppeteer';
 import Action from '../action.i';
 
@@ -6,25 +5,17 @@ import Action from '../action.i';
  * Resizes a given page's viewport to the given height and width.
  */
 export default class ResizeViewport implements Action {
-  constructor() {}
-
-  // @ts-ignore
-  async execute(title: string, args: any[], outs: any[], context: any): Promise<any> {
-    let page: Page = args[0];
-    let width = args[1];
-    let height = args[2];
+  async execute(args: any[], context: any): Promise<string[]> {
+    let page: Page = context.page;
+    let width = args[0];
+    let height = args[1];
 
     await page.setViewport({ width, height });
 
     const data = await page
       .evaluate(() => {
-        return [document.documentElement.clientWidth, document.documentElement.offsetHeight];
+        return [document.documentElement.clientWidth.toString(undefined), document.documentElement.offsetHeight.toString(undefined)];
       })
-      .catch(err => console.log(title.red, err));
-
-    if (data) {
-      process.stdout.write('.'.green);
-    }
 
     return data;
   }

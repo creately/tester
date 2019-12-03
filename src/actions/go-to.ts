@@ -1,5 +1,4 @@
-import 'colors';
-import { Browser } from 'puppeteer';
+import { Page } from 'puppeteer';
 import Action from '../action.i';
 
 /**
@@ -7,16 +6,12 @@ import Action from '../action.i';
  */
 
 export default class GoTo implements Action {
-  constructor() {}
-
-  // @ts-ignore
-  async execute(title: string, args: string[], outs: any[], context: any): Promise<any> {
-    var browser: Browser = context.browser;
-    let page = await browser.newPage();
-    await page.goto(args[0]).catch(err => console.log(title.red, err));
-    if (page) {
-      process.stdout.write('.'.green);
-    }
-    return [page];
+  async execute(args: string[], context: any): Promise<string[]> {
+    var page: Page = context.page;
+    await page.goto(args[0]);
+    const data = await page.evaluate(() => {
+      return [ document.URL ];
+    });
+    return data;
   }
 }
