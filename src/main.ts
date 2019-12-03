@@ -9,11 +9,12 @@ import test from './test.type';
 // It should be moved to another repository.
 import GoTo from './actions/go-to';
 import ResizeViewport from './actions/resize-viewport';
-import GetPageHeight from './actions/get-page-height';
+import GetPageDimensions from './actions/get-page-dimensions';
+import GetViewportDimensions from './actions/get-viewport-dimensions';
 import GetPageTitle from './actions/get-page-title';
 import Equals from './assertions/equals';
 
-export { GoTo, ResizeViewport, GetPageHeight, GetPageTitle, Equals };
+export { GoTo, ResizeViewport, GetPageDimensions, GetViewportDimensions, GetPageTitle, Equals };
 
 const STORE: store = {
   context: {},
