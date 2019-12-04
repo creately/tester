@@ -123,8 +123,8 @@ export function registerAction(action: any): void {
  * the Action interface also implements it's methods.
  * @param object the object to check
  */
-function isAction(object: Action): object is Action {
-  return (object as Action).execute !== undefined;
+function isAction(obj: any): obj is Action {
+  return typeof obj.prototype.execute === 'function';
 }
 
 /**
@@ -152,8 +152,8 @@ export function registerAssert(assert: any): void {
  * also implements it's methods.
  * @param object the object to check
  */
-function isAssert(object: Assert): object is Assert {
-  return (object as Assert).execute !== undefined;
+function isAssert(obj: any): obj is Assert {
+  return typeof obj.prototype.execute === 'function';
 }
 
 /**
