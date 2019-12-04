@@ -3,6 +3,8 @@ import * as globby from 'globby';
 import store from './store.type';
 import spec from './spec.type';
 import test from './test.type';
+import Action from './action.i';
+import Assert from './assert.i';
 
 // TODO: These actions have been added here temporarily so that it
 // can be accessed by this module when installed globally.
@@ -64,7 +66,7 @@ export async function findFiles(path: string, extensions: string[] = ['.test.js'
 /**
  * Stores the given value under the given key.
  * @param key the key to identify the store item with
- * @param value the object to store
+ * @param func the function to call that returns value to store
  */
 export function load(key: string, func: Function): void {
   let val = func.call(null);
@@ -92,7 +94,7 @@ export function addTest(title: string, specs: spec[]): void {
 /**
  * Gets the value stored under the context key.
  */
-function getContext(): any {
+function getContext(): object {
   return STORE.context;
 }
 
@@ -102,7 +104,7 @@ function getContext(): any {
 // TODO: The following ts-ignore comment has been added to temporarily suppress compilation errors
 // as the function is not currently used. Remove this when this function has been used somewhere.
 // @ts-ignore
-function getReporter(): any {
+function getReporters(): any[] {
   return STORE.reporters;
 }
 
@@ -111,9 +113,18 @@ function getReporter(): any {
  * @param action an action to register
  */
 export function registerAction(action: any): void {
-  if (!ACTIONS.includes(action)) {
+  if (!ACTIONS.includes(action) && isAction(action)) {
     ACTIONS.push(action);
   }
+}
+
+/**
+ * Typeguard to check if an instance of any class that implements
+ * the Action interface also implements it's methods.
+ * @param object the object to check
+ */
+function isAction(object: Action): object is Action {
+  return (object as Action).execute !== undefined;
 }
 
 /**
@@ -131,9 +142,18 @@ export function registerActions(...actions: any[]): void {
  * @param assert an assert to register
  */
 export function registerAssert(assert: any): void {
-  if (!ASSERTS.includes(assert)) {
+  if (!ASSERTS.includes(assert) && isAssert(assert)) {
     ASSERTS.push(assert);
   }
+}
+
+/**
+ * Typeguard to check if any class that implements the Action interface
+ * also implements it's methods.
+ * @param object the object to check
+ */
+function isAssert(object: Assert): object is Assert {
+  return (object as Assert).execute !== undefined;
 }
 
 /**
@@ -215,7 +235,7 @@ function getVariables(keys: string[]): string[] {
  * @param keys the keys to be used to retrieve stored values.
  * @param results the values to be stored
  */
-function storeVariables(keys: string[], results: any[]): void {
+function storeVariables(keys: string[], results: string[]): void {
   if (!keys || !results || keys.length > results.length) {
     console.log('Error: Mismtach in number of outs and keys'.red);
   }

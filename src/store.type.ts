@@ -1,11 +1,11 @@
-interface stringKeyObject {
-  [key: string]: any;
+interface stringKeyVar {
+  [key: string]: string;
 }
 
 type store = {
   context: object;
   reporters: any[];
-  variables: stringKeyObject;
+  variables: stringKeyVar;
 };
 
 export default store;
