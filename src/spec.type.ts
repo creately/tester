@@ -1,6 +1,7 @@
-declare type spec = {
+type spec = {
   title: string;
   action: any;
+  assert: any;
   args: any[];
   outs: any[];
 };

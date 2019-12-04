@@ -3,15 +3,39 @@ import * as globby from 'globby';
 import store from './store.type';
 import spec from './spec.type';
 import test from './test.type';
+import Action from './action.i';
+import Assert from './assert.i';
 
 // TODO: These actions have been added here temporarily so that it
 // can be accessed by this module when installed globally.
 // It should be moved to another repository.
 import GoTo from './actions/go-to';
 import ResizeViewport from './actions/resize-viewport';
-import GetPageHeight from './actions/get-page-height';
+import GetPageDimensions from './actions/get-page-dimensions';
+import GetViewportDimensions from './actions/get-viewport-dimensions';
+import GetElementDimensions from './actions/get-element-dimensions';
+import GetElementClasses from './actions/get-element-classes';
+import GetPageTitle from './actions/get-page-title';
+import GetUrl from './actions/get-url';
+import Equals from './asserts/equals';
+import GreaterThan from './asserts/greater-than';
+import LessThan from './asserts/less-than';
+import Includes from './asserts/includes';
 
-export { GoTo, ResizeViewport, GetPageHeight };
+export {
+  GoTo,
+  ResizeViewport,
+  GetPageDimensions,
+  GetViewportDimensions,
+  GetElementDimensions,
+  GetElementClasses,
+  GetPageTitle,
+  GetUrl,
+  Equals,
+  GreaterThan,
+  LessThan,
+  Includes,
+};
 
 const STORE: store = {
   context: {},
@@ -20,6 +44,7 @@ const STORE: store = {
 };
 
 const ACTIONS: any = [];
+const ASSERTS: any = [];
 const TESTS: test[] = [];
 
 /**
@@ -41,7 +66,7 @@ export async function findFiles(path: string, extensions: string[] = ['.test.js'
 /**
  * Stores the given value under the given key.
  * @param key the key to identify the store item with
- * @param value the object to store
+ * @param func the function to call that returns value to store
  */
 export function load(key: string, func: Function): void {
   let val = func.call(null);
@@ -69,7 +94,7 @@ export function addTest(title: string, specs: spec[]): void {
 /**
  * Gets the value stored under the context key.
  */
-function getContext(): any {
+function getContext(): object {
   return STORE.context;
 }
 
@@ -79,7 +104,7 @@ function getContext(): any {
 // TODO: The following ts-ignore comment has been added to temporarily suppress compilation errors
 // as the function is not currently used. Remove this when this function has been used somewhere.
 // @ts-ignore
-function getReporter(): any {
+function getReporters(): any[] {
   return STORE.reporters;
 }
 
@@ -88,9 +113,57 @@ function getReporter(): any {
  * @param action an action to register
  */
 export function registerAction(action: any): void {
-  if (!ACTIONS.includes(action)) {
+  if (!ACTIONS.includes(action) && isAction(action)) {
     ACTIONS.push(action);
   }
+}
+
+/**
+ * Typeguard to check if an instance of any class that implements
+ * the Action interface also implements it's methods.
+ * @param object the object to check
+ */
+function isAction(object: Action): object is Action {
+  return (object as Action).execute !== undefined;
+}
+
+/**
+ * Registers and stores an array of actions.
+ * @param action an action to register
+ */
+export function registerActions(...actions: any[]): void {
+  actions.forEach(action => {
+    registerAction(action);
+  });
+}
+
+/**
+ * Registers and stores asserts.
+ * @param assert an assert to register
+ */
+export function registerAssert(assert: any): void {
+  if (!ASSERTS.includes(assert) && isAssert(assert)) {
+    ASSERTS.push(assert);
+  }
+}
+
+/**
+ * Typeguard to check if any class that implements the Action interface
+ * also implements it's methods.
+ * @param object the object to check
+ */
+function isAssert(object: Assert): object is Assert {
+  return (object as Assert).execute !== undefined;
+}
+
+/**
+ * Registers and stores an array of asserts.
+ * @param assert an assert to register
+ */
+export function registerAsserts(...asserts: any[]): void {
+  asserts.forEach(assert => {
+    registerAssert(assert);
+  });
 }
 
 /**
@@ -99,20 +172,32 @@ export function registerAction(action: any): void {
  */
 export async function runSpecs(specs: spec[]) {
   for (var spec of specs) {
-    if (!ACTIONS.includes(spec.action)) {
-      continue;
-    }
-    let context = getContext();
-    let action = new spec.action();
-    let args = getVariables(spec.args);
-    let outs = spec.outs;
-    try {
-      let results = await action.execute(args, context);
-      if (outs && results) {
-        storeVariables(outs, results);
+    if (spec.action && ACTIONS.includes(spec.action)) {
+      const context = getContext();
+      const action = new spec.action();
+      const args = getVariables(spec.args);
+      const outs = spec.outs;
+      try {
+        let results = await action.execute(args, context);
+        if (outs && results) {
+          storeVariables(outs, results);
+        }
+      } catch (error) {
+        console.error(`Error in ${spec.title}:`.red, error.red);
       }
-    } catch (error) {
-      console.error(`Error in ${spec.title}:`.red, error.red);
+    } else if (spec.assert && ASSERTS.includes(spec.assert)) {
+      const assert = new spec.assert();
+      const args = getVariables(spec.args);
+      try {
+        const result: boolean = await assert.execute(args);
+        if (!result) {
+          console.error(`FAILED: ${spec.title}, values: ${args}`.red);
+        }
+      } catch (error) {
+        console.error(`Error in ${spec.title}:`.red, error.red);
+      }
+    } else {
+      continue;
     }
   }
 }
@@ -150,7 +235,7 @@ function getVariables(keys: string[]): string[] {
  * @param keys the keys to be used to retrieve stored values.
  * @param results the values to be stored
  */
-function storeVariables(keys: string[], results: any[]): void {
+function storeVariables(keys: string[], results: string[]): void {
   if (!keys || !results || keys.length > results.length) {
     console.log('Error: Mismtach in number of outs and keys'.red);
   }
