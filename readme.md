@@ -1,27 +1,37 @@
-# Typescript Starter
+# Tester
 
-A bare minimum starter repository for writing and testing browser modules using typescript.
+Runs end to end tests.
 
-## Getting Started
+## Setting up for local development
 
-- Clone this repository
-
-```shell
-git clone https://github.com/creately/ts-starter.git my-module
-```
-
-- Update the package.json file
-- Replace the git origin
+### Clone this repository
 
 ```shell
-git remote remove origin
-git remote add origin MY_ORIGIN
+git clone git@github.com:creately/tester.git tester
+npm install
 ```
 
-## Updating Dependencies
+### Set up the package
 
-Pull new commits from this repository to your own repository for updates.
+The package can either be symlinked or installed globally.
 
+- Symlinking the package folder:
 ```shell
-git pull https://github.com/creately/ts-starter.git
+~/projects/tester $ npm link
+~/projects/myapp $ npm link ts-starter
 ```
+
+When installing the package globally, your `$NODE_PATH` environment variable should be set. If it isn't, add the following to `.bashrc` or `.zshrc` :
+```
+export NODE_PATH=$(npm root --quiet -g)
+```
+
+- Installing globally:
+```shell
+~/projects/tester $ npm run prepare
+~/projects/tester $ npm install -g ./
+```
+
+### Notes
+
+The package is written in Typescript and needs to be rebuilt after making any changes.
