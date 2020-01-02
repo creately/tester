@@ -20,7 +20,10 @@ import GetUrl from './actions/get-url';
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
 import LessThan from './asserts/less-than';
-import Includes from './asserts/includes';
+import Includes from './asserts/includes'; 
+import ClickElement from './actions/click-element';
+import EditDocumentTitle from './actions/edit-document-title';
+import DragAndDrop from './actions/drag-and-drop';
 
 export {
   GoTo,
@@ -35,6 +38,9 @@ export {
   GreaterThan,
   LessThan,
   Includes,
+  ClickElement,
+  EditDocumentTitle,
+  DragAndDrop
 };
 
 const STORE: store = {

@@ -11,6 +11,7 @@ var Equals = tester.Equals;
 var GreaterThan = tester.GreaterThan;
 var LessThan = tester.LessThan;
 var Includes = tester.Includes;
+var ClickElement = tester.ClickElement;
 
 tester.registerActions(GoTo, ResizeViewport, GetPageDimensions, GetViewportDimensions, GetElementDimensions, GetElementClasses, GetPageTitle, GetUrl);
 tester.registerAsserts(Equals, GreaterThan, LessThan, Includes);
@@ -45,12 +46,12 @@ tester.addTest('simple test', [
     {
         title: 'resizes the page viewport',
         action: ResizeViewport,
-        args: [200, 300]
+        args: [2000, 3000]
     },
     {
         title: 'get the page dimensions',
         action: GetPageDimensions,
-        outs: ['$width','$height']
+        outs: ['$width', '$height']
     },
     {
         title: 'checks if height is as expected',
@@ -92,5 +93,10 @@ tester.addTest('simple test', [
         title: 'checks if jira body element includes specified class',
         assert: Includes,
         args: ['$jBodyClasses', 'software']
+    },
+    {
+        title: 'click search button',
+        action: ClickElement,
+        args: ['Xpath', '//*[@id="features"]/header/div/div[1]/div/div[2]/a[1]']
     }
 ]);
