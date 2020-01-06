@@ -6,7 +6,6 @@ import Action from '../action.i';
  */
 
 export default class GetElementClasses implements Action {
- 
   async execute(args: string[], context: any): Promise<string[]> {
     let elementId = args[0];
     var page: Page = context.page;
