@@ -56,6 +56,9 @@ if (!path.endsWith('/')) {
   if (argv.show) {
     config = {
       headless: false,
+      args:['--start-fullscreen',
+            '--window-size',
+            '--start-maximized']
     };
   }
   const browser = await getBrowser(config);
