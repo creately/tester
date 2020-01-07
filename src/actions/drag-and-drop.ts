@@ -5,19 +5,19 @@ import Action from '../action.i';
  */
 
 export default class DragAndDrop implements Action {
-  async execute(args: string[], context: any): Promise<string[]> {
+  async execute(args: any[], context: any): Promise<string[]> {
     var page: Page = context.page;
-    console.log(args[0]);
-    await page.mouse.move(71, 184);
+    var x: any;
+    var y: any;
+    x = 260;
+    y = 300;
+    await page.mouse.move(args[0], args[1]);
     await page.waitFor(500);
     await page.mouse.down();
-    console.log('down');
-    //await page.mouse.move(123, 345,{steps:200});
-    await page.mouse.move(257, 230);
-    console.log('moved');
+    await page.waitFor(200);
+    await page.mouse.move(x,y);
+    await page.waitFor(300);
     await page.mouse.up();
-    //await page.waitFor(500);
-    console.log('end*******');
-    return ['data'];
+    return [x, y];
   }
 }
