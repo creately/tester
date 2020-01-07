@@ -16,8 +16,8 @@ export default class DragAndDrop implements Action {
     await page.mouse.down();
     await page.waitFor(200);
     await page.mouse.move(x,y);
-    await page.waitFor(300);
     await page.mouse.up();
+    await page.mouse.click(x,y);
     return [x ,y];
   }
 }

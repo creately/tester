@@ -11,6 +11,7 @@ export default class EditDocumentTitle implements Action {
     var [titleElement] = await page.$x('//div[contains(text(), "Untitled Document")]');
     await titleElement.click({ clickCount: 3 });
     await titleElement.press('Backspace');
+    await page.waitFor(200);
     await titleElement.type(_args[0]);
     return [_args[0]];
   }
