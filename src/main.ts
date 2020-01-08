@@ -26,6 +26,7 @@ import EditDocumentTitle from './actions/edit-document-title';
 import DragAndDrop from './actions/drag-and-drop';
 import SelectElement from './actions/select-element';
 import AddText from './actions/add-text';
+import PageWait from './actions/page-wait';
 
 export {
   GoTo,
@@ -44,7 +45,8 @@ export {
   EditDocumentTitle,
   DragAndDrop,
   SelectElement,
-  AddText
+  AddText,
+  PageWait
 };
 
 const STORE: store = {
