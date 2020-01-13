@@ -20,7 +20,8 @@ export default class DragAndDrop implements Action {
     await page.mouse.down();
     await page.waitFor(200);
     var x = await event.offsetX;
-    console.log(x, args[0]);
+    console.log( args[0]);
+    console.log(x);
     console.log('%%%%%%%%%%%')
     await page.mouse.move(args[2], args[3]);
     await page.waitFor(300);
