@@ -6,6 +6,6 @@ import Assert from '../assert.i';
 
 export default class Equals implements Assert {
   async execute(args: string[]): Promise<boolean> {
-   return args[0] === args[1];
+    return args[0] === args[1];
   }
 }

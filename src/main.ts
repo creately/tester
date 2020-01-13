@@ -46,7 +46,7 @@ export {
   DragAndDrop,
   SelectElement,
   AddText,
-  PageWait
+  PageWait,
 };
 
 const STORE: store = {
