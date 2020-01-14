@@ -8,23 +8,17 @@ import Action from '../action.i';
 
 export default class DragAndDrop implements Action {
 
-  async execute(args: any[], context: any, event: MouseEvent): Promise<string[]> {
+  async execute(args: any[], context: any, ): Promise<string[]> {
     var page: Page = context.page;
-
-    console.log('select a shape');
-    console.log('%%%%%%%%%%%')
+    const ele = await page.$('#interaction-area-canvas');
+    var box = await ele?.boundingBox();
+    var x = Number(box?.x);
+    var y = Number(box?.y)
     await page.mouse.move(args[0], args[1]);
-    // await page.mouse.click(args[0], args[1])
     await page.waitFor(500);
-    console.log("*************************");
     await page.mouse.down();
     await page.waitFor(200);
-    var x = await event.offsetX;
-    console.log( args[0]);
-    console.log(x);
-    console.log('%%%%%%%%%%%')
-    await page.mouse.move(args[2], args[3]);
-    await page.waitFor(300);
+    await page.mouse.move(x + 300, y + 300);
     await page.mouse.up();
     return ['end'];
   }

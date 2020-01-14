@@ -27,6 +27,9 @@ import DragAndDrop from './actions/drag-and-drop';
 import SelectElement from './actions/select-element';
 import AddText from './actions/add-text';
 import PageWait from './actions/page-wait';
+import GetScreenshot from './actions/get-screenshot';
+import CompareScreenshots from './actions/compare-screeshots';
+import GetCursorPosition from './actions/get-cursor-position';
 
 export {
   GoTo,
@@ -47,6 +50,9 @@ export {
   SelectElement,
   AddText,
   PageWait,
+  GetScreenshot,
+  CompareScreenshots,
+  GetCursorPosition
 };
 
 const STORE: store = {
