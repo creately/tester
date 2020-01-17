@@ -30,6 +30,7 @@ import PageWait from './actions/page-wait';
 import GetScreenshot from './actions/get-screenshot';
 import CompareScreenshots from './actions/compare-screeshots';
 import GetCursorPosition from './actions/get-cursor-position';
+import AddShape from './actions/add-shape';
 
 export {
   GoTo,
@@ -52,7 +53,8 @@ export {
   PageWait,
   GetScreenshot,
   CompareScreenshots,
-  GetCursorPosition
+  GetCursorPosition,
+  AddShape
 };
 
 const STORE: store = {
