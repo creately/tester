@@ -1,4 +1,4 @@
-import { Page } from 'puppeteer';
+import { WebDriver } from 'selenium-webdriver';
 import Action from '../action.i';
 
 /**
@@ -7,11 +7,8 @@ import Action from '../action.i';
 
 export default class GoTo implements Action {
   async execute(args: string[], context: any): Promise<string[]> {
-    var page: Page = context.page;
-    await page.goto(args[0]);
-    const data = await page.evaluate(() => {
-      return [document.URL];
-    });
-    return data;
+    var driver: WebDriver = context.driver;
+    await driver.get(args[0]);
+    return [''];
   }
 }
