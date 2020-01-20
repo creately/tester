@@ -14,7 +14,6 @@ export default class DragAndDrop implements Action {
     var box = await ele?.boundingBox();
     var x = Number(box?.x);
     var y = Number(box?.y)
-    console.log(x, y);
     await page.mouse.move(args[0], args[1]);
     await page.waitFor(500);
     await page.mouse.down();

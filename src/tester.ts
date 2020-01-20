@@ -27,6 +27,21 @@ const argv = yargs
     type: 'boolean',
     description: 'Show browser instead of running in headless mode',
   })
+  .option('devtools', {
+    alias: 'd',
+    type: 'boolean',
+    description: 'Show devtools while open',
+  })
+  .option('firefox', {
+    alias: 'f',
+    type: 'boolean',
+    description: 'Use Mozilla Firefox for testing',
+  })
+  .option('maximise', {
+    alias: 'm',
+    type: 'boolean',
+    description: 'Maximise browser window on open',
+  })
   .help()
   .alias('help', 'h').argv;
 
@@ -53,39 +68,29 @@ if (!path.endsWith('/')) {
     require(path + file);
   });
 
-  // let config = {};
+  let d = await new webdriver.Builder();
 
-<<<<<<< Updated upstream
-  if (argv.show) {
-    config = {
-      headless: false,
-    };
+  if ( argv.firefox ) {
+    let firefoxOptions = new firefox.Options();
+    d.withCapabilities(webdriver.Capabilities.firefox())
+      .setFirefoxOptions(firefoxOptions);
+  } else {
+    let chromeOptions = new chrome.Options();
+    if ( !argv.show ) {
+      chromeOptions.headless()
+    }
+    if ( argv.devtools ) {
+      chromeOptions.addArguments('--auto-open-devtools-for-tabs');
+    }
+    d.withCapabilities(webdriver.Capabilities.chrome())
+      .setChromeOptions(chromeOptions);
   }
-  const browser = await getBrowser(config);
-  const page = await browser.newPage();
-=======
-  // if (argv.show) {
-  //   config = {
-  //     headless: false,
-  //     args: ['--start-maximized'],
-  //   };
-  // }
->>>>>>> Stashed changes
 
-  // let chromeOptions = new chrome.Options().addArguments('--no-sandbox', '--disable-extensions', '--allow-insecure-localhost', '--whitelisted-ips');
-  let chromeOptions = new chrome.Options().addArguments('--auto-open-devtools-for-tabs');
-  chromeOptions = chromeOptions;
+  let driver = await d.build();
 
-  let firefoxOptions = new firefox.Options().addArguments('--auto-open-devtools-for-tabs');
-  firefoxOptions = firefoxOptions;
-  let driver = await new webdriver.Builder()
-    // .withCapabilities(webdriver.Capabilities.firefox())
-    .withCapabilities(webdriver.Capabilities.chrome())
-    // .setChromeOptions(chromeOptions)
-    // .setFirefoxOptions(firefoxOptions)
-    .build();
-
-  await driver.manage().window().maximize();
+  if ( argv.maximise ) {
+    await driver.manage().window().maximize();
+  }
 
   console.log('getting url');
   // await driver.get('https://creately.com/demo-start');
