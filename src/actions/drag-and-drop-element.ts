@@ -8,13 +8,20 @@ export default class DragAndDropElement implements Action {
 
   async execute(args: any[], context: any, ): Promise<string[]> {
     var driver: WebDriver = context.driver;
-    const elementXPath: string = args[0];
-    const endX: number = args[1];
-    const endY: number = args[2];
+    const sourceXPath: string = args[0];
+    const targetXPath: string = args[1];
+    const endX: number = args[2];
+    const endY: number = args[3];
+    const delay: number = args[4];
 
-    const element: WebElement = await driver.findElement(By.xpath(elementXPath));
+    const source: WebElement = await driver.findElement(By.xpath(sourceXPath));
 
-    // driver.executeScript("document.getElementById('interaction-area-canvas').click()");
+    let target = null;
+
+    if (targetXPath) {
+      target = await driver.findElement(By.xpath(targetXPath));
+    }
+
     let script = `
       var args = arguments,
       callback = args[args.length - 1],
@@ -28,12 +35,12 @@ export default class DragAndDropElement implements Action {
 
       var doc = source.ownerDocument,
         win = doc.defaultView,
-        rect1 = source.getBoundingClientRect(),
-        rect2 = target ? target.getBoundingClientRect() : rect1,
-        x = rect1.left + (rect1.width >> 1),
-        y = rect1.top + (rect1.height >> 1),
-        x2 = rect2.left + (rect2.width >> 1) + offsetX,
-        y2 = rect2.top + (rect2.height >> 1) + offsetY,
+        sourceRect = source.getBoundingClientRect(),
+        targetRect = target ? target.getBoundingClientRect() : sourceRect,
+        startX = sourceRect.left + (sourceRect.width >> 1),
+        startY = sourceRect.top + (sourceRect.height >> 1),
+        endX = targetRect.left + (targetRect.width >> 1) + offsetX,
+        endY = targetRect.top + (targetRect.height >> 1) + offsetY,
         dataTransfer = Object.create(Object.prototype, {
           _items: { value: { } },
           effectAllowed: { value: 'all', writable: true },
@@ -46,30 +53,33 @@ export default class DragAndDropElement implements Action {
           setDragImage: { value: function () { } } 
         });
 
-      target = doc.elementFromPoint(x2, y2);
+      target = doc.elementFromPoint(endX, endY);
       if(!target) throw new Error('The target element is not interactable and need to be scrolled into the view.');
-      rect2 = target.getBoundingClientRect();
+      targetRect = target.getBoundingClientRect();
 
       emit(source, 'dragstart', delay, function () {
         var rect3 = target.getBoundingClientRect();
-        x = rect3.left + x2 - rect2.left;
-        y = rect3.top + y2 - rect2.top;
+        startX = rect3.left + endX - targetRect.left;
+        startY = rect3.top + endY - targetRect.top;
         emit(target, 'dragenter', 1, function () {
           emit(target, 'dragover', delay, function () {
-            target = doc.elementFromPoint(x, y);
+            target = doc.elementFromPoint(startX, startY);
             emit(target, 'drop', 1, function () {
               emit(source, 'dragend', 1, callback);
-      });});});});
+            });
+          });
+        });
+      });
 
       function emit(element, type, delay, callback) {
         var event = doc.createEvent('DragEvent');
-        event.initMouseEvent(type, true, true, win, 0, 0, 0, x, y, false, false, false, false, 0, null);
+        event.initMouseEvent(type, true, true, win, 0, 0, 0, startX, startY, false, false, false, false, 0, null);
         Object.defineProperty(event, 'dataTransfer', { get: function () { return dataTransfer } });
         element.dispatchEvent(event);
         win.setTimeout(callback, delay);
       }
     `;
-    driver.executeScript(script, element, null, endX, endY);
+    driver.executeScript(script, source, target, endX, endY, delay);
 
     return [''];
   }
