@@ -4,7 +4,6 @@ import Action from '../action.i';
 /**
  * Searches for an element by it's ID and returns it's classes.
  */
-
 export default class GetElementClasses implements Action {
   async execute(args: string[], context: any): Promise<string[]> {
     let elementId = args[0];

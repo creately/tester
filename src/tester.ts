@@ -3,7 +3,9 @@
 import 'colors';
 import * as yargs from 'yargs';
 import { findFiles, load, runTests } from './main';
-import { getBrowser } from './puppeteer-helper';
+import * as webdriver from 'selenium-webdriver';
+import * as chrome from 'selenium-webdriver/chrome';
+import * as firefox from 'selenium-webdriver/firefox';
 
 let path: string = process.cwd();
 
@@ -24,6 +26,21 @@ const argv = yargs
     alias: 's',
     type: 'boolean',
     description: 'Show browser instead of running in headless mode',
+  })
+  .option('devtools', {
+    alias: 'd',
+    type: 'boolean',
+    description: 'Show devtools while open',
+  })
+  .option('firefox', {
+    alias: 'f',
+    type: 'boolean',
+    description: 'Use Mozilla Firefox for testing',
+  })
+  .option('maximise', {
+    alias: 'm',
+    type: 'boolean',
+    description: 'Maximise browser window on open',
   })
   .help()
   .alias('help', 'h').argv;
@@ -51,26 +68,40 @@ if (!path.endsWith('/')) {
     require(path + file);
   });
 
-  let config = {};
+  let d = await new webdriver.Builder();
 
-  if (argv.show) {
-    config = {
-      headless: false,
-    };
+  if ( argv.firefox ) {
+    let firefoxOptions = new firefox.Options();
+    d.withCapabilities(webdriver.Capabilities.firefox())
+      .setFirefoxOptions(firefoxOptions);
+  } else {
+    let chromeOptions = new chrome.Options();
+    if ( !argv.show ) {
+      chromeOptions.headless()
+    }
+    if ( argv.devtools ) {
+      chromeOptions.addArguments('--auto-open-devtools-for-tabs');
+    }
+    d.withCapabilities(webdriver.Capabilities.chrome())
+      .setChromeOptions(chromeOptions);
   }
-  const browser = await getBrowser(config);
-  const page = await browser.newPage();
 
-  console.log('Loading browser into context'.yellow);
+  let driver = await d.build();
+
+  if ( argv.maximise ) {
+    await driver.manage().window().maximize();
+  }
+
+  console.log('Loading driver into context'.yellow);
   load('context', () => {
-    return { page: page };
+    return { driver: driver };
   });
-
+  
   console.log('Executing test cases'.yellow);
   await runTests();
 
   if (!argv['keep-open']) {
-    await browser.close();
+    await driver.quit();
     process.exit();
   }
 

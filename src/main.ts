@@ -17,6 +17,14 @@ import GetElementDimensions from './actions/get-element-dimensions';
 import GetElementClasses from './actions/get-element-classes';
 import GetPageTitle from './actions/get-page-title';
 import GetUrl from './actions/get-url';
+import WaitForElementLocated from './actions/wait-for-element-located';
+import WaitForElementNotVisible from './actions/wait-for-element-not-visible';
+import ClickElement from './actions/click-element';
+import WaitTime from './actions/wait-time';
+import DragAndDropCoordinates from './actions/drag-and-drop-coordinates';
+import DragAndDropElement from './actions/drag-and-drop-element';
+import SendTextToElement from './actions/send-text-to-element';
+
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
 import LessThan from './asserts/less-than';
@@ -31,6 +39,14 @@ export {
   GetElementClasses,
   GetPageTitle,
   GetUrl,
+  WaitForElementLocated,
+  WaitForElementNotVisible,
+  ClickElement,
+  WaitTime,
+  DragAndDropCoordinates,
+  DragAndDropElement,
+  SendTextToElement,
+
   Equals,
   GreaterThan,
   LessThan,
