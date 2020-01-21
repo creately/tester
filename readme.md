@@ -34,7 +34,7 @@ export NODE_PATH=$(npm root --quiet -g)
 
 - Set up Chrome and Firefox webdrivers
 
-Webdrivers should be downloaded and installed for the browser versions available in the environment. Drivers can be downloaded from here: https://selenium.dev/documentation/en/webdriver/driver_requirements/
+Webdrivers should be downloaded and installed for the browser versions available in the environment. Webdrivers and installation instructions can be found here: https://selenium.dev/documentation/en/webdriver/driver_requirements/
 
 
 ### Running package
