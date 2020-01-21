@@ -21,6 +21,8 @@ import WaitForElementLocated from './actions/wait-for-element-located';
 import WaitForElementNotVisible from './actions/wait-for-element-not-visible';
 import ClickElement from './actions/click-element';
 import WaitTime from './actions/wait-time';
+import DragAndDropCoordinates from './actions/drag-and-drop-coordinates';
+import DragAndDropElement from './actions/drag-and-drop-element';
 
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
@@ -40,6 +42,8 @@ export {
   WaitForElementNotVisible,
   ClickElement,
   WaitTime,
+  DragAndDropCoordinates,
+  DragAndDropElement,
 
   Equals,
   GreaterThan,
