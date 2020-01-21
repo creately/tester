@@ -23,6 +23,8 @@ export default class DragAndDropCoordinates implements Action {
     const endY: number = args[4];
     const duration: number = args[5];
     
+    // FIXME: This works on Firefox but doesn't work correctly on Chrome (tested on v79).
+    // The shape is selected on the canvas, however it is not moved to the specified coordinates.
     await driver.actions({ bridge: true })
       .move( { origin: origin, x: startX, y: startY })
       .press()
