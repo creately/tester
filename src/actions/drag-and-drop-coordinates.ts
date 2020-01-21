@@ -17,8 +17,6 @@ export default class DragAndDropCoordinates implements Action {
       origin = Origin.VIEWPORT;
     }
 
-    console.log(origin);
-
     const startX: number = args[1];
     const startY: number = args[2];
     const endX: number = args[3];

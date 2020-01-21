@@ -96,36 +96,6 @@ if (!path.endsWith('/')) {
   load('context', () => {
     return { driver: driver };
   });
-
-  // await driver.executeScript("document.getElementById('interaction-area-canvas').focus()");
-
-  // // await driver.actions({ bridge: true })
-  // //   .move( { origin: webdriver.Origin.VIEWPORT, x: 820, y: 350 })
-  // //   .press()
-  // //   .perform();
-
-  // // await driver.manage().setTimeouts( { implicit: 4000 } );
-  
-  // // await driver.actions({ bridge: true })
-  // //   .move( { origin: webdriver.Origin.VIEWPORT, x: 320, y: 350, duration: 5000 })
-  // //   .release()
-  // //   .perform();
-
-  // await driver.actions()
-  //   .move( { origin: webdriver.Origin.VIEWPORT, x: 820, y: 370 })
-  //   .pause()
-  //   .press()
-  //   .pause()
-  //   .move( { origin: webdriver.Origin.VIEWPORT, x: 320, y: 350 })
-  //   .pause()
-  //   .release()
-  //   .pause()
-  //   .contextClick()
-  //   .perform();
-
-  // // await driver.executeScript("document.getElementById('interaction-area-canvas').click()");
-
-  
   
   console.log('Executing test cases'.yellow);
   await runTests();

@@ -4,7 +4,6 @@ import Action from '../action.i';
 /**
  * Returns the page dimensions.
  */
-
 export default class GetPageDimensions implements Action {
   async execute(_args: string[], context: any): Promise<string[]> {
     var page: Page = context.page;

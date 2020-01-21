@@ -86,8 +86,8 @@ export default class DragAndDropElement implements Action {
         win.setTimeout(callback, delay);
       }
     `;
-    driver.executeScript(script, source, target, endX, endY, delay);
 
+    driver.executeScript(script, source, target, endX, endY, delay);
     return [''];
   }
 
