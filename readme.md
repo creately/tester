@@ -8,6 +8,7 @@ Runs end to end tests.
 
 ```shell
 git clone git@github.com:creately/tester.git tester
+cd tester
 npm install
 ```
 
