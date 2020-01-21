@@ -32,6 +32,16 @@ export NODE_PATH=$(npm root --quiet -g)
 ~/projects/tester $ npm install -g ./
 ```
 
-### Notes
+### Running package
 
 The package is written in Typescript and needs to be rebuilt after making any changes.
+
+Run `tester` in the folder containing `*.test.js` files.
+
+Commands:
+-  `--path` - The path to look for test files in
+
+Arguments:
+- `--help, -h` - Show help 
+- `--show, -s` - Show browser instead of running in headless mode
+- `--keep-open, -o` - Keep browser open after tests are complete
