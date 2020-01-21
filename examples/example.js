@@ -67,7 +67,7 @@ tester.addTest('simple test', [
     {
         title: 'goes to local document',
         action: GoTo,
-        args: ['localhost:4200/diagram/bhAUDXisaA7/edit']
+        args: ['http://localhost:4200/diagram/bhAUDXisaA7/edit']
     },
     // {
     //     title: 'click blank document button',
@@ -90,13 +90,13 @@ tester.addTest('simple test', [
         args: ['/html/body/app-root/ng-component/div/div/div[2]/left-sidebar/div/div[2]/left-bar/div/div/library-container/div/div[3]/perfect-scrollbar/div/div[1]/collapsible-menu/div/collapsible-menu-item[1]/div/div[2]/ng-component/library-tile[1]/div']
     },
     {
-        title: 'drag and drop first shape in library to the canvas',
-        action: DragAndDropElement,
-        args: ['/html/body/app-root/ng-component/div/div/div[2]/left-sidebar/div/div[2]/left-bar/div/div/library-container/div/div[3]/perfect-scrollbar/div/div[1]/collapsible-menu/div/collapsible-menu-item[1]/div/div[2]/ng-component/library-tile[1]/div', null, 300, 100, null]
-    },
-    {
         title: 'move shape in center of canvas',
         action: DragAndDropCoordinates,
-        args: [820, 370, 950, 380, 3000]
+        args: [null, 820, 370, 300, 300, 3000]
     },
+    // {
+    //     title: 'drag and drop first shape in library to the canvas',
+    //     action: DragAndDropElement,
+    //     args: ['/html/body/app-root/ng-component/div/div/div[2]/left-sidebar/div/div[2]/left-bar/div/div/library-container/div/div[3]/perfect-scrollbar/div/div[1]/collapsible-menu/div/collapsible-menu-item[1]/div/div[2]/ng-component/library-tile[1]/div', null, 300, 100, null]
+    // },
 ]);
