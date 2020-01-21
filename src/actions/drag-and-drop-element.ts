@@ -31,17 +31,20 @@ export default class DragAndDropElement implements Action {
       offsetY = (args.length > 3 && args[3]) || 0,
       delay = (args.length > 4 && args[4]) || 1;
 
-      if (!source.draggable) throw new Error('Source element is not draggable.');
+      if (!source.draggable) {
+        throw new Error('Source element is not draggable.');
+      }
 
       var doc = source.ownerDocument,
         win = doc.defaultView,
         sourceRect = source.getBoundingClientRect(),
-        targetRect = target ? target.getBoundingClientRect() : sourceRect,
+        targetRect = target ? target.getBoundingClientRect() : document.body.getBoundingClientRect(),
         startX = sourceRect.left + (sourceRect.width >> 1),
         startY = sourceRect.top + (sourceRect.height >> 1),
-        endX = targetRect.left + (targetRect.width >> 1) + offsetX,
-        endY = targetRect.top + (targetRect.height >> 1) + offsetY,
-        dataTransfer = Object.create(Object.prototype, {
+        endX = targetRect.left + offsetX,
+        endY = targetRect.top + offsetY;
+      
+      var dataTransfer = Object.create(Object.prototype, {
           _items: { value: { } },
           effectAllowed: { value: 'all', writable: true },
           dropEffect: { value: 'move', writable: true },
@@ -54,13 +57,17 @@ export default class DragAndDropElement implements Action {
         });
 
       target = doc.elementFromPoint(endX, endY);
-      if(!target) throw new Error('The target element is not interactable and need to be scrolled into the view.');
+
+      if (!target) {
+        throw new Error('The target element is not interactable and need to be scrolled into the view.');
+      }
+
       targetRect = target.getBoundingClientRect();
 
       emit(source, 'dragstart', delay, function () {
-        var rect3 = target.getBoundingClientRect();
-        startX = rect3.left + endX - targetRect.left;
-        startY = rect3.top + endY - targetRect.top;
+        var currentSourceRect = target.getBoundingClientRect();
+        startX = currentSourceRect.left + endX - targetRect.left;
+        startY = currentSourceRect.top + endY - targetRect.top;
         emit(target, 'dragenter', 1, function () {
           emit(target, 'dragover', delay, function () {
             target = doc.elementFromPoint(startX, startY);
