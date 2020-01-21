@@ -7,6 +7,8 @@ var GetElementDimensions = tester.GetElementDimensions;
 var GetElementClasses = tester.GetElementClasses;
 var GetPageTitle = tester.GetPageTitle;
 var GetUrl = tester.GetUrl;
+
+
 var Equals = tester.Equals;
 var GreaterThan = tester.GreaterThan;
 var LessThan = tester.LessThan;

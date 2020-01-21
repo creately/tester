@@ -55,7 +55,7 @@ if (!path.endsWith('/')) {
 
 (async () => {
   console.log('Searching for files in: '.yellow + path);
-  const files: string[] = await findFiles(path, ['test.js']);
+  const files: string[] = await findFiles(path);
 
   if (!files || files.length == 0) {
     console.warn('No files found'.yellow);
@@ -97,8 +97,6 @@ if (!path.endsWith('/')) {
     return { driver: driver };
   });
 
-  // const BLANK_DOCUMENT_BUTTON_XPATH = '/html/body/app-root/ng-component/div/div/div[2]/perfect-scrollbar/div/div[1]/div[1]/div/div[1]/creator-thumbnail/div/div[1]';
-  // const LOADER_OVERLAY_XPATH = '/html/body/app-root/main-loader';
   // // const MAYBE_LATER_BUTTON_XPATH = '//button[contains(text(),"Maybe Later")]';
   // const CIRCLE_THUMB_XPATH = '/html/body/app-root/ng-component/div/div/div[2]/left-sidebar/div/div[2]/left-bar/div/div/library-container/div/div[3]/perfect-scrollbar/div/div[1]/collapsible-menu/div/collapsible-menu-item[1]/div/div[2]/ng-component/library-tile[1]/div';
   // // const CANVAS_XPATH = '//*[@id="interaction-area-canvas"]';
@@ -116,19 +114,6 @@ if (!path.endsWith('/')) {
   // const signInButton = await driver.findElement(webdriver.By.xpath(SIGN_IN_BUTTON_XPATH));
   // await signInButton.click();
   
-  // await driver.wait(webdriver.until.elementLocated(webdriver.By.xpath(LOADER_OVERLAY_XPATH)));
-  // const loaderOverlay = await driver.findElement(webdriver.By.xpath(LOADER_OVERLAY_XPATH));
-  // await driver.wait(webdriver.until.elementIsNotVisible(loaderOverlay));
-
-  // console.log('waiting for blank document button');
-  // await driver.wait(webdriver.until.elementLocated(webdriver.By.xpath(BLANK_DOCUMENT_BUTTON_XPATH)));
-
-  // // console.log('getting blank document button');
-  // // const blankDocumentButton = await driver.findElement(webdriver.By.xpath(BLANK_DOCUMENT_BUTTON_XPATH));
-  
-  // // console.log('clicking button');
-  // // await blankDocumentButton.click();
-
   // // console.log('waiting for maybe later button');
   // // await driver.wait(webdriver.until.elementLocated(webdriver.By.xpath(MAYBE_LATER_BUTTON_XPATH)));
 

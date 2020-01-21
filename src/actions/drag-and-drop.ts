@@ -5,7 +5,6 @@ import Action from '../action.i';
 /**
  * Drag and drop a shape
  */
-
 export default class DragAndDrop implements Action {
 
   async execute(args: any[], context: any, ): Promise<string[]> {
