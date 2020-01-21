@@ -97,9 +97,6 @@ if (!path.endsWith('/')) {
     return { driver: driver };
   });
 
-  // // const MAYBE_LATER_BUTTON_XPATH = '//button[contains(text(),"Maybe Later")]';
-  // const CIRCLE_THUMB_XPATH = '/html/body/app-root/ng-component/div/div/div[2]/left-sidebar/div/div[2]/left-bar/div/div/library-container/div/div[3]/perfect-scrollbar/div/div[1]/collapsible-menu/div/collapsible-menu-item[1]/div/div[2]/ng-component/library-tile[1]/div';
-  // // const CANVAS_XPATH = '//*[@id="interaction-area-canvas"]';
   // const EMAIL_INPUT_XPATH = '//*[@id="gravity-signin-widget"]/form/div/div[1]/input';
   // const PASSWORD_INPUT_XPATH = '//*[@id="gravity-signin-widget"]/form/div/div[2]/input';
   // const SIGN_IN_BUTTON_XPATH = '//*[@id="gravity-signin-widget"]/form/div/div[4]/div/button';
@@ -113,38 +110,8 @@ if (!path.endsWith('/')) {
 
   // const signInButton = await driver.findElement(webdriver.By.xpath(SIGN_IN_BUTTON_XPATH));
   // await signInButton.click();
-  
-  // // console.log('waiting for maybe later button');
-  // // await driver.wait(webdriver.until.elementLocated(webdriver.By.xpath(MAYBE_LATER_BUTTON_XPATH)));
-
-  // // console.log('getting maybe later button');
-  // // const maybeLaterButton = await driver.findElement(webdriver.By.xpath(MAYBE_LATER_BUTTON_XPATH));
-  
-  // // console.log('clicking button');
-  // // await maybeLaterButton.click();
-
-  // await driver.get('http://localhost:4200/diagram/bhAUDXisaA7/edit');
-
-  // console.log('waiting for shape')
-  // await driver.wait(webdriver.until.elementLocated(webdriver.By.xpath(CIRCLE_THUMB_XPATH)));
-
-  // console.log('getting shape')
-  // let shape = await driver.findElement(webdriver.By.xpath(CIRCLE_THUMB_XPATH));
-  // shape = shape;
-  // console.log('getting canvas');
-  // // const canvas = await driver.findElement(webdriver.By.xpath(CANVAS_XPATH));
-
-  // // const shapeRect = await shape.getRect();
-
-  // // const shapeCenterX = shapeRect.x + ( shapeRect.width / 2 );
-  // // const shapeCenterY = shapeRect.x + ( shapeRect.width / 2 );
-
-  // // await driver.actions().dragAndDrop(shape, { x: 400, y: 50 }).perform();
-  // // await driver.actions().dragAndDrop(shape, canvas).perform();
 
   // console.log('dragging and dropping shape');
-
-  // // await driver.manage().setTimeouts( { implicit: 5000 } );
 
   // await driver.executeScript("document.getElementById('interaction-area-canvas').focus()");
 

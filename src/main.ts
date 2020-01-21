@@ -20,6 +20,7 @@ import GetUrl from './actions/get-url';
 import WaitForElementLocated from './actions/wait-for-element-located';
 import WaitForElementNotVisible from './actions/wait-for-element-not-visible';
 import ClickElement from './actions/click-element';
+import WaitTime from './actions/wait-time';
 
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
@@ -38,6 +39,7 @@ export {
   WaitForElementLocated,
   WaitForElementNotVisible,
   ClickElement,
+  WaitTime,
 
   Equals,
   GreaterThan,
