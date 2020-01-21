@@ -2,14 +2,15 @@ import { WebDriver, By, WebElement } from 'selenium-webdriver';
 import Action from '../action.i';
 
 /**
- * Waits for specified element to be found and invisible to user.
+ * Sends the specified text to the specified element.
  */
-export default class ClickElement implements Action {
+export default class SendTextToElement implements Action {
   async execute(args: string[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     const elementXPath: string = args[0];
+    const keys: string = args[1];
     const element: WebElement = await driver.findElement(By.xpath(elementXPath));
-    await element.click();
+    await element.sendKeys(keys);
     return [''];
   }
 }

@@ -97,22 +97,6 @@ if (!path.endsWith('/')) {
     return { driver: driver };
   });
 
-  // const EMAIL_INPUT_XPATH = '//*[@id="gravity-signin-widget"]/form/div/div[1]/input';
-  // const PASSWORD_INPUT_XPATH = '//*[@id="gravity-signin-widget"]/form/div/div[2]/input';
-  // const SIGN_IN_BUTTON_XPATH = '//*[@id="gravity-signin-widget"]/form/div/div[4]/div/button';
-
-  // await driver.wait(webdriver.until.elementLocated(webdriver.By.xpath(EMAIL_INPUT_XPATH)));
-  // const emailInput = await driver.findElement(webdriver.By.xpath(EMAIL_INPUT_XPATH));
-  // emailInput.sendKeys('samal@cinergix.com');
-
-  // const passwordInput = await driver.findElement(webdriver.By.xpath(PASSWORD_INPUT_XPATH));
-  // passwordInput.sendKeys('1qaz2wsx@Q');
-
-  // const signInButton = await driver.findElement(webdriver.By.xpath(SIGN_IN_BUTTON_XPATH));
-  // await signInButton.click();
-
-  // console.log('dragging and dropping shape');
-
   // await driver.executeScript("document.getElementById('interaction-area-canvas').focus()");
 
   // // await driver.actions({ bridge: true })
