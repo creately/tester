@@ -5,8 +5,7 @@ import Action from '../action.i';
  * Drag and drop an element to the specified coordinates.
  */
 export default class DragAndDropElement implements Action {
-
-  async execute(args: any[], context: any, ): Promise<string[]> {
+  async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     const sourceXPath: string = args[0];
     const targetXPath: string = args[1];
@@ -90,5 +89,4 @@ export default class DragAndDropElement implements Action {
     driver.executeScript(script, source, target, endX, endY, delay);
     return [''];
   }
-
 }

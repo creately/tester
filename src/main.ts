@@ -46,7 +46,6 @@ export {
   DragAndDropCoordinates,
   DragAndDropElement,
   SendTextToElement,
-
   Equals,
   GreaterThan,
   LessThan,
