@@ -8,6 +8,7 @@ Runs end to end tests.
 
 ```shell
 git clone git@github.com:creately/tester.git tester
+cd tester
 npm install
 ```
 
@@ -32,16 +33,25 @@ export NODE_PATH=$(npm root --quiet -g)
 ~/projects/tester $ npm install -g ./
 ```
 
+- Set up Chrome and Firefox webdrivers
+
+Webdrivers should be downloaded and installed for the browser versions available in the environment. Webdrivers and installation instructions can be found here: https://selenium.dev/documentation/en/webdriver/driver_requirements/
+
+
 ### Running package
 
-The package is written in Typescript and needs to be rebuilt after making any changes.
+The package is written in Typescript and needs to be rebuilt after making any changes using `npm run build`.
 
-Run `tester` in the folder containing `*.test.js` files.
+Test specs should be contained in `*.test.js` files. An example test is included in the `examples` directory on the repo.
 
-Commands:
--  `--path` - The path to look for test files in
+Run `tester` in the folder containing `*.test.js` files or pass the path with the `--path` argument.
 
-Arguments:
-- `--help, -h` - Show help 
-- `--show, -s` - Show browser instead of running in headless mode
-- `--keep-open, -o` - Keep browser open after tests are complete
+| Argument             | Description                                            |
+| ---------------------|:-------------------------------------------------------| 
+| `--path=\Users\...`  | The path to look for test files in                     |
+| `--help, -h`         | Show help                                              | 
+| `--show, -s`         | Show browser instead of running in headless mode       | 
+| `--keep-open, -o`    | Keep browser open after tests are complete             | 
+| `--devtools, -d`     | Show devtools                                          | 
+| `--firefox, -f`      | Use Mozilla Firefox instead of Chrome                  | 
+| `--maximise, -m`     | Maximise browser window on open                        | 
