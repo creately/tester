@@ -26,6 +26,7 @@ export default class DragAndDropCoordinates implements Action {
     // The shape is selected on the canvas, however it is not moved to the specified coordinates.
     await driver
       .actions({ bridge: true })
+      .pause(1000)
       .move({ origin: origin, x: startX, y: startY })
       .press()
       .move({ origin: origin, x: endX, y: endY, duration: duration })

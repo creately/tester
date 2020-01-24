@@ -1,4 +1,4 @@
-import { Page } from 'puppeteer';
+import { WebDriver } from 'selenium-webdriver';
 import Action from '../action.i';
 
 /**
@@ -6,10 +6,9 @@ import Action from '../action.i';
  */
 export default class GetUrl implements Action {
   async execute(_args: string[], context: any): Promise<string[]> {
-    var page: Page = context.page;
-    const data = await page.evaluate(() => {
-      return [document.URL];
-    });
-    return data;
+    var driver: WebDriver = context.driver;
+    const currentURL = await (await driver.getCurrentUrl()).toString();
+    await driver.manage().setTimeouts({ pageLoad: 1000 });
+    return [currentURL];
   }
 }
