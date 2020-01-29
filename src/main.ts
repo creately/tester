@@ -21,11 +21,13 @@ import ClickElement from './actions/click-element';
 import WaitTime from './actions/wait-time';
 import DragAndDropCoordinates from './actions/drag-and-drop-coordinates';
 import DragAndDropElement from './actions/drag-and-drop-element';
-import AddCanvasToolbarElements from './actions/add-canvas-toolbar-elements';
 import GetContextualToolbar from './actions/get-contextual-toolbar';
 import AddTextFromContextualToolbar from './actions/add-text-from-contextual-toolbar';
-import AddTLineFromContextualToolbar from './actions/add-line-from-contextual-toolbar';
-import AddColourFromContextualToolbar from './actions/add-colour-from-contextual-toolbar';
+import AddTLineFromContextualToolbar from './actions/add-line-from-contextual-toolbar'; 
+import ClickColourButtonContextualToolbar from './actions/click-colour-button-contextual-toolbar';
+import AddColourDashedLine from './actions/add-colour-dashed-line';
+import AddColour from './actions/add-colour';
+import AddColouredLine from './actions/add-coloured-line';
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
 import LessThan from './asserts/less-than';
@@ -44,11 +46,13 @@ export {
   WaitTime,
   DragAndDropCoordinates,
   DragAndDropElement,
-  AddCanvasToolbarElements,
   GetContextualToolbar,
   AddTextFromContextualToolbar,
   AddTLineFromContextualToolbar,
-  AddColourFromContextualToolbar,
+  ClickColourButtonContextualToolbar,
+  AddColour,
+  AddColouredLine,
+  AddColourDashedLine,
   Equals,
   GreaterThan,
   LessThan,

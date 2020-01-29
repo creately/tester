@@ -11,7 +11,9 @@ export default class GetContextualToolbar implements Action {
     await driver
       .actions({ bridge: true })
       .move({ x: startX, y: startY })
-      .click()
+      .press()
+      .release()
+
       .pause(1000)
       .perform();
 
