@@ -1,6 +1,10 @@
 import Action from '../action.i';
 import { By, WebDriver } from 'selenium-webdriver';
 
+/* 
+  *  Apply colur for shapes 
+  *  arags[0] refers the colour code index 
+*/
 export default class AddColour implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;

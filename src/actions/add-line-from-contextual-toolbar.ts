@@ -1,6 +1,9 @@
 import { WebDriver, By } from 'selenium-webdriver';
 import Action from '../action.i';
 
+/* 
+    * draw the line by using contextual tolbar
+*/
 export default class AddTLineFromContextualToolbar implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
