@@ -24,16 +24,13 @@ export default class AddCanvasToolbarElements implements Action {
     if (isDisplayed) {
       switch (args[0].toLowerCase()) {
         case 'text':
-          const textButton = await driver.findElement(By.xpath('//*[@id="contextual-toolbar"]/div/icon-button[1]/div/button'));
-          await textButton.click();
-          await driver.actions({ bridge: true })
-            .sendKeys(args[3])
-            .perform()
+          // AddTextFromToolbar.addText(args,context);
           break;
 
-
         case 'line':
-          const lineButton = await driver.findElement(By.xpath('//*[@id="contextual-toolbar"]/div/icon-button[2]/div/button'));
+          const lineButton = await driver.findElement(
+            By.xpath('//*[@id="contextual-toolbar"]/div/icon-button[2]/div/button')
+          );
           await lineButton.click();
           await driver
             .actions({ bridge: true })
@@ -43,7 +40,9 @@ export default class AddCanvasToolbarElements implements Action {
             .perform();
           break;
         case 'colour':
-          const colourButton = await driver.findElement(By.xpath('//*[@id="contextual-toolbar"]/div/toolbar-shape-style-dropdown'));
+          const colourButton = await driver.findElement(
+            By.xpath('//*[@id="contextual-toolbar"]/div/toolbar-shape-style-dropdown')
+          );
           await colourButton.click();
           break;
         default:
@@ -53,3 +52,8 @@ export default class AddCanvasToolbarElements implements Action {
     return [''];
   }
 }
+/*  const textButton = await driver.findElement(By.xpath('//*[@id="contextual-toolbar"]/div/icon-button[1]/div/button'));
+          await textButton.click();
+          await driver.actions({ bridge: true })
+            .sendKeys(args[3])
+            .perform() */
