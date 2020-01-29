@@ -10,9 +10,7 @@ import Assert from './assert.i';
 // can be accessed by this module when installed globally.
 // It should be moved to another repository.
 import GoTo from './actions/go-to';
-import ResizeViewport from './actions/resize-viewport';
 import GetPageDimensions from './actions/get-page-dimensions';
-import GetViewportDimensions from './actions/get-viewport-dimensions';
 import GetElementDimensions from './actions/get-element-dimensions';
 import GetElementClasses from './actions/get-element-classes';
 import GetPageTitle from './actions/get-page-title';
@@ -23,8 +21,6 @@ import ClickElement from './actions/click-element';
 import WaitTime from './actions/wait-time';
 import DragAndDropCoordinates from './actions/drag-and-drop-coordinates';
 import DragAndDropElement from './actions/drag-and-drop-element';
-import SendTextToElement from './actions/send-text-to-element';
-
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
 import LessThan from './asserts/less-than';
@@ -32,9 +28,7 @@ import Includes from './asserts/includes';
 
 export {
   GoTo,
-  ResizeViewport,
   GetPageDimensions,
-  GetViewportDimensions,
   GetElementDimensions,
   GetElementClasses,
   GetPageTitle,
@@ -45,8 +39,6 @@ export {
   WaitTime,
   DragAndDropCoordinates,
   DragAndDropElement,
-  SendTextToElement,
-
   Equals,
   GreaterThan,
   LessThan,

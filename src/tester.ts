@@ -70,33 +70,34 @@ if (!path.endsWith('/')) {
 
   let d = await new webdriver.Builder();
 
-  if ( argv.firefox ) {
+  if (argv.firefox) {
     let firefoxOptions = new firefox.Options();
-    d.withCapabilities(webdriver.Capabilities.firefox())
-      .setFirefoxOptions(firefoxOptions);
+    d.withCapabilities(webdriver.Capabilities.firefox()).setFirefoxOptions(firefoxOptions);
   } else {
     let chromeOptions = new chrome.Options();
-    if ( !argv.show ) {
-      chromeOptions.headless()
+    if (!argv.show) {
+      chromeOptions.headless();
     }
-    if ( argv.devtools ) {
+    if (argv.devtools) {
       chromeOptions.addArguments('--auto-open-devtools-for-tabs');
     }
-    d.withCapabilities(webdriver.Capabilities.chrome())
-      .setChromeOptions(chromeOptions);
+    d.withCapabilities(webdriver.Capabilities.chrome()).setChromeOptions(chromeOptions);
   }
 
   let driver = await d.build();
 
-  if ( argv.maximise ) {
-    await driver.manage().window().maximize();
+  if (argv.maximise) {
+    await driver
+      .manage()
+      .window()
+      .maximize();
   }
 
   console.log('Loading driver into context'.yellow);
   load('context', () => {
     return { driver: driver };
   });
-  
+
   console.log('Executing test cases'.yellow);
   await runTests();
 

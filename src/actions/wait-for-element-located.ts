@@ -8,7 +8,7 @@ export default class WaitForElementLocated implements Action {
   async execute(args: string[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     const elementXPath: string = args[0];
-    await driver.wait(until.elementLocated(By.xpath(elementXPath)))
+    await driver.wait(until.elementLocated(By.xpath(elementXPath)));
     return [''];
   }
 }
