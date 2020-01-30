@@ -1,5 +1,5 @@
 import { WebDriver } from 'selenium-webdriver';
-import Action from '../action.i';
+import Action from '../../action.i';
 
 /**
  * Gets the page url.

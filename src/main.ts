@@ -9,30 +9,30 @@ import Assert from './assert.i';
 // TODO: These actions have been added here temporarily so that it
 // can be accessed by this module when installed globally.
 // It should be moved to another repository.
-import GoTo from './actions/go-to';
-import GetPageDimensions from './actions/get-page-dimensions';
-import GetElementDimensions from './actions/get-element-dimensions';
-import GetElementClasses from './actions/get-element-classes';
-import GetPageTitle from './actions/get-page-title';
-import GetUrl from './actions/get-url';
-import WaitForElementLocated from './actions/wait-for-element-located';
-import WaitForElementNotVisible from './actions/wait-for-element-not-visible';
-import ClickElement from './actions/click-element';
-import WaitTime from './actions/wait-time';
-import DragAndDropCoordinates from './actions/drag-and-drop-coordinates';
-import DragAndDropElement from './actions/drag-and-drop-element';
-import GetContextualToolbar from './actions/get-contextual-toolbar';
-import AddTextFromContextualToolbar from './actions/add-text-from-contextual-toolbar';
-import AddTLineFromContextualToolbar from './actions/add-line-from-contextual-toolbar'; 
-import ClickColourButtonContextualToolbar from './actions/click-colour-button-contextual-toolbar';
-import AddColourDashedLine from './actions/add-colour-dashed-line';
-import AddColour from './actions/add-colour';
-import AddColouredLine from './actions/add-coloured-line';
+import GoTo from './actions/common/go-to';
+import GetPageDimensions from './actions/common/get-page-dimensions';
+import GetElementDimensions from './actions/common/get-element-dimensions';
+import GetElementClasses from './actions/common/get-element-classes';
+import GetPageTitle from './actions/common/get-page-title';
+import GetUrl from './actions/common/get-url';
+import WaitForElementLocated from './actions/common/wait-for-element-located';
+import WaitForElementNotVisible from './actions/common/wait-for-element-not-visible';
+import ClickElement from './actions/common/click-element';
+import WaitTime from './actions/common/wait-time';
+import ShapeMoveOnCanvas from './actions/common/shape-move-on-canvas';
+import DragAndDropShape from './actions/common/drag-and-drop-shape';
+import GetContextualToolbar from './actions/contextual-toolbar/get-contextual-toolbar';
+import AddText_ContextualToolbar from './actions/contextual-toolbar/add-text';
+import AddTLine_ContextualToolbar from './actions/contextual-toolbar/add-line';
+import ClickColourButton_ContextualToolbar from './actions/contextual-toolbar/click-colour-button';
+import AddColourDashedLine_ContextualToolbar from './actions/contextual-toolbar/add-colour-dashed-line';
+import AddShapeColour_ContextualToolbar from './actions/contextual-toolbar/add-shape-colour';
+import AddColouredLine_ContextualToolbar from './actions/contextual-toolbar/add-coloured-line';
+
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
 import LessThan from './asserts/less-than';
 import Includes from './asserts/includes';
-
 export {
   GoTo,
   GetPageDimensions,
@@ -44,15 +44,15 @@ export {
   WaitForElementNotVisible,
   ClickElement,
   WaitTime,
-  DragAndDropCoordinates,
-  DragAndDropElement,
+  ShapeMoveOnCanvas,
+  DragAndDropShape,
   GetContextualToolbar,
-  AddTextFromContextualToolbar,
-  AddTLineFromContextualToolbar,
-  ClickColourButtonContextualToolbar,
-  AddColour,
-  AddColouredLine,
-  AddColourDashedLine,
+  AddText_ContextualToolbar,
+  AddTLine_ContextualToolbar,
+  ClickColourButton_ContextualToolbar,
+  AddShapeColour_ContextualToolbar,
+  AddColouredLine_ContextualToolbar,
+  AddColourDashedLine_ContextualToolbar,
   Equals,
   GreaterThan,
   LessThan,

@@ -9,22 +9,23 @@ var WaitForElementLocated = tester.WaitForElementLocated;
 var WaitForElementNotVisible = tester.WaitForElementNotVisible;
 var ClickElement = tester.ClickElement;
 var WaitTime = tester.WaitTime;
-var DragAndDropCoordinates = tester.DragAndDropCoordinates;
-var DragAndDropElement = tester.DragAndDropElement;
+var ShapeMoveOnCanvas = tester.ShapeMoveOnCanvas;
+var DragAndDropShape = tester.DragAndDropShape;
 var GetContextualToolbar = tester.GetContextualToolbar;
-var AddTextFromContextualToolbar = tester.AddTextFromContextualToolbar;
-var AddTLineFromContextualToolbar = tester.AddTLineFromContextualToolbar;
-var ClickColourButtonContextualToolbar = tester.ClickColourButtonContextualToolbar;
-var AddColourDashedLine = tester.AddColourDashedLine;
-var AddColour = tester.AddColour;
-var AddColouredLine = tester.AddColouredLine;
+var AddText_ContextualToolbar = tester.AddText_ContextualToolbar;
+var AddTLine_ContextualToolbar = tester.AddTLine_ContextualToolbar;
+var ClickColourButton_ContextualToolbar = tester.ClickColourButton_ContextualToolbar;
+var AddColourDashedLine_ContextualToolbar = tester.AddColourDashedLine_ContextualToolbar;
+var AddShapeColour_ContextualToolbar = tester.AddShapeColour_ContextualToolbar;
+var AddColouredLine_ContextualToolbar = tester.AddColouredLine_ContextualToolbar;
+
 var Equals = tester.Equals;
 var GreaterThan = tester.GreaterThan;
 var LessThan = tester.LessThan;
 var Includes = tester.Includes;
 
-tester.registerActions(GoTo, GetPageDimensions, GetElementDimensions, GetElementClasses, GetPageTitle, GetUrl, WaitForElementLocated, WaitForElementNotVisible, ClickElement, WaitTime, DragAndDropCoordinates, DragAndDropElement, GetContextualToolbar,
-    AddTextFromContextualToolbar, AddTLineFromContextualToolbar, ClickColourButtonContextualToolbar, AddColour, AddColouredLine, AddColourDashedLine);
+tester.registerActions(GoTo, GetPageDimensions, GetElementDimensions, GetElementClasses, GetPageTitle, GetUrl, WaitForElementLocated, WaitForElementNotVisible, ClickElement, WaitTime, ShapeMoveOnCanvas, DragAndDropShape, GetContextualToolbar,
+    AddText_ContextualToolbar, AddTLine_ContextualToolbar, ClickColourButton_ContextualToolbar, AddShapeColour_ContextualToolbar, AddColouredLine_ContextualToolbar, AddColourDashedLine_ContextualToolbar);
 tester.registerAsserts(Equals, GreaterThan, LessThan, Includes);
 
 tester.addTest('simple test', [
@@ -75,7 +76,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'drag and drop first shape in library to the canvas',
-        action: DragAndDropElement,
+        action :DragAndDropShape,
         args: ['/html/body/app-root/ng-component/div/div/div[2]/left-sidebar/div/div[2]/left-bar/div/div/library-container/div/div[3]/perfect-scrollbar/div/div[1]/collapsible-menu/div/collapsible-menu-item[1]/div/div[2]/ng-component/library-tile[1]/div', null, 300, 100, null]
     },
     {
@@ -85,7 +86,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'move a shape on canvas',
-        action: DragAndDropCoordinates,
+        action: ShapeMoveOnCanvas,
         args: [null, 350, 150, 700, 300, 3000]
     },
     {
@@ -101,7 +102,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add text for shape',
-        action: AddTextFromContextualToolbar,
+        action: AddText_ContextualToolbar,
         args: ['Shpae 1']
     },
     {
@@ -111,13 +112,8 @@ tester.addTest('simple test', [
         outs: ['$isDisplayed']
     },
     {
-        title: 'checks whether contextual toolbar is displayed',
-        assert: Equals,
-        args: ['$isDisplayed', 'true']
-    },
-    {
         title: 'add colour for shape',
-        action: ClickColourButtonContextualToolbar,
+        action: ClickColourButton_ContextualToolbar,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -128,12 +124,12 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for shape',
-        action: AddColour,
+        action: AddShapeColour_ContextualToolbar,
         args: [19]
     },
     {
         title: 'add colour for shape',
-        action: ClickColourButtonContextualToolbar,
+        action: ClickColourButton_ContextualToolbar,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -144,12 +140,12 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for shape',
-        action: AddColouredLine,
+        action: AddColouredLine_ContextualToolbar,
         args: [25]
     },
     {
         title: 'add colour for shape',
-        action: ClickColourButtonContextualToolbar,
+        action: ClickColourButton_ContextualToolbar,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -160,7 +156,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for shape',
-        action: AddColourDashedLine,
+        action: AddColourDashedLine_ContextualToolbar,
         args: [3]
     },
     {
@@ -176,8 +172,23 @@ tester.addTest('simple test', [
     },
     {
         title: 'add line for shape',
-        action: AddTLineFromContextualToolbar,
+        action: AddTLine_ContextualToolbar,
         args: [500, 250]
+    },
+    {
+        title: 'get contextual toolbar',
+        action: GetContextualToolbar,
+        args: [725, 325],
+        outs: ['$isDisplayed']
+    },
+    {
+        title: 'checks whether contextual toolbar is displayed',
+        assert: Equals,
+        args: ['$isDisplayed', 'true']
+    },
+    {
+        title: 'add line for shape',
+        action: AddTLine_ContextualToolbar,
+        args: [980, 500]
     }
-
 ]);

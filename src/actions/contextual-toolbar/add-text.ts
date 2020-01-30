@@ -1,10 +1,10 @@
 import { WebDriver, By } from 'selenium-webdriver';
-import Action from '../action.i';
+import Action from '../../action.i';
 
-/* 
-    * add text by using contextual tolbar
-*/
-export default class AddTextFromContextualToolbar implements Action {
+/*
+ * add text by using contextual tolbar
+ */
+export default class AddTextContextualToolbar implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     const textButton = await driver.findElement(
