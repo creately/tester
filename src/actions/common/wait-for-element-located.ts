@@ -1,5 +1,5 @@
 import { WebDriver, until, By } from 'selenium-webdriver';
-import Action from '../action.i';
+import Action from '../../action.i';
 
 /**
  * Waits for specified element to load.

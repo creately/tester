@@ -1,5 +1,5 @@
 import { WebDriver, By, WebElement } from 'selenium-webdriver';
-import Action from '../action.i';
+import Action from '../../action.i';
 
 /**
  * Waits for specified element to be found and invisible to user.

@@ -1,17 +1,17 @@
 import { Page } from 'puppeteer';
-import Action from '../action.i';
+import Action from '../../action.i';
 
 /**
- * Returns the dimensions of the given element, if found on the DOM.
+ * Searches for an element by it's ID and returns it's classes.
  */
-export default class GetElementDimensions implements Action {
+export default class GetElementClasses implements Action {
   async execute(args: string[], context: any): Promise<string[]> {
     let elementId = args[0];
     var page: Page = context.page;
     const data = await page.evaluate(elementId => {
       const element = document.getElementById(elementId);
       if (element) {
-        return [element.offsetWidth.toString(undefined), element.offsetHeight.toString(undefined)];
+        return [element.classList.value.split(' ').join(',')];
       } else {
         return [];
       }
