@@ -10,7 +10,6 @@ import Assert from './assert.i';
 // can be accessed by this module when installed globally.
 // It should be moved to another repository.
 import GoTo from './actions/common/go-to';
-import GetPageDimensions from './actions/common/get-page-dimensions';
 import GetElementDimensions from './actions/common/get-element-dimensions';
 import GetElementClasses from './actions/common/get-element-classes';
 import GetPageTitle from './actions/common/get-page-title';
@@ -25,9 +24,16 @@ import GetContextualToolbar from './actions/contextual-toolbar/get-contextual-to
 import AddText_ContextualToolbar from './actions/contextual-toolbar/add-text';
 import AddTLine_ContextualToolbar from './actions/contextual-toolbar/add-line';
 import ClickColourButton_ContextualToolbar from './actions/contextual-toolbar/click-colour-button';
-import AddColourDashedLine_ContextualToolbar from './actions/contextual-toolbar/add-colour-dashed-line';
+import AddColourDashedLineShape_ContextualToolbar from './actions/contextual-toolbar/add-colour-dashed-line-shape';
 import AddShapeColour_ContextualToolbar from './actions/contextual-toolbar/add-shape-colour';
+import AddColouredLineShape_ContextualToolbar from './actions/contextual-toolbar/add-coloured-line-shape';
+import MouseMove from './actions/common/mouse-move';
+import AddColourDashedLine_ContextualToolbar from './actions/contextual-toolbar/add-colour-dashed-line';
 import AddColouredLine_ContextualToolbar from './actions/contextual-toolbar/add-coloured-line';
+import AddLeftArrow from './actions/contextual-toolbar/add-left-arrow-line';
+import AddRightArrow from './actions/contextual-toolbar/add-right-arrow';
+import ChangeLineShape from './actions/contextual-toolbar/change-line-shape';
+import ChangeArrowPosition from './actions/contextual-toolbar/change-arrow-position';
 
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
@@ -35,7 +41,6 @@ import LessThan from './asserts/less-than';
 import Includes from './asserts/includes';
 export {
   GoTo,
-  GetPageDimensions,
   GetElementDimensions,
   GetElementClasses,
   GetPageTitle,
@@ -51,8 +56,15 @@ export {
   AddTLine_ContextualToolbar,
   ClickColourButton_ContextualToolbar,
   AddShapeColour_ContextualToolbar,
-  AddColouredLine_ContextualToolbar,
+  AddColouredLineShape_ContextualToolbar,
+  AddColourDashedLineShape_ContextualToolbar,
   AddColourDashedLine_ContextualToolbar,
+  AddColouredLine_ContextualToolbar,
+  MouseMove,
+  AddLeftArrow,
+  AddRightArrow,
+  ChangeLineShape,
+  ChangeArrowPosition,
   Equals,
   GreaterThan,
   LessThan,
