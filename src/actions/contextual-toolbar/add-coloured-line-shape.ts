@@ -2,7 +2,7 @@ import Action from '../../action.i';
 import { By, WebDriver } from 'selenium-webdriver';
 
 /*
- *  Apply colured  lines for shapes 
+ *  Apply colured  lines for shapes
  *  arags[0] refers the colour code index
  */
 export default class AddColouredLineShape_ContextualToolbar implements Action {
