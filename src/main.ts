@@ -21,7 +21,7 @@ import ClickElement from './actions/common/click-element';
 import WaitTime from './actions/common/wait-time';
 import ShapeMoveOnCanvas from './actions/common/shape-move-on-canvas';
 import DragAndDropShape from './actions/common/drag-and-drop-shape';
-import GetContextualToolbar from './actions/contextual-toolbar/get-contextual-toolbar';
+import GetContextualToolbar from './actions/common/get-contextual-toolbar';
 import AddText_ContextualToolbar from './actions/contextual-toolbar/add-text';
 import AddTLine_ContextualToolbar from './actions/contextual-toolbar/add-line';
 import ClickColourButton_ContextualToolbar from './actions/contextual-toolbar/click-colour-button';
