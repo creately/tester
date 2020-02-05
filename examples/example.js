@@ -11,18 +11,18 @@ var WaitTime = tester.WaitTime;
 var ShapeMoveOnCanvas = tester.ShapeMoveOnCanvas;
 var DragAndDropShape = tester.DragAndDropShape;
 var GetContextualToolbar = tester.GetContextualToolbar;
-var AddText_ContextualToolbar = tester.AddText_ContextualToolbar;
-var AddTLine_ContextualToolbar = tester.AddTLine_ContextualToolbar;
-var ClickColourButton_ContextualToolbar = tester.ClickColourButton_ContextualToolbar;
-var AddColourDashedLineShape_ContextualToolbar = tester.AddColourDashedLineShape_ContextualToolbar;
-var AddShapeColour_ContextualToolbar = tester.AddShapeColour_ContextualToolbar;
-var AddColouredLineShape_ContextualToolbar = tester.AddColouredLineShape_ContextualToolbar;
+var AddText_Toolbar = tester.AddText_Toolbar;
+var AddLine_Toolbar = tester.AddLine_Toolbar;
+var ClickColourButton_Toolbar  = tester.ClickColourButton_Toolbar ;
+var ColourDashedLineForShape_Toolbar = tester.ColourDashedLineForShape_Toolbar;
+var ColourForShape_Toolbar = tester.ColourForShape_Toolbar;
+var ColouredLineForShape_Toolbar = tester.ColouredLineForShape_Toolbar;
 var MouseMove = tester.MouseMove;
-var AddColourDashedLine_ContextualToolbar = tester.AddColourDashedLine_ContextualToolbar;
-var AddColouredLine_ContextualToolbar = tester.AddColouredLine_ContextualToolbar;
+var ColourDashedLine_Toolbar = tester.ColourDashedLine_Toolbar;
+var ColouredLine_Toolbar = tester.ColouredLine_Toolbar;
 var AddLeftArrow = tester.AddLeftArrow;
 var AddRightArrow = tester.AddRightArrow;
-var ChangeLineShape = tester.ChangeLineShape;
+var AddLineType = tester.AddLineType;
 var ChangeArrowPosition = tester.ChangeArrowPosition;
 
 var Equals = tester.Equals;
@@ -31,8 +31,8 @@ var LessThan = tester.LessThan;
 var Includes = tester.Includes;
 
 tester.registerActions(GoTo, GetElementDimensions, GetElementClasses, GetPageTitle, GetUrl, WaitForElementLocated, WaitForElementNotVisible, ClickElement, WaitTime, ShapeMoveOnCanvas, DragAndDropShape, GetContextualToolbar,
-    AddText_ContextualToolbar, AddTLine_ContextualToolbar, ClickColourButton_ContextualToolbar, AddShapeColour_ContextualToolbar, AddColouredLineShape_ContextualToolbar, AddColourDashedLineShape_ContextualToolbar, MouseMove, AddColourDashedLine_ContextualToolbar, AddColouredLine_ContextualToolbar,
-    AddLeftArrow, AddRightArrow, ChangeLineShape);
+    AddText_Toolbar, AddLine_Toolbar, ClickColourButton_Toolbar , ColourForShape_Toolbar, ColouredLineForShape_Toolbar, ColourDashedLineForShape_Toolbar, MouseMove, ColourDashedLine_Toolbar, ColouredLine_Toolbar,
+    AddLeftArrow, AddRightArrow, AddLineType);
 tester.registerAsserts(Equals, GreaterThan, LessThan, Includes);
 
 tester.addTest('simple test', [
@@ -109,7 +109,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add text for shape',
-        action: AddText_ContextualToolbar,
+        action: AddText_Toolbar,
         args: ['Shpae 1']
     },
     {
@@ -120,18 +120,18 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for shape',
-        action: ClickColourButton_ContextualToolbar,
+        action: ClickColourButton_Toolbar ,
         args: [],
         outs: ['$isDisplayed']
     },
     {
         title: 'add colour for shape',
-        action: AddShapeColour_ContextualToolbar,
+        action: ColourForShape_Toolbar,
         args: [19]
     },
     {
         title: 'add colour for shape',
-        action: ClickColourButton_ContextualToolbar,
+        action: ClickColourButton_Toolbar ,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -142,12 +142,12 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for shape',
-        action: AddColouredLineShape_ContextualToolbar,
+        action: ColouredLineForShape_Toolbar,
         args: [25]
     },
     {
         title: 'add colour for shape',
-        action: ClickColourButton_ContextualToolbar,
+        action:ClickColourButton_Toolbar  ,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -158,7 +158,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for shape',
-        action: AddColourDashedLineShape_ContextualToolbar,
+        action: ColourDashedLineForShape_Toolbar,
         args: [3]
     },
     {
@@ -174,7 +174,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add line for shape',
-        action: AddTLine_ContextualToolbar,
+        action: AddLine_Toolbar,
         args: [900, 300]
     },
     {
@@ -184,7 +184,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add text for shape',
-        action: AddText_ContextualToolbar,
+        action: AddText_Toolbar,
         args: ['Line 1']
     },
     {
@@ -195,7 +195,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'click colour button',
-        action: ClickColourButton_ContextualToolbar,
+        action: ClickColourButton_Toolbar ,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -206,11 +206,11 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for line',
-        action: AddColourDashedLine_ContextualToolbar,
+        action: ColourDashedLine_Toolbar,
         args: [9]
     }, {
         title: 'click colour button',
-        action: ClickColourButton_ContextualToolbar,
+        action: ClickColourButton_Toolbar ,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -221,7 +221,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for line',
-        action: AddColouredLine_ContextualToolbar,
+        action: ColouredLine_Toolbar,
         args: [16]
     },
     {
@@ -242,7 +242,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add line for shape',
-        action: AddTLine_ContextualToolbar,
+        action: AddLine_Toolbar,
         args: [500, 300]
     },
     {
@@ -252,7 +252,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add line for shape',
-        action: AddTLine_ContextualToolbar,
+        action: AddLine_Toolbar,
         args: [700, 200]
     },
     {
@@ -262,7 +262,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add text for shape',
-        action: AddText_ContextualToolbar,
+        action: AddText_Toolbar,
         args: ['Line 2']
     },
     {
@@ -272,7 +272,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add text for shape',
-        action: AddText_ContextualToolbar,
+        action: AddText_Toolbar,
         args: ['Line 3']
     },
     {
@@ -282,13 +282,13 @@ tester.addTest('simple test', [
     },
     {
         title: 'click colour button',
-        action: ClickColourButton_ContextualToolbar,
+        action:ClickColourButton_Toolbar ,
         args: [],
         outs: ['$isDisplayed']
     },
     {
         title: 'add colour for line',
-        action: AddColouredLine_ContextualToolbar,
+        action: ColouredLine_Toolbar,
         args: [7]
     },
     {
@@ -298,7 +298,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add line for shape',
-        action: AddTLine_ContextualToolbar,
+        action: AddLine_Toolbar,
         args: [750, 500]
     },
     {
@@ -308,7 +308,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add text for shape',
-        action: AddText_ContextualToolbar,
+        action: AddText_Toolbar,
         args: ['Line 4']
     },
     {
@@ -318,7 +318,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add curved shape for line 4',
-        action: ChangeLineShape,
+        action: AddLineType,
         args: [2]
     },
     {
