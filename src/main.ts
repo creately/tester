@@ -21,15 +21,15 @@ import WaitTime from './actions/common/wait-time';
 import ShapeMoveOnCanvas from './actions/common/shape-move-on-canvas';
 import DragAndDropShape from './actions/common/drag-and-drop-shape';
 import GetContextualToolbar from './actions/common/get-contextual-toolbar';
-import AddText_Toolbar from './actions/contextual-toolbar/add-text';
-import AddLine_Toolbar from './actions/contextual-toolbar/add-line';
-import ClickColourButton_Toolbar  from './actions/contextual-toolbar/click-colour-button';
-import ColourDashedLineForShape_Toolbar from './actions/contextual-toolbar/add-colour-dashed-line-shape';
-import ColourForShape_Toolbar from './actions/contextual-toolbar/add-shape-colour';
-import ColouredLineForShape_Toolbar from './actions/contextual-toolbar/add-coloured-line-shape';
+import AddTextToolbar from './actions/contextual-toolbar/add-text';
+import AddLineToolbar from './actions/contextual-toolbar/add-line';
+import ClickColourButtonToolbar  from './actions/contextual-toolbar/click-colour-button';
+import ColourDashedLineForShapeToolbar from './actions/contextual-toolbar/add-colour-dashed-line-shape';
+import ColourForShapeToolbar from './actions/contextual-toolbar/add-shape-colour';
+import ColouredLineForShapeToolbar from './actions/contextual-toolbar/add-coloured-line-shape';
 import MouseMove from './actions/common/mouse-move';
-import ColourDashedLine_Toolbar from './actions/contextual-toolbar/add-colour-dashed-line';
-import ColouredLine_Toolbar from './actions/contextual-toolbar/add-coloured-line';
+import ColourDashedLineToolbar from './actions/contextual-toolbar/add-colour-dashed-line';
+import ColouredLineToolbar from './actions/contextual-toolbar/add-coloured-line';
 import AddLeftArrow from './actions/contextual-toolbar/add-left-arrow-line';
 import AddRightArrow from './actions/contextual-toolbar/add-right-arrow';
 import AddLineType from './actions/contextual-toolbar/add-line-type';
@@ -53,14 +53,14 @@ export {
   ShapeMoveOnCanvas,
   DragAndDropShape,
   GetContextualToolbar,
-  AddText_Toolbar,
-  AddLine_Toolbar,
-  ClickColourButton_Toolbar ,
-  ColourForShape_Toolbar,
-  ColouredLineForShape_Toolbar,
-  ColourDashedLineForShape_Toolbar,
-  ColourDashedLine_Toolbar,
-  ColouredLine_Toolbar,
+  AddTextToolbar,
+  AddLineToolbar,
+  ClickColourButtonToolbar ,
+  ColourForShapeToolbar,
+  ColouredLineForShapeToolbar,
+  ColourDashedLineForShapeToolbar,
+  ColourDashedLineToolbar,
+  ColouredLineToolbar,
   MouseMove,
   AddLeftArrow,
   AddRightArrow,
