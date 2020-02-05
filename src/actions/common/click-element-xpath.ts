@@ -4,7 +4,7 @@ import Action from '../../action.i';
 /**
  * Waits for specified element to be found and invisible to user.
  */
-export default class ClickElement implements Action {
+export default class ClickElementByXpath implements Action {
   async execute(args: string[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     const elementXPath: string = args[0];

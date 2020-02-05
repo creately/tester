@@ -16,25 +16,26 @@ import GetPageTitle from './actions/common/get-page-title';
 import GetUrl from './actions/common/get-url';
 import WaitForElementLocated from './actions/common/wait-for-element-located';
 import WaitForElementNotVisible from './actions/common/wait-for-element-not-visible';
-import ClickElement from './actions/common/click-element';
+import ClickElementByXpath from './actions/common/click-element-xpath';
 import WaitTime from './actions/common/wait-time';
-import ShapeMoveOnCanvas from './actions/common/shape-move-on-canvas';
-import DragAndDropShape from './actions/common/drag-and-drop-shape';
+import ShapeMoveOnCanvas from './actions/shape/shape-move-on-canvas';
+import DragAndDropShape from './actions/shape/drag-and-drop-shape';
 import GetContextualToolbar from './actions/common/get-contextual-toolbar';
-import AddText_Toolbar from './actions/contextual-toolbar/add-text';
-import AddLine_Toolbar from './actions/contextual-toolbar/add-line';
-import ClickColourButton_Toolbar  from './actions/contextual-toolbar/click-colour-button';
-import ColourDashedLineForShape_Toolbar from './actions/contextual-toolbar/add-colour-dashed-line-shape';
-import ColourForShape_Toolbar from './actions/contextual-toolbar/add-shape-colour';
-import ColouredLineForShape_Toolbar from './actions/contextual-toolbar/add-coloured-line-shape';
-import MouseMove from './actions/common/mouse-move';
-import ColourDashedLine_Toolbar from './actions/contextual-toolbar/add-colour-dashed-line';
-import ColouredLine_Toolbar from './actions/contextual-toolbar/add-coloured-line';
+import AddTextToolbar from './actions/contextual-toolbar/add-text';
+import AddLineToolbar from './actions/contextual-toolbar/add-line';
+import ClickColourButtonToolbar  from './actions/contextual-toolbar/click-colour-button';
+import ColourDashedLineForShapeToolbar from './actions/contextual-toolbar/add-colour-dashed-line-shape';
+import ColourForShapeToolbar from './actions/contextual-toolbar/add-shape-colour';
+import ColouredLineForShapeToolbar from './actions/contextual-toolbar/add-coloured-line-shape';
+import ClickElementByCoordinates from './actions/common/click-element-coordinates';
+import ColourDashedLineToolbar from './actions/contextual-toolbar/add-colour-dashed-line';
+import ColouredLineToolbar from './actions/contextual-toolbar/add-coloured-line';
 import AddLeftArrow from './actions/contextual-toolbar/add-left-arrow-line';
 import AddRightArrow from './actions/contextual-toolbar/add-right-arrow';
 import AddLineType from './actions/contextual-toolbar/add-line-type';
 import ChangeArrowPosition from './actions/contextual-toolbar/change-arrow-position';
-import ShapeRotation from './actions/common/shape-rotation';
+import ShapeRotation from './actions/shape/shape-rotation';
+import ScaleShape from './actions/shape/scale-shape';
 
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
@@ -48,25 +49,26 @@ export {
   GetUrl,
   WaitForElementLocated,
   WaitForElementNotVisible,
-  ClickElement,
+  ClickElementByXpath,
   WaitTime,
   ShapeMoveOnCanvas,
   DragAndDropShape,
   GetContextualToolbar,
-  AddText_Toolbar,
-  AddLine_Toolbar,
-  ClickColourButton_Toolbar ,
-  ColourForShape_Toolbar,
-  ColouredLineForShape_Toolbar,
-  ColourDashedLineForShape_Toolbar,
-  ColourDashedLine_Toolbar,
-  ColouredLine_Toolbar,
-  MouseMove,
+  AddTextToolbar,
+  AddLineToolbar,
+  ClickColourButtonToolbar ,
+  ColourForShapeToolbar,
+  ColouredLineForShapeToolbar,
+  ColourDashedLineForShapeToolbar,
+  ColourDashedLineToolbar,
+  ColouredLineToolbar,
+  ClickElementByCoordinates,
   AddLeftArrow,
   AddRightArrow,
   AddLineType,
   ChangeArrowPosition,
   ShapeRotation,
+  ScaleShape,
   Equals,
   GreaterThan,
   LessThan,
