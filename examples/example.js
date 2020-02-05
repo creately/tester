@@ -11,15 +11,15 @@ var WaitTime = tester.WaitTime;
 var ShapeMoveOnCanvas = tester.ShapeMoveOnCanvas;
 var DragAndDropShape = tester.DragAndDropShape;
 var GetContextualToolbar = tester.GetContextualToolbar;
-var AddText_Toolbar = tester.AddText_Toolbar;
-var AddLine_Toolbar = tester.AddLine_Toolbar;
-var ClickColourButton_Toolbar  = tester.ClickColourButton_Toolbar ;
-var ColourDashedLineForShape_Toolbar = tester.ColourDashedLineForShape_Toolbar;
-var ColourForShape_Toolbar = tester.ColourForShape_Toolbar;
-var ColouredLineForShape_Toolbar = tester.ColouredLineForShape_Toolbar;
+var AddTextToolbar = tester.AddTextToolbar;
+var AddLineToolbar = tester.AddLineToolbar;
+var ClickColourButtonToolbar  = tester.ClickColourButtonToolbar ;
+var ColourDashedLineForShapeToolbar = tester.ColourDashedLineForShapeToolbar;
+var ColourForShapeToolbar = tester.ColourForShapeToolbar;
+var ColouredLineForShapeToolbar = tester.ColouredLineForShapeToolbar;
 var MouseMove = tester.MouseMove;
-var ColourDashedLine_Toolbar = tester.ColourDashedLine_Toolbar;
-var ColouredLine_Toolbar = tester.ColouredLine_Toolbar;
+var ColourDashedLineToolbar = tester.ColourDashedLineToolbar;
+var ColouredLineToolbar = tester.ColouredLineToolbar;
 var AddLeftArrow = tester.AddLeftArrow;
 var AddRightArrow = tester.AddRightArrow;
 var AddLineType = tester.AddLineType;
@@ -31,8 +31,8 @@ var LessThan = tester.LessThan;
 var Includes = tester.Includes;
 
 tester.registerActions(GoTo, GetElementDimensions, GetElementClasses, GetPageTitle, GetUrl, WaitForElementLocated, WaitForElementNotVisible, ClickElement, WaitTime, ShapeMoveOnCanvas, DragAndDropShape, GetContextualToolbar,
-    AddText_Toolbar, AddLine_Toolbar, ClickColourButton_Toolbar , ColourForShape_Toolbar, ColouredLineForShape_Toolbar, ColourDashedLineForShape_Toolbar, MouseMove, ColourDashedLine_Toolbar, ColouredLine_Toolbar,
-    AddLeftArrow, AddRightArrow, AddLineType);
+    AddTextToolbar, AddLineToolbar, ClickColourButtonToolbar , ColourForShapeToolbar, ColouredLineForShapeToolbar, ColourDashedLineForShapeToolbar, MouseMove, ColourDashedLineToolbar, ColouredLineToolbar,
+    AddLeftArrow, AddRightArrow, AddLineType,ChangeArrowPosition);
 tester.registerAsserts(Equals, GreaterThan, LessThan, Includes);
 
 tester.addTest('simple test', [
@@ -109,7 +109,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add text for shape',
-        action: AddText_Toolbar,
+        action: AddTextToolbar,
         args: ['Shpae 1']
     },
     {
@@ -120,18 +120,18 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for shape',
-        action: ClickColourButton_Toolbar ,
+        action: ClickColourButtonToolbar ,
         args: [],
         outs: ['$isDisplayed']
     },
     {
         title: 'add colour for shape',
-        action: ColourForShape_Toolbar,
+        action: ColourForShapeToolbar,
         args: [19]
     },
     {
         title: 'add colour for shape',
-        action: ClickColourButton_Toolbar ,
+        action: ClickColourButtonToolbar ,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -142,12 +142,12 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for shape',
-        action: ColouredLineForShape_Toolbar,
+        action: ColouredLineForShapeToolbar,
         args: [25]
     },
     {
         title: 'add colour for shape',
-        action:ClickColourButton_Toolbar  ,
+        action:ClickColourButtonToolbar  ,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -158,7 +158,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for shape',
-        action: ColourDashedLineForShape_Toolbar,
+        action: ColourDashedLineForShapeToolbar,
         args: [3]
     },
     {
@@ -174,7 +174,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add line for shape',
-        action: AddLine_Toolbar,
+        action: AddLineToolbar,
         args: [900, 300]
     },
     {
@@ -184,7 +184,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add text for shape',
-        action: AddText_Toolbar,
+        action: AddTextToolbar,
         args: ['Line 1']
     },
     {
@@ -195,7 +195,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'click colour button',
-        action: ClickColourButton_Toolbar ,
+        action: ClickColourButtonToolbar ,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -206,11 +206,11 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for line',
-        action: ColourDashedLine_Toolbar,
+        action: ColourDashedLineToolbar,
         args: [9]
     }, {
         title: 'click colour button',
-        action: ClickColourButton_Toolbar ,
+        action: ClickColourButtonToolbar ,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -221,7 +221,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for line',
-        action: ColouredLine_Toolbar,
+        action: ColouredLineToolbar,
         args: [16]
     },
     {
@@ -242,7 +242,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add line for shape',
-        action: AddLine_Toolbar,
+        action: AddLineToolbar,
         args: [500, 300]
     },
     {
@@ -252,7 +252,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add line for shape',
-        action: AddLine_Toolbar,
+        action: AddLineToolbar,
         args: [700, 200]
     },
     {
@@ -262,7 +262,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add text for shape',
-        action: AddText_Toolbar,
+        action: AddTextToolbar,
         args: ['Line 2']
     },
     {
@@ -272,7 +272,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add text for shape',
-        action: AddText_Toolbar,
+        action: AddTextToolbar,
         args: ['Line 3']
     },
     {
@@ -282,13 +282,13 @@ tester.addTest('simple test', [
     },
     {
         title: 'click colour button',
-        action:ClickColourButton_Toolbar ,
+        action:ClickColourButtonToolbar ,
         args: [],
         outs: ['$isDisplayed']
     },
     {
         title: 'add colour for line',
-        action: ColouredLine_Toolbar,
+        action: ColouredLineToolbar,
         args: [7]
     },
     {
@@ -298,7 +298,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add line for shape',
-        action: AddLine_Toolbar,
+        action: AddLineToolbar,
         args: [750, 500]
     },
     {
@@ -308,7 +308,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add text for shape',
-        action: AddText_Toolbar,
+        action: AddTextToolbar,
         args: ['Line 4']
     },
     {
