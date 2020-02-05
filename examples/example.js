@@ -1,6 +1,5 @@
 var tester = require('ts-starter');
 var GoTo = tester.GoTo;
-var GetPageDimensions = tester.GetPageDimensions;
 var GetElementDimensions = tester.GetElementDimensions;
 var GetElementClasses = tester.GetElementClasses;
 var GetPageTitle = tester.GetPageTitle;
@@ -12,20 +11,28 @@ var WaitTime = tester.WaitTime;
 var ShapeMoveOnCanvas = tester.ShapeMoveOnCanvas;
 var DragAndDropShape = tester.DragAndDropShape;
 var GetContextualToolbar = tester.GetContextualToolbar;
-var AddText_ContextualToolbar = tester.AddText_ContextualToolbar;
-var AddTLine_ContextualToolbar = tester.AddTLine_ContextualToolbar;
-var ClickColourButton_ContextualToolbar = tester.ClickColourButton_ContextualToolbar;
-var AddColourDashedLine_ContextualToolbar = tester.AddColourDashedLine_ContextualToolbar;
-var AddShapeColour_ContextualToolbar = tester.AddShapeColour_ContextualToolbar;
-var AddColouredLine_ContextualToolbar = tester.AddColouredLine_ContextualToolbar;
+var AddTextToolbar = tester.AddTextToolbar;
+var AddLineToolbar = tester.AddLineToolbar;
+var ClickColourButtonToolbar  = tester.ClickColourButtonToolbar ;
+var ColourDashedLineForShapeToolbar = tester.ColourDashedLineForShapeToolbar;
+var ColourForShapeToolbar = tester.ColourForShapeToolbar;
+var ColouredLineForShapeToolbar = tester.ColouredLineForShapeToolbar;
+var MouseMove = tester.MouseMove;
+var ColourDashedLineToolbar = tester.ColourDashedLineToolbar;
+var ColouredLineToolbar = tester.ColouredLineToolbar;
+var AddLeftArrow = tester.AddLeftArrow;
+var AddRightArrow = tester.AddRightArrow;
+var AddLineType = tester.AddLineType;
+var ChangeArrowPosition = tester.ChangeArrowPosition;
 
 var Equals = tester.Equals;
 var GreaterThan = tester.GreaterThan;
 var LessThan = tester.LessThan;
 var Includes = tester.Includes;
 
-tester.registerActions(GoTo, GetPageDimensions, GetElementDimensions, GetElementClasses, GetPageTitle, GetUrl, WaitForElementLocated, WaitForElementNotVisible, ClickElement, WaitTime, ShapeMoveOnCanvas, DragAndDropShape, GetContextualToolbar,
-    AddText_ContextualToolbar, AddTLine_ContextualToolbar, ClickColourButton_ContextualToolbar, AddShapeColour_ContextualToolbar, AddColouredLine_ContextualToolbar, AddColourDashedLine_ContextualToolbar);
+tester.registerActions(GoTo, GetElementDimensions, GetElementClasses, GetPageTitle, GetUrl, WaitForElementLocated, WaitForElementNotVisible, ClickElement, WaitTime, ShapeMoveOnCanvas, DragAndDropShape, GetContextualToolbar,
+    AddTextToolbar, AddLineToolbar, ClickColourButtonToolbar , ColourForShapeToolbar, ColouredLineForShapeToolbar, ColourDashedLineForShapeToolbar, MouseMove, ColourDashedLineToolbar, ColouredLineToolbar,
+    AddLeftArrow, AddRightArrow, AddLineType,ChangeArrowPosition);
 tester.registerAsserts(Equals, GreaterThan, LessThan, Includes);
 
 tester.addTest('simple test', [
@@ -76,7 +83,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'drag and drop first shape in library to the canvas',
-        action :DragAndDropShape,
+        action: DragAndDropShape,
         args: ['/html/body/app-root/ng-component/div/div/div[2]/left-sidebar/div/div[2]/left-bar/div/div/library-container/div/div[3]/perfect-scrollbar/div/div[1]/collapsible-menu/div/collapsible-menu-item[1]/div/div[2]/ng-component/library-tile[1]/div', null, 300, 100, null]
     },
     {
@@ -102,7 +109,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add text for shape',
-        action: AddText_ContextualToolbar,
+        action: AddTextToolbar,
         args: ['Shpae 1']
     },
     {
@@ -113,23 +120,18 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for shape',
-        action: ClickColourButton_ContextualToolbar,
+        action: ClickColourButtonToolbar ,
         args: [],
         outs: ['$isDisplayed']
     },
     {
-        title: 'checks whether all the colour codes are displayed',
-        assert: Equals,
-        args: ['$isDisplayed', 'true']
-    },
-    {
         title: 'add colour for shape',
-        action: AddShapeColour_ContextualToolbar,
+        action: ColourForShapeToolbar,
         args: [19]
     },
     {
         title: 'add colour for shape',
-        action: ClickColourButton_ContextualToolbar,
+        action: ClickColourButtonToolbar ,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -140,12 +142,12 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for shape',
-        action: AddColouredLine_ContextualToolbar,
+        action: ColouredLineForShapeToolbar,
         args: [25]
     },
     {
         title: 'add colour for shape',
-        action: ClickColourButton_ContextualToolbar,
+        action:ClickColourButtonToolbar  ,
         args: [],
         outs: ['$isDisplayed']
     },
@@ -156,7 +158,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'add colour for shape',
-        action: AddColourDashedLine_ContextualToolbar,
+        action: ColourDashedLineForShapeToolbar,
         args: [3]
     },
     {
@@ -172,23 +174,156 @@ tester.addTest('simple test', [
     },
     {
         title: 'add line for shape',
-        action: AddTLine_ContextualToolbar,
-        args: [500, 250]
+        action: AddLineToolbar,
+        args: [900, 300]
+    },
+    {
+        title: 'mouse move on the line',
+        action: MouseMove,
+        args: [900, 300]
+    },
+    {
+        title: 'add text for shape',
+        action: AddTextToolbar,
+        args: ['Line 1']
     },
     {
         title: 'get contextual toolbar',
         action: GetContextualToolbar,
-        args: [725, 325],
+        args: [900, 300],
         outs: ['$isDisplayed']
     },
     {
-        title: 'checks whether contextual toolbar is displayed',
+        title: 'click colour button',
+        action: ClickColourButtonToolbar ,
+        args: [],
+        outs: ['$isDisplayed']
+    },
+    {
+        title: 'checks whether all the colour codes are displayed',
         assert: Equals,
         args: ['$isDisplayed', 'true']
     },
     {
+        title: 'add colour for line',
+        action: ColourDashedLineToolbar,
+        args: [9]
+    }, {
+        title: 'click colour button',
+        action: ClickColourButtonToolbar ,
+        args: [],
+        outs: ['$isDisplayed']
+    },
+    {
+        title: 'checks whether all the colour codes are displayed',
+        assert: Equals,
+        args: ['$isDisplayed', 'true']
+    },
+    {
+        title: 'add colour for line',
+        action: ColouredLineToolbar,
+        args: [16]
+    },
+    {
+        title: 'get contextual toolbar',
+        action: GetContextualToolbar,
+        args: [900, 300],
+        outs: ['$isDisplayed']
+    },
+    {
+        title: 'add left arrow',
+        action: AddLeftArrow,
+        args: [3]
+    },
+    {
+        title: 'mouse move on the line',
+        action: MouseMove,
+        args: [700, 300]
+    },
+    {
         title: 'add line for shape',
-        action: AddTLine_ContextualToolbar,
-        args: [980, 500]
+        action: AddLineToolbar,
+        args: [500, 300]
+    },
+    {
+        title: 'mouse move on the line',
+        action: MouseMove,
+        args: [700, 300]
+    },
+    {
+        title: 'add line for shape',
+        action: AddLineToolbar,
+        args: [700, 200]
+    },
+    {
+        title: 'mouse move on the line',
+        action: MouseMove,
+        args: [500, 300]
+    },
+    {
+        title: 'add text for shape',
+        action: AddTextToolbar,
+        args: ['Line 2']
+    },
+    {
+        title: 'mouse move on the line',
+        action: MouseMove,
+        args: [700, 200]
+    },
+    {
+        title: 'add text for shape',
+        action: AddTextToolbar,
+        args: ['Line 3']
+    },
+    {
+        title: 'mouse move on the line',
+        action: MouseMove,
+        args: [500, 300]
+    },
+    {
+        title: 'click colour button',
+        action:ClickColourButtonToolbar ,
+        args: [],
+        outs: ['$isDisplayed']
+    },
+    {
+        title: 'add colour for line',
+        action: ColouredLineToolbar,
+        args: [7]
+    },
+    {
+        title: 'mouse move on the line',
+        action: MouseMove,
+        args: [700, 300]
+    },
+    {
+        title: 'add line for shape',
+        action: AddLineToolbar,
+        args: [750, 500]
+    },
+    {
+        title: 'mouse move on the line',
+        action: MouseMove,
+        args: [750, 500]
+    },
+    {
+        title: 'add text for shape',
+        action: AddTextToolbar,
+        args: ['Line 4']
+    },
+    {
+        title: 'mouse move on the line',
+        action: MouseMove,
+        args: [750, 500]
+    },
+    {
+        title: 'add curved shape for line 4',
+        action: AddLineType,
+        args: [2]
+    },
+    {
+        title: 'drag and drop first shape in library to the canvas',
+        action: DragAndDropShape,
+        args: ['/html/body/app-root/ng-component/div/div/div[2]/left-sidebar/div/div[2]/left-bar/div/div/library-container/div/div[3]/perfect-scrollbar/div/div[1]/collapsible-menu/div/collapsible-menu-item[1]/div/div[2]/ng-component/library-tile[1]/div', null, 700, 500, null]
     }
 ]);

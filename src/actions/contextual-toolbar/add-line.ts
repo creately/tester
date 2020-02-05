@@ -4,7 +4,7 @@ import Action from '../../action.i';
 /*
  * draw the line by using contextual tolbar
  */
-export default class AddTLineContextualToolbar implements Action {
+export default class AddLineToolbar implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     const lineButton = await driver.findElement(
@@ -13,8 +13,8 @@ export default class AddTLineContextualToolbar implements Action {
     await lineButton.click();
     await driver
       .actions({ bridge: true })
-      .pause(2000)
       .move({ x: args[0], y: args[1] })
+      .pause(2000)
       .press()
       .release()
       .pause(2000)

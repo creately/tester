@@ -5,7 +5,7 @@ import { By, WebDriver } from 'selenium-webdriver';
  *  Apply colur for shapes
  *  arags[0] refers the colour code index
  */
-export default class AddShapeColourContextualToolbar implements Action {
+export default class ColourForShapeToolbar implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     await driver

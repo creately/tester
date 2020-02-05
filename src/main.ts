@@ -10,7 +10,6 @@ import Assert from './assert.i';
 // can be accessed by this module when installed globally.
 // It should be moved to another repository.
 import GoTo from './actions/common/go-to';
-import GetPageDimensions from './actions/common/get-page-dimensions';
 import GetElementDimensions from './actions/common/get-element-dimensions';
 import GetElementClasses from './actions/common/get-element-classes';
 import GetPageTitle from './actions/common/get-page-title';
@@ -22,12 +21,19 @@ import WaitTime from './actions/common/wait-time';
 import ShapeMoveOnCanvas from './actions/common/shape-move-on-canvas';
 import DragAndDropShape from './actions/common/drag-and-drop-shape';
 import GetContextualToolbar from './actions/common/get-contextual-toolbar';
-import AddText_ContextualToolbar from './actions/contextual-toolbar/add-text';
-import AddTLine_ContextualToolbar from './actions/contextual-toolbar/add-line';
-import ClickColourButton_ContextualToolbar from './actions/contextual-toolbar/click-colour-button';
-import AddColourDashedLine_ContextualToolbar from './actions/contextual-toolbar/add-colour-dashed-line';
-import AddShapeColour_ContextualToolbar from './actions/contextual-toolbar/add-shape-colour';
-import AddColouredLine_ContextualToolbar from './actions/contextual-toolbar/add-coloured-line';
+import AddTextToolbar from './actions/contextual-toolbar/add-text';
+import AddLineToolbar from './actions/contextual-toolbar/add-line';
+import ClickColourButtonToolbar  from './actions/contextual-toolbar/click-colour-button';
+import ColourDashedLineForShapeToolbar from './actions/contextual-toolbar/add-colour-dashed-line-shape';
+import ColourForShapeToolbar from './actions/contextual-toolbar/add-shape-colour';
+import ColouredLineForShapeToolbar from './actions/contextual-toolbar/add-coloured-line-shape';
+import MouseMove from './actions/common/mouse-move';
+import ColourDashedLineToolbar from './actions/contextual-toolbar/add-colour-dashed-line';
+import ColouredLineToolbar from './actions/contextual-toolbar/add-coloured-line';
+import AddLeftArrow from './actions/contextual-toolbar/add-left-arrow-line';
+import AddRightArrow from './actions/contextual-toolbar/add-right-arrow';
+import AddLineType from './actions/contextual-toolbar/add-line-type';
+import ChangeArrowPosition from './actions/contextual-toolbar/change-arrow-position';
 
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
@@ -35,7 +41,6 @@ import LessThan from './asserts/less-than';
 import Includes from './asserts/includes';
 export {
   GoTo,
-  GetPageDimensions,
   GetElementDimensions,
   GetElementClasses,
   GetPageTitle,
@@ -47,12 +52,19 @@ export {
   ShapeMoveOnCanvas,
   DragAndDropShape,
   GetContextualToolbar,
-  AddText_ContextualToolbar,
-  AddTLine_ContextualToolbar,
-  ClickColourButton_ContextualToolbar,
-  AddShapeColour_ContextualToolbar,
-  AddColouredLine_ContextualToolbar,
-  AddColourDashedLine_ContextualToolbar,
+  AddTextToolbar,
+  AddLineToolbar,
+  ClickColourButtonToolbar ,
+  ColourForShapeToolbar,
+  ColouredLineForShapeToolbar,
+  ColourDashedLineForShapeToolbar,
+  ColourDashedLineToolbar,
+  ColouredLineToolbar,
+  MouseMove,
+  AddLeftArrow,
+  AddRightArrow,
+  AddLineType,
+  ChangeArrowPosition,
   Equals,
   GreaterThan,
   LessThan,
