@@ -34,6 +34,7 @@ import AddLeftArrow from './actions/contextual-toolbar/add-left-arrow-line';
 import AddRightArrow from './actions/contextual-toolbar/add-right-arrow';
 import AddLineType from './actions/contextual-toolbar/add-line-type';
 import ChangeArrowPosition from './actions/contextual-toolbar/change-arrow-position';
+import ShapeRotation from './actions/common/shape-rotation';
 
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
@@ -65,6 +66,7 @@ export {
   AddRightArrow,
   AddLineType,
   ChangeArrowPosition,
+  ShapeRotation,
   Equals,
   GreaterThan,
   LessThan,
