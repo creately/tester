@@ -32,6 +32,8 @@
   "dependencies": {
     "@types/selenium-webdriver": "4.0.6",
     "colors": "^1.4.0",
+    "cursor-position": "^1.0.1",
+    "cycle-mouse-position": "0.0.1",
     "globby": "^10.0.1",
     "puppeteer": "2.0.0",
     "yargs": "^15.0.2"
