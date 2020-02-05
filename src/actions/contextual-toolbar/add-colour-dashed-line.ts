@@ -5,7 +5,7 @@ import { By, WebDriver } from 'selenium-webdriver';
  *  Apply colured dashed lines for  lines
  *  arags[0] refers the colour code index
  */
-export default class AddColourDashedLine_ContextualToolbar implements Action {
+export default class ColourDashedLine_Toolbar implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     await driver

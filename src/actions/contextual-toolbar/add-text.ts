@@ -4,7 +4,7 @@ import Action from '../../action.i';
 /*
  * add text by using contextual tolbar
  */
-export default class AddTextContextualToolbar implements Action {
+export default class AddText_Toolbar implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     const textButton = await driver.findElement(

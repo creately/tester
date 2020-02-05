@@ -4,7 +4,7 @@ import { By, WebDriver } from 'selenium-webdriver';
 /*
  * click colur button of contextual tolbar
  */
-export default class ClickColourButtonContextualToolbar implements Action {
+export default class ClickColourButton_Toolbar implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     const colourButton = await driver.findElement(

@@ -20,19 +20,19 @@ import ClickElement from './actions/common/click-element';
 import WaitTime from './actions/common/wait-time';
 import ShapeMoveOnCanvas from './actions/common/shape-move-on-canvas';
 import DragAndDropShape from './actions/common/drag-and-drop-shape';
-import GetContextualToolbar from './actions/contextual-toolbar/get-contextual-toolbar';
-import AddText_ContextualToolbar from './actions/contextual-toolbar/add-text';
-import AddTLine_ContextualToolbar from './actions/contextual-toolbar/add-line';
-import ClickColourButton_ContextualToolbar from './actions/contextual-toolbar/click-colour-button';
-import AddColourDashedLineShape_ContextualToolbar from './actions/contextual-toolbar/add-colour-dashed-line-shape';
-import AddShapeColour_ContextualToolbar from './actions/contextual-toolbar/add-shape-colour';
-import AddColouredLineShape_ContextualToolbar from './actions/contextual-toolbar/add-coloured-line-shape';
+import GetContextualToolbar from './actions/common/get-contextual-toolbar';
+import AddText_Toolbar from './actions/contextual-toolbar/add-text';
+import AddLine_Toolbar from './actions/contextual-toolbar/add-line';
+import ClickColourButton_Toolbar  from './actions/contextual-toolbar/click-colour-button';
+import ColourDashedLineForShape_Toolbar from './actions/contextual-toolbar/add-colour-dashed-line-shape';
+import ColourForShape_Toolbar from './actions/contextual-toolbar/add-shape-colour';
+import ColouredLineForShape_Toolbar from './actions/contextual-toolbar/add-coloured-line-shape';
 import MouseMove from './actions/common/mouse-move';
-import AddColourDashedLine_ContextualToolbar from './actions/contextual-toolbar/add-colour-dashed-line';
-import AddColouredLine_ContextualToolbar from './actions/contextual-toolbar/add-coloured-line';
+import ColourDashedLine_Toolbar from './actions/contextual-toolbar/add-colour-dashed-line';
+import ColouredLine_Toolbar from './actions/contextual-toolbar/add-coloured-line';
 import AddLeftArrow from './actions/contextual-toolbar/add-left-arrow-line';
 import AddRightArrow from './actions/contextual-toolbar/add-right-arrow';
-import ChangeLineShape from './actions/contextual-toolbar/change-line-shape';
+import AddLineType from './actions/contextual-toolbar/add-line-type';
 import ChangeArrowPosition from './actions/contextual-toolbar/change-arrow-position';
 
 import Equals from './asserts/equals';
@@ -52,18 +52,18 @@ export {
   ShapeMoveOnCanvas,
   DragAndDropShape,
   GetContextualToolbar,
-  AddText_ContextualToolbar,
-  AddTLine_ContextualToolbar,
-  ClickColourButton_ContextualToolbar,
-  AddShapeColour_ContextualToolbar,
-  AddColouredLineShape_ContextualToolbar,
-  AddColourDashedLineShape_ContextualToolbar,
-  AddColourDashedLine_ContextualToolbar,
-  AddColouredLine_ContextualToolbar,
+  AddText_Toolbar,
+  AddLine_Toolbar,
+  ClickColourButton_Toolbar ,
+  ColourForShape_Toolbar,
+  ColouredLineForShape_Toolbar,
+  ColourDashedLineForShape_Toolbar,
+  ColourDashedLine_Toolbar,
+  ColouredLine_Toolbar,
   MouseMove,
   AddLeftArrow,
   AddRightArrow,
-  ChangeLineShape,
+  AddLineType,
   ChangeArrowPosition,
   Equals,
   GreaterThan,

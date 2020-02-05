@@ -5,7 +5,7 @@ import { By, WebDriver } from 'selenium-webdriver';
  *  Change the line shape
  *  Argument pass the shape index
  */
-export default class ChangeLineShape implements Action {
+export default class AddLineType implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     const lineShapeButton = await driver.findElement(
