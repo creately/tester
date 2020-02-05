@@ -1,10 +1,10 @@
 import { WebDriver, Origin, By } from 'selenium-webdriver';
-import Action from '../action.i';
+import Action from '../../action.i';
 
 /**
  * Drag and drop an element to the specified coordinates.
  */
-export default class DragAndDropCoordinates implements Action {
+export default class ShapeMoveOnCanvas implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     const originXPath = args[0];

@@ -1,5 +1,5 @@
 import { Page } from 'puppeteer';
-import Action from '../action.i';
+import Action from '../../action.i';
 
 /**
  * Returns the page dimensions.
