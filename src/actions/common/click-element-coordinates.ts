@@ -1,10 +1,10 @@
 import Action from '../../action.i';
 import { WebDriver } from 'selenium-webdriver';
 
-export default class MouseMove implements Action {
+export default class ClickElementByCoordinates implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
-    
+  
     await driver
       .actions({ bridge: true })
       .pause(4000)
@@ -13,6 +13,7 @@ export default class MouseMove implements Action {
       .release()
       .pause(3000)
       .perform();
+    
     return [''];
   }
 }

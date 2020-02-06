@@ -1,6 +1,9 @@
 import Action from "../../action.i";
 import { WebDriver } from "selenium-webdriver";
 
+/* 
+ * Rotate the shape
+*/
 export default class ShapeRotation implements Action {
     async execute(args: any[], context: any): Promise<string[]> {
         var driver: WebDriver = context.driver;
