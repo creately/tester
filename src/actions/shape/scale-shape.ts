@@ -1,5 +1,6 @@
 import Action from '../../action.i';
 import { WebDriver } from 'selenium-webdriver';
+import GetCursorPosition from '../common/get-cursor-position';
 
 /* 
  * Scale the shape by according to given x & y coordinates
@@ -19,7 +20,9 @@ export default class ScaleShape implements Action {
       .press()
       .release()
       .perform();
+     const {x,y} = GetCursorPosition()
 
+console.log(x,y)
     return [''];
   }
 }
