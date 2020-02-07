@@ -36,6 +36,7 @@ import AddLineType from './actions/contextual-toolbar/add-line-type';
 import ChangeArrowPosition from './actions/contextual-toolbar/change-arrow-position';
 import ShapeRotation from './actions/shape/shape-rotation';
 import ScaleShape from './actions/shape/scale-shape';
+import GetShapeTextToolbar from './actions/shape-text-toolbar/get-shape-text-toolbar';
 
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
@@ -69,6 +70,7 @@ export {
   ChangeArrowPosition,
   ShapeRotation,
   ScaleShape,
+  GetShapeTextToolbar,
   Equals,
   GreaterThan,
   LessThan,

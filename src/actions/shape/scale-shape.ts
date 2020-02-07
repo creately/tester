@@ -1,14 +1,12 @@
 import Action from '../../action.i';
-import { WebDriver } from 'selenium-webdriver';
-import GetCursorPosition from '../common/get-cursor-position';
-
+import { WebDriver } from 'selenium-webdriver'; 
 /* 
  * Scale the shape by according to given x & y coordinates
 */
 export default class ScaleShape implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
-
+    
     await driver
       .actions({ bridge: true })
       .pause(4000)
@@ -20,9 +18,7 @@ export default class ScaleShape implements Action {
       .press()
       .release()
       .perform();
-     const {x,y} = GetCursorPosition()
 
-console.log(x,y)
     return [''];
   }
 }
