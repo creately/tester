@@ -1,8 +1,9 @@
-import { WebDriver } from "selenium-webdriver";
+import { WebDriver, until, By } from "selenium-webdriver";
 import Action from '../../action.i';
 import axios from "axios";
 import * as md5 from "md5";
 import * as sha256 from "sha256";
+import { mouseCoordinates } from '../../mouseCoordinate-helper'
 
 /**
  * Only args[0] is present navigates to a specified url. 
@@ -13,6 +14,7 @@ import * as sha256 from "sha256";
 export default class GoTo implements Action {
   async execute(args: string[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
+    
     await driver.get(args[0]);
 
     if (args[1] && args[2]) {
@@ -30,6 +32,11 @@ export default class GoTo implements Action {
       await driver.manage().addCookie({ name: `gravity_token`, value: `${user.token}` });
       await driver.navigate().refresh();
     }
+
+    if(await driver.wait(until.elementLocated(By.xpath('//*[@id="interaction-area-canvas"]')))){
+      driver.executeAsyncScript(mouseCoordinates()).catch(() => {});
+    }
+    
     return [''];
   }
 }
