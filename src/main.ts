@@ -23,7 +23,7 @@ import DragAndDropShape from './actions/shape/drag-and-drop-shape';
 import GetContextualToolbar from './actions/common/get-contextual-toolbar';
 import AddTextToolbar from './actions/contextual-toolbar/add-text';
 import AddLineToolbar from './actions/contextual-toolbar/add-line';
-import ClickColourButtonToolbar  from './actions/contextual-toolbar/click-colour-button';
+import ClickColourButtonToolbar from './actions/contextual-toolbar/click-colour-button';
 import ColourDashedLineForShapeToolbar from './actions/contextual-toolbar/add-colour-dashed-line-shape';
 import ColourForShapeToolbar from './actions/contextual-toolbar/add-shape-colour';
 import ColouredLineForShapeToolbar from './actions/contextual-toolbar/add-coloured-line-shape';
@@ -56,7 +56,7 @@ export {
   GetContextualToolbar,
   AddTextToolbar,
   AddLineToolbar,
-  ClickColourButtonToolbar ,
+  ClickColourButtonToolbar,
   ColourForShapeToolbar,
   ColouredLineForShapeToolbar,
   ColourDashedLineForShapeToolbar,
