@@ -10,11 +10,15 @@ export default class AddTextToolbar implements Action {
     const textButton = await driver.findElement(
       By.xpath('//*[@id="contextual-toolbar"]/div/icon-button[1]/div/button')
     );
+    console.log('test btn is displayed  ::::: ', await textButton.isDisplayed());
     await textButton.click();
+
     await driver
       .actions({ bridge: true })
+      .pause(3000)
       .sendKeys(args[0])
       .perform();
+    console.log(args);
     return [''];
   }
 }

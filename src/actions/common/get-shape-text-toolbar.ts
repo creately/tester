@@ -17,13 +17,13 @@ export default class GetShapeTextToolbar implements Action {
       .press()
       .release()
       .keyDown(Key.CONTROL)
-      .sendKeys("a")
+      .sendKeys('a')
       .pause(4000)
       .perform();
 
     const shapeTextToolbar = await driver.findElement(By.xpath('//*[@id="shape-text-toolbar"]'));
     const isDisplayed = await shapeTextToolbar.isDisplayed();
-    console.log(isDisplayed)
+    console.log(isDisplayed);
     return [isDisplayed.toString()];
   }
 }

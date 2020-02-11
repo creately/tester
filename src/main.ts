@@ -23,7 +23,7 @@ import DragAndDropShape from './actions/shape/drag-and-drop-shape';
 import GetContextualToolbar from './actions/common/get-contextual-toolbar';
 import AddTextToolbar from './actions/contextual-toolbar/add-text';
 import AddLineToolbar from './actions/contextual-toolbar/add-line';
-import ClickColourButtonToolbar  from './actions/contextual-toolbar/click-colour-button';
+import ClickColourButtonToolbar from './actions/contextual-toolbar/click-colour-button';
 import ColourDashedLineForShapeToolbar from './actions/contextual-toolbar/add-colour-dashed-line-shape';
 import ColourForShapeToolbar from './actions/contextual-toolbar/add-shape-colour';
 import ColouredLineForShapeToolbar from './actions/contextual-toolbar/add-coloured-line-shape';
@@ -36,7 +36,8 @@ import AddLineType from './actions/contextual-toolbar/add-line-type';
 import ChangeArrowPosition from './actions/contextual-toolbar/change-arrow-position';
 import ShapeRotation from './actions/shape/shape-rotation';
 import ScaleShape from './actions/shape/scale-shape';
-import GetShapeTextToolbar from './actions/shape-text-toolbar/get-shape-text-toolbar';
+import GetShapeTextToolbar from './actions/common/get-shape-text-toolbar';
+import BoldText from './actions/shape-text-toolbar/bold-text';
 
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
@@ -57,7 +58,7 @@ export {
   GetContextualToolbar,
   AddTextToolbar,
   AddLineToolbar,
-  ClickColourButtonToolbar ,
+  ClickColourButtonToolbar,
   ColourForShapeToolbar,
   ColouredLineForShapeToolbar,
   ColourDashedLineForShapeToolbar,
@@ -71,6 +72,7 @@ export {
   ShapeRotation,
   ScaleShape,
   GetShapeTextToolbar,
+  BoldText,
   Equals,
   GreaterThan,
   LessThan,

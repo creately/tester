@@ -11,9 +11,10 @@ export default class GetContextualToolbar implements Action {
       .actions({ bridge: true })
       .pause(4000)
       .move({ x: startX, y: startY })
+      .pause(2000)
       .press()
       .release()
-      .pause(2000)
+     // .pause(2000)
       .perform();
 
     const canvasToolbar = await driver.findElement(By.xpath('//*[@id="contextual-toolbar"]/div'));

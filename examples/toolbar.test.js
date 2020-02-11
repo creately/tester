@@ -6,7 +6,7 @@ var GetPageTitle = tester.GetPageTitle;
 var GetUrl = tester.GetUrl;
 var WaitForElementLocated = tester.WaitForElementLocated;
 var WaitForElementNotVisible = tester.WaitForElementNotVisible;
-var ClickElement = tester.ClickElement;
+var ClickElementByXpath = tester.ClickElementByXpath;
 var WaitTime = tester.WaitTime;
 var ShapeMoveOnCanvas = tester.ShapeMoveOnCanvas;
 var DragAndDropShape = tester.DragAndDropShape;
@@ -17,7 +17,7 @@ var ClickColourButtonToolbar  = tester.ClickColourButtonToolbar ;
 var ColourDashedLineForShapeToolbar = tester.ColourDashedLineForShapeToolbar;
 var ColourForShapeToolbar = tester.ColourForShapeToolbar;
 var ColouredLineForShapeToolbar = tester.ColouredLineForShapeToolbar;
-var MouseMove = tester.MouseMove;
+var ClickElementByCoordinates = tester.ClickElementByCoordinates;
 var ColourDashedLineToolbar = tester.ColourDashedLineToolbar;
 var ColouredLineToolbar = tester.ColouredLineToolbar;
 var AddLeftArrow = tester.AddLeftArrow;
@@ -30,8 +30,8 @@ var GreaterThan = tester.GreaterThan;
 var LessThan = tester.LessThan;
 var Includes = tester.Includes;
 
-tester.registerActions(GoTo, GetElementDimensions, GetElementClasses, GetPageTitle, GetUrl, WaitForElementLocated, WaitForElementNotVisible, ClickElement, WaitTime, ShapeMoveOnCanvas, DragAndDropShape, GetContextualToolbar,
-    AddTextToolbar, AddLineToolbar, ClickColourButtonToolbar , ColourForShapeToolbar, ColouredLineForShapeToolbar, ColourDashedLineForShapeToolbar, MouseMove, ColourDashedLineToolbar, ColouredLineToolbar,
+tester.registerActions(GoTo, GetElementDimensions, GetElementClasses, GetPageTitle, GetUrl, WaitForElementLocated, WaitForElementNotVisible, ClickElementByXpath, WaitTime, ShapeMoveOnCanvas, DragAndDropShape, GetContextualToolbar,
+    AddTextToolbar, AddLineToolbar, ClickColourButtonToolbar , ColourForShapeToolbar, ColouredLineForShapeToolbar, ColourDashedLineForShapeToolbar, ClickElementByCoordinates, ColourDashedLineToolbar, ColouredLineToolbar,
     AddLeftArrow, AddRightArrow, AddLineType,ChangeArrowPosition);
 tester.registerAsserts(Equals, GreaterThan, LessThan, Includes);
 
@@ -63,7 +63,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'click blank document button',
-        action: ClickElement,
+        action: ClickElementByXpath,
         args: ['/html/body/app-root/ng-component/div/div/div[2]/perfect-scrollbar/div/div[1]/div[1]/div/div[1]/creator-thumbnail/div/div[1]']
     },
     {
@@ -73,7 +73,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'clicks maybe later button',
-        action: ClickElement,
+        action: ClickElementByXpath,
         args: ['//button[contains(text(),"Maybe Later")]']
     },
     {
@@ -179,7 +179,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'mouse move on the line',
-        action: MouseMove,
+        action: ClickElementByCoordinates,
         args: [900, 300]
     },
     {
@@ -237,7 +237,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'mouse move on the line',
-        action: MouseMove,
+        action: ClickElementByCoordinates,
         args: [700, 300]
     },
     {
@@ -247,7 +247,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'mouse move on the line',
-        action: MouseMove,
+        action: ClickElementByCoordinates,
         args: [700, 300]
     },
     {
@@ -257,7 +257,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'mouse move on the line',
-        action: MouseMove,
+        action: ClickElementByCoordinates,
         args: [500, 300]
     },
     {
@@ -267,7 +267,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'mouse move on the line',
-        action: MouseMove,
+        action: ClickElementByCoordinates,
         args: [700, 200]
     },
     {
@@ -277,7 +277,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'mouse move on the line',
-        action: MouseMove,
+        action: ClickElementByCoordinates,
         args: [500, 300]
     },
     {
@@ -293,7 +293,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'mouse move on the line',
-        action: MouseMove,
+        action: ClickElementByCoordinates,
         args: [700, 300]
     },
     {
@@ -303,7 +303,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'mouse move on the line',
-        action: MouseMove,
+        action: ClickElementByCoordinates,
         args: [750, 500]
     },
     {
@@ -313,7 +313,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'mouse move on the line',
-        action: MouseMove,
+        action: ClickElementByCoordinates,
         args: [750, 500]
     },
     {
