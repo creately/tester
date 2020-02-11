@@ -3,7 +3,7 @@ import Action from '../../action.i';
 import axios from "axios";
 import * as md5 from "md5";
 import * as sha256 from "sha256";
-import { mouseCoordinates } from '../../mouseCoordinate-helper'
+import { MouseCoordinates } from '../../mouseCoordinate-helper'
 
 /**
  * Only args[0] is present navigates to a specified url. 
@@ -34,9 +34,9 @@ export default class GoTo implements Action {
     }
 
     if(await driver.wait(until.elementLocated(By.xpath('//*[@id="interaction-area-canvas"]')))){
-      driver.executeAsyncScript(mouseCoordinates()).catch(() => {});
+      driver.executeAsyncScript(MouseCoordinates.updateMouseCoordinate()).catch(() => {});
     }
-    
+
     return [''];
   }
 }
