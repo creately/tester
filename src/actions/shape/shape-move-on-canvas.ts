@@ -31,8 +31,9 @@ export default class ShapeMoveOnCanvas implements Action {
       .press()
       .move({ origin: origin, x: endX, y: endY, duration: duration })
       .release()
+      .pause(2000)
       .perform();
-
+console.log('finish ***')
     return [''];
   }
 }

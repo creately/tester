@@ -38,6 +38,7 @@ import ShapeRotation from './actions/shape/shape-rotation';
 import ScaleShape from './actions/shape/scale-shape';
 import GetShapeTextToolbar from './actions/common/get-shape-text-toolbar';
 import BoldText from './actions/shape-text-toolbar/bold-text';
+import SelectText from './actions/common/select-text';
 
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
@@ -73,6 +74,7 @@ export {
   ScaleShape,
   GetShapeTextToolbar,
   BoldText,
+  SelectText,
   Equals,
   GreaterThan,
   LessThan,

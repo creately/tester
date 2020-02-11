@@ -96,17 +96,17 @@ tester.addTest('simple test', [
         action: ShapeMoveOnCanvas,
         args: [null, 350, 150, 700, 300, 3000]
     },
-    {
+/*      {
         title: 'get contextual toolbar',
         action: GetContextualToolbar,
-        args: [750, 350],
+        args: [700, 280],
         outs: ['$isDisplayed']
     },
-    {
+     {
         title: 'checks whether contextual toolbar is displayed',
         assert: Equals,
         args: ['$isDisplayed', 'true']
-    },
+    },  */
     {
         title: 'add text for shape',
         action: AddTextToolbar,
@@ -115,7 +115,7 @@ tester.addTest('simple test', [
     {
         title: 'get contextual toolbar',
         action: GetContextualToolbar,
-        args: [750, 350],
+        args: [700,280],
         outs: ['$isDisplayed']
     },
     {
@@ -129,7 +129,7 @@ tester.addTest('simple test', [
         action: ColourForShapeToolbar,
         args: [19]
     },
-    {
+     {
         title: 'add colour for shape',
         action: ClickColourButtonToolbar ,
         args: [],
@@ -164,7 +164,7 @@ tester.addTest('simple test', [
     {
         title: 'get contextual toolbar',
         action: GetContextualToolbar,
-        args: [750, 350],
+        args: [700, 270],
         outs: ['$isDisplayed']
     },
     {
@@ -177,7 +177,7 @@ tester.addTest('simple test', [
         action: AddLineToolbar,
         args: [900, 300]
     },
-    {
+  {
         title: 'mouse move on the line',
         action: ClickElementByCoordinates,
         args: [900, 300]
@@ -208,7 +208,8 @@ tester.addTest('simple test', [
         title: 'add colour for line',
         action: ColourDashedLineToolbar,
         args: [9]
-    }, {
+    }, 
+      {
         title: 'click colour button',
         action: ClickColourButtonToolbar ,
         args: [],
@@ -325,5 +326,5 @@ tester.addTest('simple test', [
         title: 'drag and drop first shape in library to the canvas',
         action: DragAndDropShape,
         args: ['/html/body/app-root/ng-component/div/div/div[2]/left-sidebar/div/div[2]/left-bar/div/div/library-container/div/div[3]/perfect-scrollbar/div/div[1]/collapsible-menu/div/collapsible-menu-item[1]/div/div[2]/ng-component/library-tile[1]/div', null, 700, 500, null]
-    }
+    } 
 ]);
