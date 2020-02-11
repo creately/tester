@@ -7,7 +7,7 @@ import Action from '../../action.i';
 export default class AddTextToolbar implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
-    console.log('add text start')
+    console.log('add text start');
     /* await driver
     .actions({ bridge: true })
     .pause(3000)

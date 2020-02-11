@@ -33,7 +33,7 @@ export default class ShapeMoveOnCanvas implements Action {
       .release()
       .pause(2000)
       .perform();
-console.log('finish ***')
+    console.log('finish ***');
     return [''];
   }
 }
