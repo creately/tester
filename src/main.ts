@@ -237,6 +237,7 @@ export async function runSpecs(specs: spec[]) {
         let results = await action.execute(args, context);
         if (outs && results) {
           storeVariables(outs, results);
+          console.log(`✓ PASSED: ${spec.title}`.green)
         }
       } catch (error) {
         console.error(`Error in ${spec.title}:`.red, error.red);
@@ -247,7 +248,7 @@ export async function runSpecs(specs: spec[]) {
       try {
         const result: boolean = await assert.execute(args);
         if (!result) {
-          console.error(`FAILED: ${spec.title}, values: ${args}`.red);
+          console.error(`✗ FAILED: ${spec.title}, values: ${args}`.red);
         }
       } catch (error) {
         console.error(`Error in ${spec.title}:`.red, error.red);
