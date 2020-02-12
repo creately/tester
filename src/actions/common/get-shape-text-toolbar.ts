@@ -9,13 +9,14 @@ export default class GetShapeTextToolbar implements Action {
 
     await driver
       .actions({ bridge: true })
-      .pause(3000)
+      .pause(5000)
       .move({ x: startX, y: startY })
       .pause(2000)
       .press()
       .release()
       .press()
       .release()
+      .pause(2000)
       .keyDown(Key.CONTROL)
       .sendKeys('a')
       .pause(4000)

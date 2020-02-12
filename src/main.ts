@@ -39,6 +39,12 @@ import ScaleShape from './actions/shape/scale-shape';
 import GetShapeTextToolbar from './actions/common/get-shape-text-toolbar';
 import BoldText from './actions/shape-text-toolbar/bold-text';
 import SelectText from './actions/common/select-text';
+import FontSize from './actions/shape-text-toolbar/font-size';
+import ItalianText from './actions/shape-text-toolbar/italian-text'; 
+import Stiketrough from './actions/shape-text-toolbar/striketrough';
+import UnderlineText from './actions/shape-text-toolbar/underline-text';
+import ColourForText from './actions/shape-text-toolbar/colourForText';
+import AddHyperlink from './actions/shape-text-toolbar/add-hyperlink';
 
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
@@ -74,7 +80,13 @@ export {
   ScaleShape,
   GetShapeTextToolbar,
   BoldText,
+  FontSize,
   SelectText,
+  ItalianText,
+  Stiketrough,
+  UnderlineText,
+  AddHyperlink,
+  ColourForText,
   Equals,
   GreaterThan,
   LessThan,

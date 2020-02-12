@@ -6,7 +6,7 @@ export default class SelectText implements Action {
         var driver: WebDriver = context.driver;
         await driver
             .actions({ bridge: true })
-            .pause(3000)
+            .pause(5000)
             .move({ x: args[0], y: args[1] })
             .pause(1000)
             .press()
