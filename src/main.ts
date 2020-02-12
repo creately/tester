@@ -40,7 +40,7 @@ import GetShapeTextToolbar from './actions/common/get-shape-text-toolbar';
 import BoldText from './actions/shape-text-toolbar/bold-text';
 import SelectText from './actions/common/select-text';
 import FontSize from './actions/shape-text-toolbar/font-size';
-import ItalianText from './actions/shape-text-toolbar/italian-text'; 
+import ItalianText from './actions/shape-text-toolbar/italian-text';
 import Stiketrough from './actions/shape-text-toolbar/striketrough';
 import UnderlineText from './actions/shape-text-toolbar/underline-text';
 import ColourForText from './actions/shape-text-toolbar/colourForText';
@@ -237,7 +237,7 @@ export async function runSpecs(specs: spec[]) {
         let results = await action.execute(args, context);
         if (outs && results) {
           storeVariables(outs, results);
-          console.log(`✓ PASSED: ${spec.title}`.green)
+          console.log(`✓ PASSED: ${spec.title}`.green);
         }
       } catch (error) {
         console.error(`Error in ${spec.title}:`.red, error.red);

@@ -1,8 +1,8 @@
 import Action from '../../action.i';
 import { WebDriver, By, Key } from 'selenium-webdriver';
 
-/* 
-    * Edit the linked url with hyperlink text
+/*
+ * Edit the linked url with hyperlink text
  */
 export default class EditHyperlinkText implements Action {
   async execute(args: any[], context: any): Promise<string[]> {

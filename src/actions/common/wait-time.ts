@@ -8,7 +8,7 @@ export default class WaitTime implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
     const time: number = args[0];
-    await driver.actions({bridge : true}).pause(time);
+    await driver.actions({ bridge: true }).pause(time);
     return [''];
   }
 }

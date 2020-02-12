@@ -1,9 +1,9 @@
 import Action from '../../action.i';
 import { WebDriver, By } from 'selenium-webdriver';
 
-/* 
+/*
  * Delete the linked url
-*/
+ */
 export default class DeleteHyperlinkText implements Action {
   async execute(args: any[], context: any): Promise<string[]> {
     var driver: WebDriver = context.driver;
