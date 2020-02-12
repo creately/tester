@@ -9,7 +9,12 @@ import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
 import LessThan from './asserts/less-than';
 import Includes from './asserts/includes';
+
 export {
+  spec,
+  test,
+  Action,
+  Assert,
   Equals,
   GreaterThan,
   LessThan,
