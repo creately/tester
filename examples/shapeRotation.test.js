@@ -6,20 +6,20 @@ var GetPageTitle = tester.GetPageTitle;
 var GetUrl = tester.GetUrl;
 var WaitForElementLocated = tester.WaitForElementLocated;
 var WaitForElementNotVisible = tester.WaitForElementNotVisible;
-var ClickElement = tester.ClickElement;
+var ClickElementByXpath = tester.ClickElementByXpath;
 var WaitTime = tester.WaitTime;
 var ShapeMoveOnCanvas = tester.ShapeMoveOnCanvas;
 var DragAndDropShape = tester.DragAndDropShape;
 var GetContextualToolbar = tester.GetContextualToolbar;
-var AddText_Toolbar = tester.AddText_Toolbar;
-var AddLine_Toolbar = tester.AddLine_Toolbar;
-var ClickColourButton_Toolbar = tester.ClickColourButton_Toolbar;
-var ColourDashedLineForShape_Toolbar = tester.ColourDashedLineForShape_Toolbar;
-var ColourForShape_Toolbar = tester.ColourForShape_Toolbar;
-var ColouredLineForShape_Toolbar = tester.ColouredLineForShape_Toolbar;
-var MouseMove = tester.MouseMove;
-var ColourDashedLine_Toolbar = tester.ColourDashedLine_Toolbar;
-var ColouredLine_Toolbar = tester.ColouredLine_Toolbar;
+var AddTextToolbar = tester.AddTextToolbar;
+var AddLineToolbar = tester.AddLineToolbar;
+var ClickColourButtonToolbar = tester.ClickColourButtonToolbar;
+var ColourDashedLineForShapeToolbar = tester.ColourDashedLineForShapeToolbar;
+var ColourForShapeToolbar = tester.ColourForShapeToolbar;
+var ColouredLineForShapeToolbar = tester.ColouredLineForShapeToolbar;
+var ClickElementByCoordinates = tester.ClickElementByCoordinates;
+var ColourDashedLineToolbar = tester.ColourDashedLineToolbar;
+var ColouredLineToolbar = tester.ColouredLineToolbar;
 var AddLeftArrow = tester.AddLeftArrow;
 var AddRightArrow = tester.AddRightArrow;
 var AddLineType = tester.AddLineType;
@@ -31,8 +31,8 @@ var GreaterThan = tester.GreaterThan;
 var LessThan = tester.LessThan;
 var Includes = tester.Includes;
 
-tester.registerActions(GoTo, GetElementDimensions, GetElementClasses, GetPageTitle, GetUrl, WaitForElementLocated, WaitForElementNotVisible, ClickElement, WaitTime, ShapeMoveOnCanvas, DragAndDropShape, GetContextualToolbar,
-    AddText_Toolbar, AddLine_Toolbar, ClickColourButton_Toolbar, ColourForShape_Toolbar, ColouredLineForShape_Toolbar, ColourDashedLineForShape_Toolbar, MouseMove, ColourDashedLine_Toolbar, ColouredLine_Toolbar,
+tester.registerActions(GoTo, GetElementDimensions, GetElementClasses, GetPageTitle, GetUrl, WaitForElementLocated, WaitForElementNotVisible, ClickElementByXpath, WaitTime, ShapeMoveOnCanvas, DragAndDropShape, GetContextualToolbar,
+    AddTextToolbar, AddLineToolbar, ClickColourButtonToolbar, ColourForShapeToolbar, ColouredLineForShapeToolbar, ColourDashedLineForShapeToolbar, ClickElementByCoordinates, ColourDashedLineToolbar, ColouredLineToolbar,
     AddLeftArrow, AddRightArrow, AddLineType, ChangeArrowPosition, ShapeRotation);
 tester.registerAsserts(Equals, GreaterThan, LessThan, Includes);
 
@@ -64,7 +64,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'click blank document button',
-        action: ClickElement,
+        action: ClickElementByXpath,
         args: ['/html/body/app-root/ng-component/div/div/div[2]/perfect-scrollbar/div/div[1]/div[1]/div/div[1]/creator-thumbnail/div/div[1]']
     },
     {
@@ -74,7 +74,7 @@ tester.addTest('simple test', [
     },
     {
         title: 'clicks maybe later button',
-        action: ClickElement,
+        action: ClickElementByXpath,
         args: ['//button[contains(text(),"Maybe Later")]']
     },
     {

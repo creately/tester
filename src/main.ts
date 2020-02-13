@@ -5,70 +5,16 @@ import spec from './spec.type';
 import test from './test.type';
 import Action from './action.i';
 import Assert from './assert.i';
-
-// TODO: These actions have been added here temporarily so that it
-// can be accessed by this module when installed globally.
-// It should be moved to another repository.
-import GoTo from './actions/common/go-to';
-import GetElementDimensions from './actions/common/get-element-dimensions';
-import GetElementClasses from './actions/common/get-element-classes';
-import GetPageTitle from './actions/common/get-page-title';
-import GetUrl from './actions/common/get-url';
-import WaitForElementLocated from './actions/common/wait-for-element-located';
-import WaitForElementNotVisible from './actions/common/wait-for-element-not-visible';
-import ClickElementByXpath from './actions/common/click-element-xpath';
-import WaitTime from './actions/common/wait-time';
-import ShapeMoveOnCanvas from './actions/shape/shape-move-on-canvas';
-import DragAndDropShape from './actions/shape/drag-and-drop-shape';
-import GetContextualToolbar from './actions/common/get-contextual-toolbar';
-import AddTextToolbar from './actions/contextual-toolbar/add-text';
-import AddLineToolbar from './actions/contextual-toolbar/add-line';
-import ClickColourButtonToolbar from './actions/contextual-toolbar/click-colour-button';
-import ColourDashedLineForShapeToolbar from './actions/contextual-toolbar/add-colour-dashed-line-shape';
-import ColourForShapeToolbar from './actions/contextual-toolbar/add-shape-colour';
-import ColouredLineForShapeToolbar from './actions/contextual-toolbar/add-coloured-line-shape';
-import ClickElementByCoordinates from './actions/common/click-element-coordinates';
-import ColourDashedLineToolbar from './actions/contextual-toolbar/add-colour-dashed-line';
-import ColouredLineToolbar from './actions/contextual-toolbar/add-coloured-line';
-import AddLeftArrow from './actions/contextual-toolbar/add-left-arrow-line';
-import AddRightArrow from './actions/contextual-toolbar/add-right-arrow';
-import AddLineType from './actions/contextual-toolbar/add-line-type';
-import ChangeArrowPosition from './actions/contextual-toolbar/change-arrow-position';
-import ShapeRotation from './actions/shape/shape-rotation';
-import ScaleShape from './actions/shape/scale-shape';
-
 import Equals from './asserts/equals';
 import GreaterThan from './asserts/greater-than';
 import LessThan from './asserts/less-than';
 import Includes from './asserts/includes';
+
 export {
-  GoTo,
-  GetElementDimensions,
-  GetElementClasses,
-  GetPageTitle,
-  GetUrl,
-  WaitForElementLocated,
-  WaitForElementNotVisible,
-  ClickElementByXpath,
-  WaitTime,
-  ShapeMoveOnCanvas,
-  DragAndDropShape,
-  GetContextualToolbar,
-  AddTextToolbar,
-  AddLineToolbar,
-  ClickColourButtonToolbar,
-  ColourForShapeToolbar,
-  ColouredLineForShapeToolbar,
-  ColourDashedLineForShapeToolbar,
-  ColourDashedLineToolbar,
-  ColouredLineToolbar,
-  ClickElementByCoordinates,
-  AddLeftArrow,
-  AddRightArrow,
-  AddLineType,
-  ChangeArrowPosition,
-  ShapeRotation,
-  ScaleShape,
+  spec,
+  test,
+  Action,
+  Assert,
   Equals,
   GreaterThan,
   LessThan,
@@ -219,7 +165,7 @@ export async function runSpecs(specs: spec[]) {
         let results = await action.execute(args, context);
         if (outs && results) {
           storeVariables(outs, results);
-          console.log(`✓ PASSED: ${spec.title}`.green)
+          console.log(`✓ PASSED: ${spec.title}`.green);
         }
       } catch (error) {
         console.error(`Error in ${spec.title}:`.red, error.red);
@@ -256,7 +202,7 @@ function getTests(): test[] {
  * for a set of given keys.
  * @param keys the keys to retrieve variable values for.
  */
-function getVariables(keys: string[]): string[] {
+function getVariables(keys: string[] | undefined): string[] {
   if (!keys || !keys.length) {
     return [];
   }

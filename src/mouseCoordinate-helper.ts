@@ -1,7 +1,6 @@
 export class MouseCoordinates {
-
-     static updateMouseCoordinate() {
-        return `
+  static updateMouseCoordinate() {
+    return `
         function mousePositionOnDom(e) {
             var el=e.target, c=el;
             var scaleX = c.width/c.offsetWidth || 1;
@@ -49,6 +48,5 @@ export class MouseCoordinates {
             htmlelem.innerHTML = "X:" +Math.round(p.x)+ "," + "Y:" +Math.round(p.y);
             document.getElementsByClassName("container-fluid")[0].appendChild( htmlelem );
         };`;
-     }
+  }
 }
-
