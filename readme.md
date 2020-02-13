@@ -32,6 +32,7 @@ To check whether packeage is installed globally:
 ~/projects/tester $ npm ls -g --depth=0
 ```
 
+
 - Set up Chrome and Firefox webdrivers
 
 Webdrivers should be downloaded and installed for the browser versions available in the environment. Webdrivers and installation instructions can be found here: https://selenium.dev/documentation/en/webdriver/driver_requirements/
