@@ -202,7 +202,7 @@ function getTests(): test[] {
  * for a set of given keys.
  * @param keys the keys to retrieve variable values for.
  */
-function getVariables(keys: string[]): string[] {
+function getVariables(keys: string[] | undefined): string[] {
   if (!keys || !keys.length) {
     return [];
   }

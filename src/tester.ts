@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 
+import { register } from 'ts-node';
 import 'colors';
 import * as yargs from 'yargs';
 import { findFiles, load, runTests } from './main';
 import * as webdriver from 'selenium-webdriver';
 import * as chrome from 'selenium-webdriver/chrome';
 import * as firefox from 'selenium-webdriver/firefox';
+
+register();
 
 let path: string = process.cwd();
 
@@ -55,10 +58,11 @@ if (!path.endsWith('/')) {
 
 (async () => {
   console.log('Searching for files in: '.yellow + path);
-  const files: string[] = await findFiles(path);
+  const files: string[] = await findFiles(path, ['.test.js', '.test.ts']);
 
   if (!files || files.length == 0) {
     console.warn('No files found'.yellow);
+    process.exit();
   }
 
   console.log('Found files: '.green + files);
