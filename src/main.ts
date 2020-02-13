@@ -10,16 +10,7 @@ import GreaterThan from './asserts/greater-than';
 import LessThan from './asserts/less-than';
 import Includes from './asserts/includes';
 
-export {
-  spec,
-  test,
-  Action,
-  Assert,
-  Equals,
-  GreaterThan,
-  LessThan,
-  Includes,
-};
+export { spec, test, Action, Assert, Equals, GreaterThan, LessThan, Includes };
 
 const STORE: store = {
   context: {},
