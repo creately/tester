@@ -1,8 +1,8 @@
 type spec = {
   title: string;
-  action: any;
+  action?: any;
   assert?: any;
-  args: any[];
+  args?: any[];
   outs?: any[];
 };
 
